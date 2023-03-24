@@ -1439,7 +1439,6 @@ Button */
                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff79c6;&quot;&gt;PyDracula&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;An interface created using Python and PySide (support for PyQt), and with colors based on the Dracula theme created by Zeno Rocha.&lt;/span&gt;&lt;/p&gt;
@@ -1860,7 +1859,7 @@ hr { height: 1px; border-width: 0; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -1978,7 +1977,7 @@ background-repeat: no-repeat;</string>
                                    <string notr="true"/>
                                   </property>
                                   <property name="text">
-                                   <string>FILE BOX</string>
+                                   <string>MT8852B 连接状态</string>
                                   </property>
                                  </widget>
                                 </item>
@@ -1999,56 +1998,6 @@ background-repeat: no-repeat;</string>
                                   <property name="bottomMargin">
                                    <number>0</number>
                                   </property>
-                                  <item row="0" column="0">
-                                   <widget class="QLineEdit" name="lineEdit">
-                                    <property name="minimumSize">
-                                     <size>
-                                      <width>0</width>
-                                      <height>30</height>
-                                     </size>
-                                    </property>
-                                    <property name="styleSheet">
-                                     <string notr="true">background-color: rgb(33, 37, 43);</string>
-                                    </property>
-                                    <property name="text">
-                                     <string/>
-                                    </property>
-                                    <property name="placeholderText">
-                                     <string>Type here</string>
-                                    </property>
-                                   </widget>
-                                  </item>
-                                  <item row="0" column="1">
-                                   <widget class="QPushButton" name="pushButton">
-                                    <property name="minimumSize">
-                                     <size>
-                                      <width>150</width>
-                                      <height>30</height>
-                                     </size>
-                                    </property>
-                                    <property name="font">
-                                     <font>
-                                      <family>Segoe UI</family>
-                                      <pointsize>10</pointsize>
-                                      <italic>false</italic>
-                                      <bold>false</bold>
-                                     </font>
-                                    </property>
-                                    <property name="cursor">
-                                     <cursorShape>PointingHandCursor</cursorShape>
-                                    </property>
-                                    <property name="styleSheet">
-                                     <string notr="true">background-color: rgb(52, 59, 72);</string>
-                                    </property>
-                                    <property name="text">
-                                     <string>Open</string>
-                                    </property>
-                                    <property name="icon">
-                                     <iconset resource="resources.qrc">
-                                      <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
-                                    </property>
-                                   </widget>
-                                  </item>
                                   <item row="1" column="0" colspan="2">
                                    <widget class="QLabel" name="labelVersion_3">
                                     <property name="styleSheet">
@@ -2062,6 +2011,20 @@ background-repeat: no-repeat;</string>
                                     </property>
                                     <property name="alignment">
                                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item row="0" column="0">
+                                   <widget class="QLabel" name="MT8852_ID">
+                                    <property name="text">
+                                     <string>NULL</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item row="0" column="1">
+                                   <widget class="QLabel" name="label_4">
+                                    <property name="text">
+                                     <string>未连接</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -2090,203 +2053,7 @@ background-repeat: no-repeat;</string>
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
                          </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_19">
-                          <item>
-                           <layout class="QGridLayout" name="gridLayout_2">
-                            <item row="0" column="0">
-                             <widget class="QCheckBox" name="checkBox">
-                              <property name="autoFillBackground">
-                               <bool>false</bool>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true"/>
-                              </property>
-                              <property name="text">
-                               <string>CheckBox</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="0" column="1">
-                             <widget class="QRadioButton" name="radioButton">
-                              <property name="styleSheet">
-                               <string notr="true"/>
-                              </property>
-                              <property name="text">
-                               <string>RadioButton</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="0" column="2" rowspan="3">
-                             <widget class="QSlider" name="verticalSlider">
-                              <property name="styleSheet">
-                               <string notr="true"/>
-                              </property>
-                              <property name="orientation">
-                               <enum>Qt::Vertical</enum>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="0" column="4" rowspan="3">
-                             <widget class="QScrollBar" name="verticalScrollBar">
-                              <property name="styleSheet">
-                               <string notr="true"> QScrollBar:vertical { background: rgb(52, 59, 72); }
- QScrollBar:horizontal { background: rgb(52, 59, 72); }</string>
-                              </property>
-                              <property name="orientation">
-                               <enum>Qt::Vertical</enum>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="0" column="5" rowspan="3">
-                             <widget class="QScrollArea" name="scrollArea">
-                              <property name="styleSheet">
-                               <string notr="true"> QScrollBar:vertical {
-    background: rgb(52, 59, 72);
- }
- QScrollBar:horizontal {
-    background: rgb(52, 59, 72);
- }</string>
-                              </property>
-                              <property name="frameShape">
-                               <enum>QFrame::NoFrame</enum>
-                              </property>
-                              <property name="verticalScrollBarPolicy">
-                               <enum>Qt::ScrollBarAlwaysOn</enum>
-                              </property>
-                              <property name="horizontalScrollBarPolicy">
-                               <enum>Qt::ScrollBarAsNeeded</enum>
-                              </property>
-                              <property name="widgetResizable">
-                               <bool>true</bool>
-                              </property>
-                              <widget class="QWidget" name="scrollAreaWidgetContents">
-                               <property name="geometry">
-                                <rect>
-                                 <x>0</x>
-                                 <y>0</y>
-                                 <width>355</width>
-                                 <height>218</height>
-                                </rect>
-                               </property>
-                               <property name="styleSheet">
-                                <string notr="true"> QScrollBar:vertical {
-	border: none;
-    background: rgb(52, 59, 72);
-    width: 14px;
-    margin: 21px 0 21px 0;
-	border-radius: 0px;
- }</string>
-                               </property>
-                               <layout class="QHBoxLayout" name="horizontalLayout_11">
-                                <item>
-                                 <widget class="QPlainTextEdit" name="plainTextEdit">
-                                  <property name="minimumSize">
-                                   <size>
-                                    <width>200</width>
-                                    <height>200</height>
-                                   </size>
-                                  </property>
-                                  <property name="styleSheet">
-                                   <string notr="true">background-color: rgb(33, 37, 43);</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                               </layout>
-                              </widget>
-                             </widget>
-                            </item>
-                            <item row="1" column="0" colspan="2">
-                             <widget class="QComboBox" name="comboBox">
-                              <property name="font">
-                               <font>
-                                <family>Segoe UI</family>
-                                <pointsize>10</pointsize>
-                                <italic>false</italic>
-                                <bold>false</bold>
-                               </font>
-                              </property>
-                              <property name="autoFillBackground">
-                               <bool>false</bool>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-color: rgb(33, 37, 43);</string>
-                              </property>
-                              <property name="iconSize">
-                               <size>
-                                <width>16</width>
-                                <height>16</height>
-                               </size>
-                              </property>
-                              <property name="frame">
-                               <bool>true</bool>
-                              </property>
-                              <item>
-                               <property name="text">
-                                <string>Test 1</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>Test 2</string>
-                               </property>
-                              </item>
-                              <item>
-                               <property name="text">
-                                <string>Test 3</string>
-                               </property>
-                              </item>
-                             </widget>
-                            </item>
-                            <item row="1" column="3">
-                             <widget class="QScrollBar" name="horizontalScrollBar">
-                              <property name="sizePolicy">
-                               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                               </sizepolicy>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true"> QScrollBar:vertical { background: rgb(52, 59, 72); }
- QScrollBar:horizontal { background: rgb(52, 59, 72); }</string>
-                              </property>
-                              <property name="orientation">
-                               <enum>Qt::Horizontal</enum>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="1" column="6">
-                             <widget class="QCommandLinkButton" name="commandLinkButton">
-                              <property name="cursor">
-                               <cursorShape>PointingHandCursor</cursorShape>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true"/>
-                              </property>
-                              <property name="text">
-                               <string>Link Button</string>
-                              </property>
-                              <property name="icon">
-                               <iconset resource="resources.qrc">
-                                <normaloff>:/icons/images/icons/cil-link.png</normaloff>:/icons/images/icons/cil-link.png</iconset>
-                              </property>
-                              <property name="description">
-                               <string>Link description</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="2" column="0" colspan="2">
-                             <widget class="QSlider" name="horizontalSlider">
-                              <property name="styleSheet">
-                               <string notr="true"/>
-                              </property>
-                              <property name="orientation">
-                               <enum>Qt::Horizontal</enum>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                         </layout>
+                         <layout class="QVBoxLayout" name="verticalLayout_19"/>
                         </widget>
                        </item>
                        <item>
