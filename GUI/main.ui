@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>720</height>
+    <width>1286</width>
+    <height>983</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1859,7 +1859,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -1867,6 +1867,185 @@ p, li { white-space: pre-wrap; }
 background-position: center;
 background-repeat: no-repeat;</string>
                       </property>
+                      <widget class="QGroupBox" name="groupBox">
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>30</y>
+                         <width>321</width>
+                         <height>611</height>
+                        </rect>
+                       </property>
+                       <property name="title">
+                        <string>设备状态：</string>
+                       </property>
+                       <widget class="QPushButton" name="setting_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>50</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>配置文件加载...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="mt8852b_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>100</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>MT8852B初始化...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="left_box_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>150</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>左屏蔽箱连接...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="right_box_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>200</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>右屏蔽箱连接...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="left_bttc_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>250</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>左BTTC连接...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="right_bttc_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>300</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>右BTTC连接...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="signal_switch_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>350</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>射频信号切换器连接...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="mes_serice_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>400</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>MES服务器器连接...</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="left_channel_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>450</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>左测试通道-关闭</string>
+                        </property>
+                       </widget>
+                       <widget class="QPushButton" name="right_serice_status">
+                        <property name="geometry">
+                         <rect>
+                          <x>40</x>
+                          <y>500</y>
+                          <width>241</width>
+                          <height>41</height>
+                         </rect>
+                        </property>
+                        <property name="text">
+                         <string>右测试通道-关闭</string>
+                        </property>
+                       </widget>
+                      </widget>
+                      <widget class="QPushButton" name="pushButton_9">
+                       <property name="geometry">
+                        <rect>
+                         <x>40</x>
+                         <y>660</y>
+                         <width>141</width>
+                         <height>51</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>开始测试</string>
+                       </property>
+                      </widget>
+                      <widget class="QGroupBox" name="groupBox_2">
+                       <property name="geometry">
+                        <rect>
+                         <x>390</x>
+                         <y>30</y>
+                         <width>741</width>
+                         <height>611</height>
+                        </rect>
+                       </property>
+                       <property name="title">
+                        <string>LOG 数据显示：</string>
+                       </property>
+                       <widget class="QTextEdit" name="textEdit_4">
+                        <property name="geometry">
+                         <rect>
+                          <x>0</x>
+                          <y>20</y>
+                          <width>741</width>
+                          <height>591</height>
+                         </rect>
+                        </property>
+                       </widget>
+                      </widget>
                      </widget>
                      <widget class="QWidget" name="widgets">
                       <property name="styleSheet">
@@ -1998,6 +2177,20 @@ background-repeat: no-repeat;</string>
                                   <property name="bottomMargin">
                                    <number>0</number>
                                   </property>
+                                  <item row="0" column="0">
+                                   <widget class="QLabel" name="MT8852_ID">
+                                    <property name="text">
+                                     <string>NULL</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item row="0" column="1">
+                                   <widget class="QLabel" name="MT8852_status_label">
+                                    <property name="text">
+                                     <string>未连接</string>
+                                    </property>
+                                   </widget>
+                                  </item>
                                   <item row="1" column="0" colspan="2">
                                    <widget class="QLabel" name="labelVersion_3">
                                     <property name="styleSheet">
@@ -2011,20 +2204,6 @@ background-repeat: no-repeat;</string>
                                     </property>
                                     <property name="alignment">
                                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                                    </property>
-                                   </widget>
-                                  </item>
-                                  <item row="0" column="0">
-                                   <widget class="QLabel" name="MT8852_ID">
-                                    <property name="text">
-                                     <string>NULL</string>
-                                    </property>
-                                   </widget>
-                                  </item>
-                                  <item row="0" column="1">
-                                   <widget class="QLabel" name="label_4">
-                                    <property name="text">
-                                     <string>未连接</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -2047,13 +2226,120 @@ background-repeat: no-repeat;</string>
                            <height>150</height>
                           </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>1158</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
                          <property name="frameShape">
                           <enum>QFrame::StyledPanel</enum>
                          </property>
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
                          </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_19"/>
+                         <layout class="QVBoxLayout" name="verticalLayout_19">
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_8">
+                            <item>
+                             <widget class="QLabel" name="label_5">
+                              <property name="layoutDirection">
+                               <enum>Qt::LeftToRight</enum>
+                              </property>
+                              <property name="text">
+                               <string>左屏蔽箱通讯端口</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QComboBox" name="left_box_com"/>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="label_6">
+                              <property name="text">
+                               <string>右屏蔽箱通讯端口</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QComboBox" name="right_box_com"/>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_10">
+                            <item>
+                             <widget class="QLabel" name="label_7">
+                              <property name="text">
+                               <string>左电源控制器通讯端口</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QComboBox" name="left_bbtc_com"/>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="label_8">
+                              <property name="text">
+                               <string>右电源控制器通讯端口</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QComboBox" name="right_bbtc_com"/>
+                            </item>
+                           </layout>
+                          </item>
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_11">
+                            <item>
+                             <widget class="QLabel" name="label_9">
+                              <property name="text">
+                               <string>射频信号源切换端口</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QComboBox" name="signal_ctrl_com"/>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="label_10">
+                              <property name="text">
+                               <string>连接超时时间（s）</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLineEdit" name="connect_time_le">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                        <item>
@@ -2087,388 +2373,435 @@ background-repeat: no-repeat;</string>
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QTableWidget" name="tableWidget">
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
+                           <widget class="QScrollArea" name="scrollArea">
+                            <property name="autoFillBackground">
+                             <bool>false</bool>
                             </property>
-                            <property name="palette">
-                             <palette>
-                              <active>
-                               <colorrole role="WindowText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Button">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="0">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Text">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="ButtonText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Base">
-                                <brush brushstyle="NoBrush">
-                                 <color alpha="255">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Window">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="0">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="PlaceholderText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                              </active>
-                              <inactive>
-                               <colorrole role="WindowText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Button">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="0">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Text">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="ButtonText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Base">
-                                <brush brushstyle="NoBrush">
-                                 <color alpha="255">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Window">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="0">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="PlaceholderText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                              </inactive>
-                              <disabled>
-                               <colorrole role="WindowText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Button">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="0">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Text">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="ButtonText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Base">
-                                <brush brushstyle="NoBrush">
-                                 <color alpha="255">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="Window">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="0">
-                                  <red>0</red>
-                                  <green>0</green>
-                                  <blue>0</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                               <colorrole role="PlaceholderText">
-                                <brush brushstyle="SolidPattern">
-                                 <color alpha="255">
-                                  <red>221</red>
-                                  <green>221</green>
-                                  <blue>221</blue>
-                                 </color>
-                                </brush>
-                               </colorrole>
-                              </disabled>
-                             </palette>
-                            </property>
-                            <property name="frameShape">
-                             <enum>QFrame::NoFrame</enum>
-                            </property>
-                            <property name="verticalScrollBarPolicy">
-                             <enum>Qt::ScrollBarAlwaysOn</enum>
-                            </property>
-                            <property name="sizeAdjustPolicy">
-                             <enum>QAbstractScrollArea::AdjustToContents</enum>
-                            </property>
-                            <property name="editTriggers">
-                             <set>QAbstractItemView::NoEditTriggers</set>
-                            </property>
-                            <property name="selectionMode">
-                             <enum>QAbstractItemView::SingleSelection</enum>
-                            </property>
-                            <property name="selectionBehavior">
-                             <enum>QAbstractItemView::SelectRows</enum>
-                            </property>
-                            <property name="showGrid">
+                            <property name="widgetResizable">
                              <bool>true</bool>
                             </property>
-                            <property name="gridStyle">
-                             <enum>Qt::SolidLine</enum>
-                            </property>
-                            <property name="sortingEnabled">
-                             <bool>false</bool>
-                            </property>
-                            <attribute name="horizontalHeaderVisible">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="horizontalHeaderCascadingSectionResizes">
-                             <bool>true</bool>
-                            </attribute>
-                            <attribute name="horizontalHeaderDefaultSectionSize">
-                             <number>200</number>
-                            </attribute>
-                            <attribute name="horizontalHeaderStretchLastSection">
-                             <bool>true</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderVisible">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderCascadingSectionResizes">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderHighlightSections">
-                             <bool>false</bool>
-                            </attribute>
-                            <attribute name="verticalHeaderStretchLastSection">
-                             <bool>true</bool>
-                            </attribute>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
+                            <widget class="QWidget" name="scrollAreaWidgetContents">
+                             <property name="geometry">
+                              <rect>
+                               <x>0</x>
+                               <y>0</y>
+                               <width>1160</width>
+                               <height>560</height>
+                              </rect>
                              </property>
-                             <property name="font">
-                              <font>
-                               <family>Segoe UI</family>
-                              </font>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <column>
-                             <property name="text">
-                              <string>0</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>1</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>2</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>3</string>
-                             </property>
-                            </column>
-                            <item row="0" column="0">
-                             <property name="text">
-                              <string>Test</string>
-                             </property>
-                            </item>
-                            <item row="0" column="1">
-                             <property name="text">
-                              <string>Text</string>
-                             </property>
-                            </item>
-                            <item row="0" column="2">
-                             <property name="text">
-                              <string>Cell</string>
-                             </property>
-                            </item>
-                            <item row="0" column="3">
-                             <property name="text">
-                              <string>Line</string>
-                             </property>
-                            </item>
+                             <widget class="QWidget" name="verticalLayoutWidget">
+                              <property name="geometry">
+                               <rect>
+                                <x>19</x>
+                                <y>10</y>
+                                <width>1121</width>
+                                <height>131</height>
+                               </rect>
+                              </property>
+                              <layout class="QVBoxLayout" name="verticalLayout_22">
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                                 <item>
+                                  <widget class="QLabel" name="label_12">
+                                   <property name="font">
+                                    <font>
+                                     <family>Segoe UI</family>
+                                     <pointsize>10</pointsize>
+                                     <italic>false</italic>
+                                     <bold>false</bold>
+                                    </font>
+                                   </property>
+                                   <property name="text">
+                                    <string>BLE输出功率测试</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <spacer name="horizontalSpacer_4">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_11">
+                                   <property name="text">
+                                    <string>封包数</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_packet_cnt_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                                 <item>
+                                  <widget class="QLabel" name="label_14">
+                                   <property name="text">
+                                    <string>低频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_freq_l_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_15">
+                                   <property name="text">
+                                    <string>平均功率上限(dBm) &gt;=</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_avg_ucl_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                                 <item>
+                                  <widget class="QLabel" name="label_16">
+                                   <property name="text">
+                                    <string>中频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_freq_m_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_17">
+                                   <property name="text">
+                                    <string>平均功率下限(dBm) &lt;=</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_avg_lcl_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                                 <item>
+                                  <widget class="QLabel" name="label_18">
+                                   <property name="text">
+                                    <string>高频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_freq_h"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_19">
+                                   <property name="text">
+                                    <string>峰值功率上限(dBm) &lt;=</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leop_peak_ucl_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </widget>
+                             <widget class="QWidget" name="verticalLayoutWidget_2">
+                              <property name="geometry">
+                               <rect>
+                                <x>20</x>
+                                <y>150</y>
+                                <width>1121</width>
+                                <height>175</height>
+                               </rect>
+                              </property>
+                              <layout class="QVBoxLayout" name="verticalLayout_24">
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_23">
+                                 <item>
+                                  <widget class="QLabel" name="label_29">
+                                   <property name="text">
+                                    <string>BLE频偏漂移测试</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <spacer name="horizontalSpacer_3">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_13">
+                                   <property name="text">
+                                    <string>封包数</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_packet_cnt_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_24">
+                                 <item>
+                                  <widget class="QLabel" name="label_30">
+                                   <property name="text">
+                                    <string>低频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_freq_l_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_31">
+                                   <property name="text">
+                                    <string>正向最大偏差(kHz) &lt;=</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leice_p_fn_ucl_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_27">
+                                 <item>
+                                  <widget class="QLabel" name="label_32">
+                                   <property name="text">
+                                    <string>中频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_freq_m_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_33">
+                                   <property name="text">
+                                    <string>反向最大偏差(kHz) &lt;=</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_n_fn_lcl_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_28">
+                                 <item>
+                                  <widget class="QLabel" name="label_34">
+                                   <property name="text">
+                                    <string>高频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_freq_h_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_35">
+                                   <property name="text">
+                                    <string>初始漂移速率(kHz) +/-</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_drift_rate_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_31">
+                                 <item>
+                                  <widget class="QLabel" name="label_36">
+                                   <property name="text">
+                                    <string>漂移范围(kHz) +/-</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_drift_range_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_37">
+                                   <property name="text">
+                                    <string>数据包漂移范围(kHz) +/-</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="leicd_packet_drift_rang_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </widget>
+                             <widget class="QWidget" name="verticalLayoutWidget_3">
+                              <property name="geometry">
+                               <rect>
+                                <x>20</x>
+                                <y>340</y>
+                                <width>1121</width>
+                                <height>161</height>
+                               </rect>
+                              </property>
+                              <layout class="QVBoxLayout" name="verticalLayout_25">
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_32">
+                                 <item>
+                                  <widget class="QLabel" name="label_39">
+                                   <property name="text">
+                                    <string>BLE灵敏度测试</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <spacer name="horizontalSpacer_2">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_38">
+                                   <property name="text">
+                                    <string>封包数</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_packet_cnt_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_37">
+                                 <item>
+                                  <widget class="QLabel" name="label_42">
+                                   <property name="text">
+                                    <string>低频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_freq_l_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_43">
+                                   <property name="text">
+                                    <string>                  有扰测试</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_IFR_LE"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_38">
+                                 <item>
+                                  <widget class="QLabel" name="label_44">
+                                   <property name="text">
+                                    <string>中频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_freq_m_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_45">
+                                   <property name="text">
+                                    <string>         发射功率(dBm)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_op_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                               <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout_33">
+                                 <item>
+                                  <widget class="QLabel" name="label_40">
+                                   <property name="text">
+                                    <string>高频频率(kHz) </string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_freq_h_le"/>
+                                 </item>
+                                 <item>
+                                  <widget class="QLabel" name="label_41">
+                                   <property name="text">
+                                    <string>              FER上限(%)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item>
+                                  <widget class="QLineEdit" name="less_fer_le"/>
+                                 </item>
+                                </layout>
+                               </item>
+                              </layout>
+                             </widget>
+                             <widget class="QPushButton" name="cfg_save_btn">
+                              <property name="geometry">
+                               <rect>
+                                <x>890</x>
+                                <y>510</y>
+                                <width>111</width>
+                                <height>31</height>
+                               </rect>
+                              </property>
+                              <property name="text">
+                               <string>保存</string>
+                              </property>
+                             </widget>
+                             <widget class="QPushButton" name="default_btn">
+                              <property name="geometry">
+                               <rect>
+                                <x>1020</x>
+                                <y>510</y>
+                                <width>111</width>
+                                <height>31</height>
+                               </rect>
+                              </property>
+                              <property name="text">
+                               <string>恢复默认值</string>
+                              </property>
+                             </widget>
+                            </widget>
                            </widget>
                           </item>
                          </layout>
