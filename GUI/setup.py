@@ -17,7 +17,7 @@ setup(
     name = "PyDracula",
     version = "1.0",
     description = "Modern GUI for Python applications",
-    author = "Wanderson M. Pimenta",
+    author = "emmovo",
     options = {'build_exe' : {'include_files' : files}},
     executables = [target]
     

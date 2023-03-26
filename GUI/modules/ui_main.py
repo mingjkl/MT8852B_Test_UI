@@ -17,9 +17,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QStackedWidget, QTextEdit, QVBoxLayout,
-    QWidget)
+    QMainWindow, QProgressBar, QPushButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTextEdit,
+    QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -671,29 +671,29 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.btn_home)
 
-        self.btn_widgets = QPushButton(self.topMenu)
-        self.btn_widgets.setObjectName(u"btn_widgets")
-        sizePolicy.setHeightForWidth(self.btn_widgets.sizePolicy().hasHeightForWidth())
-        self.btn_widgets.setSizePolicy(sizePolicy)
-        self.btn_widgets.setMinimumSize(QSize(0, 45))
-        self.btn_widgets.setFont(font)
-        self.btn_widgets.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_widgets.setLayoutDirection(Qt.LeftToRight)
-        self.btn_widgets.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-gamepad.png);")
+        self.btn_test_data = QPushButton(self.topMenu)
+        self.btn_test_data.setObjectName(u"btn_test_data")
+        sizePolicy.setHeightForWidth(self.btn_test_data.sizePolicy().hasHeightForWidth())
+        self.btn_test_data.setSizePolicy(sizePolicy)
+        self.btn_test_data.setMinimumSize(QSize(0, 45))
+        self.btn_test_data.setFont(font)
+        self.btn_test_data.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_test_data.setLayoutDirection(Qt.LeftToRight)
+        self.btn_test_data.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-gamepad.png);")
 
-        self.verticalLayout_8.addWidget(self.btn_widgets)
+        self.verticalLayout_8.addWidget(self.btn_test_data)
 
-        self.btn_new = QPushButton(self.topMenu)
-        self.btn_new.setObjectName(u"btn_new")
-        sizePolicy.setHeightForWidth(self.btn_new.sizePolicy().hasHeightForWidth())
-        self.btn_new.setSizePolicy(sizePolicy)
-        self.btn_new.setMinimumSize(QSize(0, 45))
-        self.btn_new.setFont(font)
-        self.btn_new.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_new.setLayoutDirection(Qt.LeftToRight)
-        self.btn_new.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-file.png);")
+        self.btn_config = QPushButton(self.topMenu)
+        self.btn_config.setObjectName(u"btn_config")
+        sizePolicy.setHeightForWidth(self.btn_config.sizePolicy().hasHeightForWidth())
+        self.btn_config.setSizePolicy(sizePolicy)
+        self.btn_config.setMinimumSize(QSize(0, 45))
+        self.btn_config.setFont(font)
+        self.btn_config.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_config.setLayoutDirection(Qt.LeftToRight)
+        self.btn_config.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-file.png);")
 
-        self.verticalLayout_8.addWidget(self.btn_new)
+        self.verticalLayout_8.addWidget(self.btn_config)
 
         self.btn_save = QPushButton(self.topMenu)
         self.btn_save.setObjectName(u"btn_save")
@@ -872,6 +872,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.textEdit = QTextEdit(self.extraCenter)
         self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setEnabled(False)
         self.textEdit.setMinimumSize(QSize(222, 0))
         self.textEdit.setStyleSheet(u"background: transparent;")
         self.textEdit.setFrameShape(QFrame.NoFrame)
@@ -1037,6 +1038,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setContentsMargins(10, 10, 10, 10)
         self.stackedWidget = QStackedWidget(self.pagesContainer)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setEnabled(True)
         self.stackedWidget.setStyleSheet(u"background: transparent;")
         self.home = QWidget()
         self.home.setObjectName(u"home")
@@ -1073,27 +1075,30 @@ class Ui_MainWindow(object):
         self.left_channel_status = QPushButton(self.groupBox)
         self.left_channel_status.setObjectName(u"left_channel_status")
         self.left_channel_status.setGeometry(QRect(40, 450, 241, 41))
-        self.right_serice_status = QPushButton(self.groupBox)
-        self.right_serice_status.setObjectName(u"right_serice_status")
-        self.right_serice_status.setGeometry(QRect(40, 500, 241, 41))
-        self.pushButton_9 = QPushButton(self.home)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-        self.pushButton_9.setGeometry(QRect(40, 660, 141, 51))
+        self.right_channel_status = QPushButton(self.groupBox)
+        self.right_channel_status.setObjectName(u"right_channel_status")
+        self.right_channel_status.setGeometry(QRect(40, 500, 241, 41))
+        self.start_test_btn = QPushButton(self.home)
+        self.start_test_btn.setObjectName(u"start_test_btn")
+        self.start_test_btn.setGeometry(QRect(40, 660, 141, 51))
         self.groupBox_2 = QGroupBox(self.home)
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.groupBox_2.setGeometry(QRect(390, 30, 741, 611))
         self.textEdit_4 = QTextEdit(self.groupBox_2)
         self.textEdit_4.setObjectName(u"textEdit_4")
         self.textEdit_4.setGeometry(QRect(0, 20, 741, 591))
+        self.test_config_btn = QPushButton(self.home)
+        self.test_config_btn.setObjectName(u"test_config_btn")
+        self.test_config_btn.setGeometry(QRect(210, 660, 141, 51))
         self.stackedWidget.addWidget(self.home)
-        self.widgets = QWidget()
-        self.widgets.setObjectName(u"widgets")
-        self.widgets.setStyleSheet(u"b")
-        self.verticalLayout = QVBoxLayout(self.widgets)
+        self.test_config_page = QWidget()
+        self.test_config_page.setObjectName(u"test_config_page")
+        self.test_config_page.setStyleSheet(u"b")
+        self.verticalLayout = QVBoxLayout(self.test_config_page)
         self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
-        self.row_1 = QFrame(self.widgets)
+        self.row_1 = QFrame(self.test_config_page)
         self.row_1.setObjectName(u"row_1")
         self.row_1.setFrameShape(QFrame.StyledPanel)
         self.row_1.setFrameShadow(QFrame.Raised)
@@ -1167,7 +1172,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.row_1)
 
-        self.row_2 = QFrame(self.widgets)
+        self.row_2 = QFrame(self.test_config_page)
         self.row_2.setObjectName(u"row_2")
         self.row_2.setMinimumSize(QSize(0, 150))
         self.row_2.setMaximumSize(QSize(1158, 16777215))
@@ -1265,7 +1270,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.row_2)
 
-        self.row_3 = QFrame(self.widgets)
+        self.row_3 = QFrame(self.test_config_page)
         self.row_3.setObjectName(u"row_3")
         self.row_3.setMinimumSize(QSize(0, 150))
         self.row_3.setFrameShape(QFrame.StyledPanel)
@@ -1635,12 +1640,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.row_3)
 
-        self.stackedWidget.addWidget(self.widgets)
-        self.new_page = QWidget()
-        self.new_page.setObjectName(u"new_page")
-        self.verticalLayout_20 = QVBoxLayout(self.new_page)
+        self.stackedWidget.addWidget(self.test_config_page)
+        self.test_data_page = QWidget()
+        self.test_data_page.setObjectName(u"test_data_page")
+        self.verticalLayout_20 = QVBoxLayout(self.test_data_page)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
-        self.label = QLabel(self.new_page)
+        self.label = QLabel(self.test_data_page)
         self.label.setObjectName(u"label")
         self.label.setMaximumSize(QSize(16777215, 25))
 
@@ -1650,20 +1655,756 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.verticalLayout_21 = QVBoxLayout()
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
-        self.lineEdit_2 = QLineEdit(self.new_page)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.label_4 = QLabel(self.test_data_page)
+        self.label_4.setObjectName(u"label_4")
 
-        self.verticalLayout_21.addWidget(self.lineEdit_2)
+        self.horizontalLayout_15.addWidget(self.label_4)
 
-        self.textEdit_2 = QTextEdit(self.new_page)
-        self.textEdit_2.setObjectName(u"textEdit_2")
+        self.left_sn_in = QLineEdit(self.test_data_page)
+        self.left_sn_in.setObjectName(u"left_sn_in")
 
-        self.verticalLayout_21.addWidget(self.textEdit_2)
+        self.horizontalLayout_15.addWidget(self.left_sn_in)
 
-        self.label_2 = QLabel(self.new_page)
+
+        self.horizontalLayout_14.addLayout(self.horizontalLayout_15)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_14)
+
+        self.line = QFrame(self.test_data_page)
+        self.line.setObjectName(u"line")
+        self.line.setFrameShadow(QFrame.Plain)
+        self.line.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_21.addWidget(self.line)
+
+        self.left_test_result_bar = QProgressBar(self.test_data_page)
+        self.left_test_result_bar.setObjectName(u"left_test_result_bar")
+        self.left_test_result_bar.setValue(24)
+
+        self.verticalLayout_21.addWidget(self.left_test_result_bar)
+
+        self.horizontalLayout_29 = QHBoxLayout()
+        self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
+        self.label_2 = QLabel(self.test_data_page)
         self.label_2.setObjectName(u"label_2")
 
-        self.verticalLayout_21.addWidget(self.label_2)
+        self.horizontalLayout_29.addWidget(self.label_2)
+
+        self.left_leop_result = QLabel(self.test_data_page)
+        self.left_leop_result.setObjectName(u"left_leop_result")
+
+        self.horizontalLayout_29.addWidget(self.left_leop_result)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_29)
+
+        self.horizontalLayout_19 = QHBoxLayout()
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.label_21 = QLabel(self.test_data_page)
+        self.label_21.setObjectName(u"label_21")
+
+        self.horizontalLayout_19.addWidget(self.label_21)
+
+        self.label_22 = QLabel(self.test_data_page)
+        self.label_22.setObjectName(u"label_22")
+
+        self.horizontalLayout_19.addWidget(self.label_22)
+
+        self.label_23 = QLabel(self.test_data_page)
+        self.label_23.setObjectName(u"label_23")
+
+        self.horizontalLayout_19.addWidget(self.label_23)
+
+        self.label_20 = QLabel(self.test_data_page)
+        self.label_20.setObjectName(u"label_20")
+
+        self.horizontalLayout_19.addWidget(self.label_20)
+
+        self.label_93 = QLabel(self.test_data_page)
+        self.label_93.setObjectName(u"label_93")
+
+        self.horizontalLayout_19.addWidget(self.label_93)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_19)
+
+        self.horizontalLayout_26 = QHBoxLayout()
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.label_58 = QLabel(self.test_data_page)
+        self.label_58.setObjectName(u"label_58")
+
+        self.horizontalLayout_26.addWidget(self.label_58)
+
+        self.left_leop_l_max = QLabel(self.test_data_page)
+        self.left_leop_l_max.setObjectName(u"left_leop_l_max")
+
+        self.horizontalLayout_26.addWidget(self.left_leop_l_max)
+
+        self.left_leop_m_max = QLabel(self.test_data_page)
+        self.left_leop_m_max.setObjectName(u"left_leop_m_max")
+
+        self.horizontalLayout_26.addWidget(self.left_leop_m_max)
+
+        self.left_leop_h_max = QLabel(self.test_data_page)
+        self.left_leop_h_max.setObjectName(u"left_leop_h_max")
+
+        self.horizontalLayout_26.addWidget(self.left_leop_h_max)
+
+        self.left_leop_avg_ucl = QLabel(self.test_data_page)
+        self.left_leop_avg_ucl.setObjectName(u"left_leop_avg_ucl")
+
+        self.horizontalLayout_26.addWidget(self.left_leop_avg_ucl)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_26)
+
+        self.horizontalLayout_25 = QHBoxLayout()
+        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.label_54 = QLabel(self.test_data_page)
+        self.label_54.setObjectName(u"label_54")
+
+        self.horizontalLayout_25.addWidget(self.label_54)
+
+        self.left_leop_l_avg = QLabel(self.test_data_page)
+        self.left_leop_l_avg.setObjectName(u"left_leop_l_avg")
+
+        self.horizontalLayout_25.addWidget(self.left_leop_l_avg)
+
+        self.left_leop_m_avg = QLabel(self.test_data_page)
+        self.left_leop_m_avg.setObjectName(u"left_leop_m_avg")
+
+        self.horizontalLayout_25.addWidget(self.left_leop_m_avg)
+
+        self.left_leop_h_avg = QLabel(self.test_data_page)
+        self.left_leop_h_avg.setObjectName(u"left_leop_h_avg")
+
+        self.horizontalLayout_25.addWidget(self.left_leop_h_avg)
+
+        self.label_53 = QLabel(self.test_data_page)
+        self.label_53.setObjectName(u"label_53")
+
+        self.horizontalLayout_25.addWidget(self.label_53)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_25)
+
+        self.horizontalLayout_22 = QHBoxLayout()
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.label_50 = QLabel(self.test_data_page)
+        self.label_50.setObjectName(u"label_50")
+
+        self.horizontalLayout_22.addWidget(self.label_50)
+
+        self.left_leop_l_min = QLabel(self.test_data_page)
+        self.left_leop_l_min.setObjectName(u"left_leop_l_min")
+
+        self.horizontalLayout_22.addWidget(self.left_leop_l_min)
+
+        self.left_leop_m_min = QLabel(self.test_data_page)
+        self.left_leop_m_min.setObjectName(u"left_leop_m_min")
+
+        self.horizontalLayout_22.addWidget(self.left_leop_m_min)
+
+        self.left_leop_h_min = QLabel(self.test_data_page)
+        self.left_leop_h_min.setObjectName(u"left_leop_h_min")
+
+        self.horizontalLayout_22.addWidget(self.left_leop_h_min)
+
+        self.left_leop_avg_lcl = QLabel(self.test_data_page)
+        self.left_leop_avg_lcl.setObjectName(u"left_leop_avg_lcl")
+
+        self.horizontalLayout_22.addWidget(self.left_leop_avg_lcl)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_22)
+
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.label_46 = QLabel(self.test_data_page)
+        self.label_46.setObjectName(u"label_46")
+
+        self.horizontalLayout_21.addWidget(self.label_46)
+
+        self.left_leop_l_peak = QLabel(self.test_data_page)
+        self.left_leop_l_peak.setObjectName(u"left_leop_l_peak")
+
+        self.horizontalLayout_21.addWidget(self.left_leop_l_peak)
+
+        self.left_leop_m_peak = QLabel(self.test_data_page)
+        self.left_leop_m_peak.setObjectName(u"left_leop_m_peak")
+
+        self.horizontalLayout_21.addWidget(self.left_leop_m_peak)
+
+        self.left_leop_h_peak = QLabel(self.test_data_page)
+        self.left_leop_h_peak.setObjectName(u"left_leop_h_peak")
+
+        self.horizontalLayout_21.addWidget(self.left_leop_h_peak)
+
+        self.left_leop_peak_ucl = QLabel(self.test_data_page)
+        self.left_leop_peak_ucl.setObjectName(u"left_leop_peak_ucl")
+
+        self.horizontalLayout_21.addWidget(self.left_leop_peak_ucl)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_21)
+
+        self.horizontalLayout_20 = QHBoxLayout()
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.label_25 = QLabel(self.test_data_page)
+        self.label_25.setObjectName(u"label_25")
+
+        self.horizontalLayout_20.addWidget(self.label_25)
+
+        self.left_leop_l_status = QLabel(self.test_data_page)
+        self.left_leop_l_status.setObjectName(u"left_leop_l_status")
+
+        self.horizontalLayout_20.addWidget(self.left_leop_l_status)
+
+        self.left_leop_m_status = QLabel(self.test_data_page)
+        self.left_leop_m_status.setObjectName(u"left_leop_m_status")
+
+        self.horizontalLayout_20.addWidget(self.left_leop_m_status)
+
+        self.left_leop_h_status = QLabel(self.test_data_page)
+        self.left_leop_h_status.setObjectName(u"left_leop_h_status")
+
+        self.horizontalLayout_20.addWidget(self.left_leop_h_status)
+
+        self.label_24 = QLabel(self.test_data_page)
+        self.label_24.setObjectName(u"label_24")
+
+        self.horizontalLayout_20.addWidget(self.label_24)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_20)
+
+        self.line_2 = QFrame(self.test_data_page)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShadow(QFrame.Plain)
+        self.line_2.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_21.addWidget(self.line_2)
+
+        self.horizontalLayout_34 = QHBoxLayout()
+        self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
+        self.label_62 = QLabel(self.test_data_page)
+        self.label_62.setObjectName(u"label_62")
+
+        self.horizontalLayout_34.addWidget(self.label_62)
+
+        self.left_leicd_result = QLabel(self.test_data_page)
+        self.left_leicd_result.setObjectName(u"left_leicd_result")
+
+        self.horizontalLayout_34.addWidget(self.left_leicd_result)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_34)
+
+        self.horizontalLayout_46 = QHBoxLayout()
+        self.horizontalLayout_46.setObjectName(u"horizontalLayout_46")
+        self.label_99 = QLabel(self.test_data_page)
+        self.label_99.setObjectName(u"label_99")
+
+        self.horizontalLayout_46.addWidget(self.label_99)
+
+        self.label_98 = QLabel(self.test_data_page)
+        self.label_98.setObjectName(u"label_98")
+
+        self.horizontalLayout_46.addWidget(self.label_98)
+
+        self.label_97 = QLabel(self.test_data_page)
+        self.label_97.setObjectName(u"label_97")
+
+        self.horizontalLayout_46.addWidget(self.label_97)
+
+        self.label_96 = QLabel(self.test_data_page)
+        self.label_96.setObjectName(u"label_96")
+
+        self.horizontalLayout_46.addWidget(self.label_96)
+
+        self.label_103 = QLabel(self.test_data_page)
+        self.label_103.setObjectName(u"label_103")
+
+        self.horizontalLayout_46.addWidget(self.label_103)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_46)
+
+        self.horizontalLayout_41 = QHBoxLayout()
+        self.horizontalLayout_41.setObjectName(u"horizontalLayout_41")
+        self.label_67 = QLabel(self.test_data_page)
+        self.label_67.setObjectName(u"label_67")
+
+        self.horizontalLayout_41.addWidget(self.label_67)
+
+        self.left_leicd_l_avg_fn = QLabel(self.test_data_page)
+        self.left_leicd_l_avg_fn.setObjectName(u"left_leicd_l_avg_fn")
+
+        self.horizontalLayout_41.addWidget(self.left_leicd_l_avg_fn)
+
+        self.left_leicd_m_avg_fn = QLabel(self.test_data_page)
+        self.left_leicd_m_avg_fn.setObjectName(u"left_leicd_m_avg_fn")
+
+        self.horizontalLayout_41.addWidget(self.left_leicd_m_avg_fn)
+
+        self.left_leicd_h_avg_fn = QLabel(self.test_data_page)
+        self.left_leicd_h_avg_fn.setObjectName(u"left_leicd_h_avg_fn")
+
+        self.horizontalLayout_41.addWidget(self.left_leicd_h_avg_fn)
+
+        self.left_leicd_avg = QLabel(self.test_data_page)
+        self.left_leicd_avg.setObjectName(u"left_leicd_avg")
+
+        self.horizontalLayout_41.addWidget(self.left_leicd_avg)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_41)
+
+        self.horizontalLayout_45 = QHBoxLayout()
+        self.horizontalLayout_45.setObjectName(u"horizontalLayout_45")
+        self.label_71 = QLabel(self.test_data_page)
+        self.label_71.setObjectName(u"label_71")
+
+        self.horizontalLayout_45.addWidget(self.label_71)
+
+        self.left_leicd_l_max_p_fn = QLabel(self.test_data_page)
+        self.left_leicd_l_max_p_fn.setObjectName(u"left_leicd_l_max_p_fn")
+
+        self.horizontalLayout_45.addWidget(self.left_leicd_l_max_p_fn)
+
+        self.left_leicd_m_max_p_fn = QLabel(self.test_data_page)
+        self.left_leicd_m_max_p_fn.setObjectName(u"left_leicd_m_max_p_fn")
+
+        self.horizontalLayout_45.addWidget(self.left_leicd_m_max_p_fn)
+
+        self.left_leicd_h_max_p_fn = QLabel(self.test_data_page)
+        self.left_leicd_h_max_p_fn.setObjectName(u"left_leicd_h_max_p_fn")
+
+        self.horizontalLayout_45.addWidget(self.left_leicd_h_max_p_fn)
+
+        self.left_leicd_p_fn_ucl = QLabel(self.test_data_page)
+        self.left_leicd_p_fn_ucl.setObjectName(u"left_leicd_p_fn_ucl")
+
+        self.horizontalLayout_45.addWidget(self.left_leicd_p_fn_ucl)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_45)
+
+        self.horizontalLayout_44 = QHBoxLayout()
+        self.horizontalLayout_44.setObjectName(u"horizontalLayout_44")
+        self.label_75 = QLabel(self.test_data_page)
+        self.label_75.setObjectName(u"label_75")
+
+        self.horizontalLayout_44.addWidget(self.label_75)
+
+        self.left_leicd_l_max_n_fn = QLabel(self.test_data_page)
+        self.left_leicd_l_max_n_fn.setObjectName(u"left_leicd_l_max_n_fn")
+
+        self.horizontalLayout_44.addWidget(self.left_leicd_l_max_n_fn)
+
+        self.left_leicd_m_max_n_fn = QLabel(self.test_data_page)
+        self.left_leicd_m_max_n_fn.setObjectName(u"left_leicd_m_max_n_fn")
+
+        self.horizontalLayout_44.addWidget(self.left_leicd_m_max_n_fn)
+
+        self.left_leicd_h_max_n_fn = QLabel(self.test_data_page)
+        self.left_leicd_h_max_n_fn.setObjectName(u"left_leicd_h_max_n_fn")
+
+        self.horizontalLayout_44.addWidget(self.left_leicd_h_max_n_fn)
+
+        self.left_leicd_n_fn_ucl = QLabel(self.test_data_page)
+        self.left_leicd_n_fn_ucl.setObjectName(u"left_leicd_n_fn_ucl")
+
+        self.horizontalLayout_44.addWidget(self.left_leicd_n_fn_ucl)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_44)
+
+        self.horizontalLayout_43 = QHBoxLayout()
+        self.horizontalLayout_43.setObjectName(u"horizontalLayout_43")
+        self.label_77 = QLabel(self.test_data_page)
+        self.label_77.setObjectName(u"label_77")
+
+        self.horizontalLayout_43.addWidget(self.label_77)
+
+        self.left_leicd_l_max_dirft_rate = QLabel(self.test_data_page)
+        self.left_leicd_l_max_dirft_rate.setObjectName(u"left_leicd_l_max_dirft_rate")
+
+        self.horizontalLayout_43.addWidget(self.left_leicd_l_max_dirft_rate)
+
+        self.left_leicd_m_max_dirft_rate = QLabel(self.test_data_page)
+        self.left_leicd_m_max_dirft_rate.setObjectName(u"left_leicd_m_max_dirft_rate")
+
+        self.horizontalLayout_43.addWidget(self.left_leicd_m_max_dirft_rate)
+
+        self.left_leicd_h_max_dirft_rate = QLabel(self.test_data_page)
+        self.left_leicd_h_max_dirft_rate.setObjectName(u"left_leicd_h_max_dirft_rate")
+
+        self.horizontalLayout_43.addWidget(self.left_leicd_h_max_dirft_rate)
+
+        self.left_leicd_drift_rate = QLabel(self.test_data_page)
+        self.left_leicd_drift_rate.setObjectName(u"left_leicd_drift_rate")
+
+        self.horizontalLayout_43.addWidget(self.left_leicd_drift_rate)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_43)
+
+        self.horizontalLayout_42 = QHBoxLayout()
+        self.horizontalLayout_42.setObjectName(u"horizontalLayout_42")
+        self.label_82 = QLabel(self.test_data_page)
+        self.label_82.setObjectName(u"label_82")
+
+        self.horizontalLayout_42.addWidget(self.label_82)
+
+        self.left_leicd_l_max_dirft = QLabel(self.test_data_page)
+        self.left_leicd_l_max_dirft.setObjectName(u"left_leicd_l_max_dirft")
+
+        self.horizontalLayout_42.addWidget(self.left_leicd_l_max_dirft)
+
+        self.left_leicd_m_max_dirft = QLabel(self.test_data_page)
+        self.left_leicd_m_max_dirft.setObjectName(u"left_leicd_m_max_dirft")
+
+        self.horizontalLayout_42.addWidget(self.left_leicd_m_max_dirft)
+
+        self.left_leicd_h_max_dirft = QLabel(self.test_data_page)
+        self.left_leicd_h_max_dirft.setObjectName(u"left_leicd_h_max_dirft")
+
+        self.horizontalLayout_42.addWidget(self.left_leicd_h_max_dirft)
+
+        self.left_leicd_drift_range = QLabel(self.test_data_page)
+        self.left_leicd_drift_range.setObjectName(u"left_leicd_drift_range")
+
+        self.horizontalLayout_42.addWidget(self.left_leicd_drift_range)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_42)
+
+        self.horizontalLayout_40 = QHBoxLayout()
+        self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
+        self.label_87 = QLabel(self.test_data_page)
+        self.label_87.setObjectName(u"label_87")
+
+        self.horizontalLayout_40.addWidget(self.label_87)
+
+        self.left_leicd_l_avg_dirft = QLabel(self.test_data_page)
+        self.left_leicd_l_avg_dirft.setObjectName(u"left_leicd_l_avg_dirft")
+
+        self.horizontalLayout_40.addWidget(self.left_leicd_l_avg_dirft)
+
+        self.left_leicd_m_avg_dirft = QLabel(self.test_data_page)
+        self.left_leicd_m_avg_dirft.setObjectName(u"left_leicd_m_avg_dirft")
+
+        self.horizontalLayout_40.addWidget(self.left_leicd_m_avg_dirft)
+
+        self.left_leicd_h_avg_dirft = QLabel(self.test_data_page)
+        self.left_leicd_h_avg_dirft.setObjectName(u"left_leicd_h_avg_dirft")
+
+        self.horizontalLayout_40.addWidget(self.left_leicd_h_avg_dirft)
+
+        self.label_84 = QLabel(self.test_data_page)
+        self.label_84.setObjectName(u"label_84")
+
+        self.horizontalLayout_40.addWidget(self.label_84)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_40)
+
+        self.horizontalLayout_39 = QHBoxLayout()
+        self.horizontalLayout_39.setObjectName(u"horizontalLayout_39")
+        self.label_91 = QLabel(self.test_data_page)
+        self.label_91.setObjectName(u"label_91")
+
+        self.horizontalLayout_39.addWidget(self.label_91)
+
+        self.left_leicd_l_state = QLabel(self.test_data_page)
+        self.left_leicd_l_state.setObjectName(u"left_leicd_l_state")
+
+        self.horizontalLayout_39.addWidget(self.left_leicd_l_state)
+
+        self.left_leicd_m_state = QLabel(self.test_data_page)
+        self.left_leicd_m_state.setObjectName(u"left_leicd_m_state")
+
+        self.horizontalLayout_39.addWidget(self.left_leicd_m_state)
+
+        self.left_leicd_h_state = QLabel(self.test_data_page)
+        self.left_leicd_h_state.setObjectName(u"left_leicd_h_state")
+
+        self.horizontalLayout_39.addWidget(self.left_leicd_h_state)
+
+        self.label_88 = QLabel(self.test_data_page)
+        self.label_88.setObjectName(u"label_88")
+
+        self.horizontalLayout_39.addWidget(self.label_88)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_39)
+
+        self.line_3 = QFrame(self.test_data_page)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShadow(QFrame.Plain)
+        self.line_3.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_21.addWidget(self.line_3)
+
+        self.horizontalLayout_35 = QHBoxLayout()
+        self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
+        self.left_less_label = QLabel(self.test_data_page)
+        self.left_less_label.setObjectName(u"left_less_label")
+
+        self.horizontalLayout_35.addWidget(self.left_less_label)
+
+        self.left_less_result = QLabel(self.test_data_page)
+        self.left_less_result.setObjectName(u"left_less_result")
+
+        self.horizontalLayout_35.addWidget(self.left_less_result)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_35)
+
+        self.horizontalLayout_48 = QHBoxLayout()
+        self.horizontalLayout_48.setObjectName(u"horizontalLayout_48")
+        self.label_116 = QLabel(self.test_data_page)
+        self.label_116.setObjectName(u"label_116")
+
+        self.horizontalLayout_48.addWidget(self.label_116)
+
+        self.label_115 = QLabel(self.test_data_page)
+        self.label_115.setObjectName(u"label_115")
+
+        self.horizontalLayout_48.addWidget(self.label_115)
+
+        self.label_114 = QLabel(self.test_data_page)
+        self.label_114.setObjectName(u"label_114")
+
+        self.horizontalLayout_48.addWidget(self.label_114)
+
+        self.label_113 = QLabel(self.test_data_page)
+        self.label_113.setObjectName(u"label_113")
+
+        self.horizontalLayout_48.addWidget(self.label_113)
+
+        self.label_112 = QLabel(self.test_data_page)
+        self.label_112.setObjectName(u"label_112")
+
+        self.horizontalLayout_48.addWidget(self.label_112)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_48)
+
+        self.horizontalLayout_51 = QHBoxLayout()
+        self.horizontalLayout_51.setObjectName(u"horizontalLayout_51")
+        self.label_118 = QLabel(self.test_data_page)
+        self.label_118.setObjectName(u"label_118")
+
+        self.horizontalLayout_51.addWidget(self.label_118)
+
+        self.left_less_l_over_fer = QLabel(self.test_data_page)
+        self.left_less_l_over_fer.setObjectName(u"left_less_l_over_fer")
+
+        self.horizontalLayout_51.addWidget(self.left_less_l_over_fer)
+
+        self.left_less_m_over_fer = QLabel(self.test_data_page)
+        self.left_less_m_over_fer.setObjectName(u"left_less_m_over_fer")
+
+        self.horizontalLayout_51.addWidget(self.left_less_m_over_fer)
+
+        self.left_less_h_over_fer = QLabel(self.test_data_page)
+        self.left_less_h_over_fer.setObjectName(u"left_less_h_over_fer")
+
+        self.horizontalLayout_51.addWidget(self.left_less_h_over_fer)
+
+        self.left_less_fer = QLabel(self.test_data_page)
+        self.left_less_fer.setObjectName(u"left_less_fer")
+
+        self.horizontalLayout_51.addWidget(self.left_less_fer)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_51)
+
+        self.horizontalLayout_50 = QHBoxLayout()
+        self.horizontalLayout_50.setObjectName(u"horizontalLayout_50")
+        self.label_125 = QLabel(self.test_data_page)
+        self.label_125.setObjectName(u"label_125")
+
+        self.horizontalLayout_50.addWidget(self.label_125)
+
+        self.left_less_l_total_frames_sent_tester = QLabel(self.test_data_page)
+        self.left_less_l_total_frames_sent_tester.setObjectName(u"left_less_l_total_frames_sent_tester")
+
+        self.horizontalLayout_50.addWidget(self.left_less_l_total_frames_sent_tester)
+
+        self.left_less_m_total_frames_sent_tester = QLabel(self.test_data_page)
+        self.left_less_m_total_frames_sent_tester.setObjectName(u"left_less_m_total_frames_sent_tester")
+
+        self.horizontalLayout_50.addWidget(self.left_less_m_total_frames_sent_tester)
+
+        self.left_less_h_total_frames_sent_tester = QLabel(self.test_data_page)
+        self.left_less_h_total_frames_sent_tester.setObjectName(u"left_less_h_total_frames_sent_tester")
+
+        self.horizontalLayout_50.addWidget(self.left_less_h_total_frames_sent_tester)
+
+        self.label_122 = QLabel(self.test_data_page)
+        self.label_122.setObjectName(u"label_122")
+
+        self.horizontalLayout_50.addWidget(self.label_122)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_50)
+
+        self.horizontalLayout_49 = QHBoxLayout()
+        self.horizontalLayout_49.setObjectName(u"horizontalLayout_49")
+        self.label_130 = QLabel(self.test_data_page)
+        self.label_130.setObjectName(u"label_130")
+
+        self.horizontalLayout_49.addWidget(self.label_130)
+
+        self.left_less_l_total_frames_counted_dut = QLabel(self.test_data_page)
+        self.left_less_l_total_frames_counted_dut.setObjectName(u"left_less_l_total_frames_counted_dut")
+
+        self.horizontalLayout_49.addWidget(self.left_less_l_total_frames_counted_dut)
+
+        self.left_less_m_total_frames_counted_dut = QLabel(self.test_data_page)
+        self.left_less_m_total_frames_counted_dut.setObjectName(u"left_less_m_total_frames_counted_dut")
+
+        self.horizontalLayout_49.addWidget(self.left_less_m_total_frames_counted_dut)
+
+        self.left_less_h_total_frames_counted_dut = QLabel(self.test_data_page)
+        self.left_less_h_total_frames_counted_dut.setObjectName(u"left_less_h_total_frames_counted_dut")
+
+        self.horizontalLayout_49.addWidget(self.left_less_h_total_frames_counted_dut)
+
+        self.label_127 = QLabel(self.test_data_page)
+        self.label_127.setObjectName(u"label_127")
+
+        self.horizontalLayout_49.addWidget(self.label_127)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_49)
+
+        self.horizontalLayout_52 = QHBoxLayout()
+        self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
+        self.label_135 = QLabel(self.test_data_page)
+        self.label_135.setObjectName(u"label_135")
+
+        self.horizontalLayout_52.addWidget(self.label_135)
+
+        self.left_less_l_status = QLabel(self.test_data_page)
+        self.left_less_l_status.setObjectName(u"left_less_l_status")
+
+        self.horizontalLayout_52.addWidget(self.left_less_l_status)
+
+        self.left_less_m_status = QLabel(self.test_data_page)
+        self.left_less_m_status.setObjectName(u"left_less_m_status")
+
+        self.horizontalLayout_52.addWidget(self.left_less_m_status)
+
+        self.left_less_h_status = QLabel(self.test_data_page)
+        self.left_less_h_status.setObjectName(u"left_less_h_status")
+
+        self.horizontalLayout_52.addWidget(self.left_less_h_status)
+
+        self.label_132 = QLabel(self.test_data_page)
+        self.label_132.setObjectName(u"label_132")
+
+        self.horizontalLayout_52.addWidget(self.label_132)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_52)
+
+        self.line_4 = QFrame(self.test_data_page)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setFrameShadow(QFrame.Plain)
+        self.line_4.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_21.addWidget(self.line_4)
+
+        self.horizontalLayout_53 = QHBoxLayout()
+        self.horizontalLayout_53.setObjectName(u"horizontalLayout_53")
+        self.label_138 = QLabel(self.test_data_page)
+        self.label_138.setObjectName(u"label_138")
+
+        self.horizontalLayout_53.addWidget(self.label_138)
+
+        self.left_test_time_point = QLabel(self.test_data_page)
+        self.left_test_time_point.setObjectName(u"left_test_time_point")
+
+        self.horizontalLayout_53.addWidget(self.left_test_time_point)
+
+        self.label_139 = QLabel(self.test_data_page)
+        self.label_139.setObjectName(u"label_139")
+
+        self.horizontalLayout_53.addWidget(self.label_139)
+
+        self.left_test_time_during = QLabel(self.test_data_page)
+        self.left_test_time_during.setObjectName(u"left_test_time_during")
+
+        self.horizontalLayout_53.addWidget(self.left_test_time_during)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_53)
+
+        self.line_5 = QFrame(self.test_data_page)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setFrameShadow(QFrame.Plain)
+        self.line_5.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_21.addWidget(self.line_5)
+
+        self.horizontalLayout_54 = QHBoxLayout()
+        self.horizontalLayout_54.setObjectName(u"horizontalLayout_54")
+        self.label_144 = QLabel(self.test_data_page)
+        self.label_144.setObjectName(u"label_144")
+
+        self.horizontalLayout_54.addWidget(self.label_144)
+
+        self.label_143 = QLabel(self.test_data_page)
+        self.label_143.setObjectName(u"label_143")
+
+        self.horizontalLayout_54.addWidget(self.label_143)
+
+        self.label_142 = QLabel(self.test_data_page)
+        self.label_142.setObjectName(u"label_142")
+
+        self.horizontalLayout_54.addWidget(self.label_142)
+
+        self.label_141 = QLabel(self.test_data_page)
+        self.label_141.setObjectName(u"label_141")
+
+        self.horizontalLayout_54.addWidget(self.label_141)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_54)
+
+        self.horizontalLayout_47 = QHBoxLayout()
+        self.horizontalLayout_47.setObjectName(u"horizontalLayout_47")
+        self.left_test_count = QLabel(self.test_data_page)
+        self.left_test_count.setObjectName(u"left_test_count")
+
+        self.horizontalLayout_47.addWidget(self.left_test_count)
+
+        self.left_pass_count = QLabel(self.test_data_page)
+        self.left_pass_count.setObjectName(u"left_pass_count")
+
+        self.horizontalLayout_47.addWidget(self.left_pass_count)
+
+        self.left_fail_count = QLabel(self.test_data_page)
+        self.left_fail_count.setObjectName(u"left_fail_count")
+
+        self.horizontalLayout_47.addWidget(self.left_fail_count)
+
+        self.left_fail_rate = QLabel(self.test_data_page)
+        self.left_fail_rate.setObjectName(u"left_fail_rate")
+
+        self.horizontalLayout_47.addWidget(self.left_fail_rate)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_47)
 
 
         self.horizontalLayout_7.addLayout(self.verticalLayout_21)
@@ -1674,20 +2415,751 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_26 = QVBoxLayout()
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
-        self.lineEdit_3 = QLineEdit(self.new_page)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-
-        self.verticalLayout_26.addWidget(self.lineEdit_3)
-
-        self.textEdit_3 = QTextEdit(self.new_page)
-        self.textEdit_3.setObjectName(u"textEdit_3")
-
-        self.verticalLayout_26.addWidget(self.textEdit_3)
-
-        self.label_3 = QLabel(self.new_page)
+        self.horizontalLayout_55 = QHBoxLayout()
+        self.horizontalLayout_55.setObjectName(u"horizontalLayout_55")
+        self.label_3 = QLabel(self.test_data_page)
         self.label_3.setObjectName(u"label_3")
 
-        self.verticalLayout_26.addWidget(self.label_3)
+        self.horizontalLayout_55.addWidget(self.label_3)
+
+        self.right_sn_in = QLineEdit(self.test_data_page)
+        self.right_sn_in.setObjectName(u"right_sn_in")
+
+        self.horizontalLayout_55.addWidget(self.right_sn_in)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_55)
+
+        self.line_7 = QFrame(self.test_data_page)
+        self.line_7.setObjectName(u"line_7")
+        self.line_7.setFrameShadow(QFrame.Plain)
+        self.line_7.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_26.addWidget(self.line_7)
+
+        self.right_test_result_bar = QProgressBar(self.test_data_page)
+        self.right_test_result_bar.setObjectName(u"right_test_result_bar")
+        self.right_test_result_bar.setValue(24)
+
+        self.verticalLayout_26.addWidget(self.right_test_result_bar)
+
+        self.horizontalLayout_56 = QHBoxLayout()
+        self.horizontalLayout_56.setObjectName(u"horizontalLayout_56")
+        self.label_149 = QLabel(self.test_data_page)
+        self.label_149.setObjectName(u"label_149")
+
+        self.horizontalLayout_56.addWidget(self.label_149)
+
+        self.right_leop_result = QLabel(self.test_data_page)
+        self.right_leop_result.setObjectName(u"right_leop_result")
+
+        self.horizontalLayout_56.addWidget(self.right_leop_result)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_56)
+
+        self.horizontalLayout_58 = QHBoxLayout()
+        self.horizontalLayout_58.setObjectName(u"horizontalLayout_58")
+        self.label_153 = QLabel(self.test_data_page)
+        self.label_153.setObjectName(u"label_153")
+
+        self.horizontalLayout_58.addWidget(self.label_153)
+
+        self.label_155 = QLabel(self.test_data_page)
+        self.label_155.setObjectName(u"label_155")
+
+        self.horizontalLayout_58.addWidget(self.label_155)
+
+        self.label_154 = QLabel(self.test_data_page)
+        self.label_154.setObjectName(u"label_154")
+
+        self.horizontalLayout_58.addWidget(self.label_154)
+
+        self.label_152 = QLabel(self.test_data_page)
+        self.label_152.setObjectName(u"label_152")
+
+        self.horizontalLayout_58.addWidget(self.label_152)
+
+        self.label_151 = QLabel(self.test_data_page)
+        self.label_151.setObjectName(u"label_151")
+
+        self.horizontalLayout_58.addWidget(self.label_151)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_58)
+
+        self.horizontalLayout_60 = QHBoxLayout()
+        self.horizontalLayout_60.setObjectName(u"horizontalLayout_60")
+        self.label_159 = QLabel(self.test_data_page)
+        self.label_159.setObjectName(u"label_159")
+
+        self.horizontalLayout_60.addWidget(self.label_159)
+
+        self.right_leop_l_max = QLabel(self.test_data_page)
+        self.right_leop_l_max.setObjectName(u"right_leop_l_max")
+
+        self.horizontalLayout_60.addWidget(self.right_leop_l_max)
+
+        self.right_leop_m_max = QLabel(self.test_data_page)
+        self.right_leop_m_max.setObjectName(u"right_leop_m_max")
+
+        self.horizontalLayout_60.addWidget(self.right_leop_m_max)
+
+        self.right_leop_h_max = QLabel(self.test_data_page)
+        self.right_leop_h_max.setObjectName(u"right_leop_h_max")
+
+        self.horizontalLayout_60.addWidget(self.right_leop_h_max)
+
+        self.right_leop_avg_ucl = QLabel(self.test_data_page)
+        self.right_leop_avg_ucl.setObjectName(u"right_leop_avg_ucl")
+
+        self.horizontalLayout_60.addWidget(self.right_leop_avg_ucl)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_60)
+
+        self.horizontalLayout_61 = QHBoxLayout()
+        self.horizontalLayout_61.setObjectName(u"horizontalLayout_61")
+        self.label_164 = QLabel(self.test_data_page)
+        self.label_164.setObjectName(u"label_164")
+
+        self.horizontalLayout_61.addWidget(self.label_164)
+
+        self.right_leop_l_avg = QLabel(self.test_data_page)
+        self.right_leop_l_avg.setObjectName(u"right_leop_l_avg")
+
+        self.horizontalLayout_61.addWidget(self.right_leop_l_avg)
+
+        self.right_leop_m_avg = QLabel(self.test_data_page)
+        self.right_leop_m_avg.setObjectName(u"right_leop_m_avg")
+
+        self.horizontalLayout_61.addWidget(self.right_leop_m_avg)
+
+        self.right_leop_h_avg = QLabel(self.test_data_page)
+        self.right_leop_h_avg.setObjectName(u"right_leop_h_avg")
+
+        self.horizontalLayout_61.addWidget(self.right_leop_h_avg)
+
+        self.label_161 = QLabel(self.test_data_page)
+        self.label_161.setObjectName(u"label_161")
+
+        self.horizontalLayout_61.addWidget(self.label_161)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_61)
+
+        self.horizontalLayout_63 = QHBoxLayout()
+        self.horizontalLayout_63.setObjectName(u"horizontalLayout_63")
+        self.label_170 = QLabel(self.test_data_page)
+        self.label_170.setObjectName(u"label_170")
+
+        self.horizontalLayout_63.addWidget(self.label_170)
+
+        self.right_leop_l_min = QLabel(self.test_data_page)
+        self.right_leop_l_min.setObjectName(u"right_leop_l_min")
+
+        self.horizontalLayout_63.addWidget(self.right_leop_l_min)
+
+        self.right_leop_m_min = QLabel(self.test_data_page)
+        self.right_leop_m_min.setObjectName(u"right_leop_m_min")
+
+        self.horizontalLayout_63.addWidget(self.right_leop_m_min)
+
+        self.right_leop_h_min = QLabel(self.test_data_page)
+        self.right_leop_h_min.setObjectName(u"right_leop_h_min")
+
+        self.horizontalLayout_63.addWidget(self.right_leop_h_min)
+
+        self.right_leop_avg_lcl = QLabel(self.test_data_page)
+        self.right_leop_avg_lcl.setObjectName(u"right_leop_avg_lcl")
+
+        self.horizontalLayout_63.addWidget(self.right_leop_avg_lcl)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_63)
+
+        self.horizontalLayout_62 = QHBoxLayout()
+        self.horizontalLayout_62.setObjectName(u"horizontalLayout_62")
+        self.label_174 = QLabel(self.test_data_page)
+        self.label_174.setObjectName(u"label_174")
+
+        self.horizontalLayout_62.addWidget(self.label_174)
+
+        self.right_leop_l_peak = QLabel(self.test_data_page)
+        self.right_leop_l_peak.setObjectName(u"right_leop_l_peak")
+
+        self.horizontalLayout_62.addWidget(self.right_leop_l_peak)
+
+        self.right_leop_m_peak = QLabel(self.test_data_page)
+        self.right_leop_m_peak.setObjectName(u"right_leop_m_peak")
+
+        self.horizontalLayout_62.addWidget(self.right_leop_m_peak)
+
+        self.right_leop_h_peak = QLabel(self.test_data_page)
+        self.right_leop_h_peak.setObjectName(u"right_leop_h_peak")
+
+        self.horizontalLayout_62.addWidget(self.right_leop_h_peak)
+
+        self.right_leop_peak_ucl = QLabel(self.test_data_page)
+        self.right_leop_peak_ucl.setObjectName(u"right_leop_peak_ucl")
+
+        self.horizontalLayout_62.addWidget(self.right_leop_peak_ucl)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_62)
+
+        self.horizontalLayout_59 = QHBoxLayout()
+        self.horizontalLayout_59.setObjectName(u"horizontalLayout_59")
+        self.label_180 = QLabel(self.test_data_page)
+        self.label_180.setObjectName(u"label_180")
+
+        self.horizontalLayout_59.addWidget(self.label_180)
+
+        self.right_leop_l_status = QLabel(self.test_data_page)
+        self.right_leop_l_status.setObjectName(u"right_leop_l_status")
+
+        self.horizontalLayout_59.addWidget(self.right_leop_l_status)
+
+        self.right_leop_m_status = QLabel(self.test_data_page)
+        self.right_leop_m_status.setObjectName(u"right_leop_m_status")
+
+        self.horizontalLayout_59.addWidget(self.right_leop_m_status)
+
+        self.right_leop_h_status = QLabel(self.test_data_page)
+        self.right_leop_h_status.setObjectName(u"right_leop_h_status")
+
+        self.horizontalLayout_59.addWidget(self.right_leop_h_status)
+
+        self.label_176 = QLabel(self.test_data_page)
+        self.label_176.setObjectName(u"label_176")
+
+        self.horizontalLayout_59.addWidget(self.label_176)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_59)
+
+        self.line_6 = QFrame(self.test_data_page)
+        self.line_6.setObjectName(u"line_6")
+        self.line_6.setFrameShadow(QFrame.Plain)
+        self.line_6.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_26.addWidget(self.line_6)
+
+        self.horizontalLayout_65 = QHBoxLayout()
+        self.horizontalLayout_65.setObjectName(u"horizontalLayout_65")
+        self.label_182 = QLabel(self.test_data_page)
+        self.label_182.setObjectName(u"label_182")
+
+        self.horizontalLayout_65.addWidget(self.label_182)
+
+        self.label_181 = QLabel(self.test_data_page)
+        self.label_181.setObjectName(u"label_181")
+
+        self.horizontalLayout_65.addWidget(self.label_181)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_65)
+
+        self.horizontalLayout_79 = QHBoxLayout()
+        self.horizontalLayout_79.setObjectName(u"horizontalLayout_79")
+        self.label_222 = QLabel(self.test_data_page)
+        self.label_222.setObjectName(u"label_222")
+
+        self.horizontalLayout_79.addWidget(self.label_222)
+
+        self.label_259 = QLabel(self.test_data_page)
+        self.label_259.setObjectName(u"label_259")
+
+        self.horizontalLayout_79.addWidget(self.label_259)
+
+        self.label_258 = QLabel(self.test_data_page)
+        self.label_258.setObjectName(u"label_258")
+
+        self.horizontalLayout_79.addWidget(self.label_258)
+
+        self.label_221 = QLabel(self.test_data_page)
+        self.label_221.setObjectName(u"label_221")
+
+        self.horizontalLayout_79.addWidget(self.label_221)
+
+        self.label_219 = QLabel(self.test_data_page)
+        self.label_219.setObjectName(u"label_219")
+
+        self.horizontalLayout_79.addWidget(self.label_219)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_79)
+
+        self.horizontalLayout_66 = QHBoxLayout()
+        self.horizontalLayout_66.setObjectName(u"horizontalLayout_66")
+        self.label_187 = QLabel(self.test_data_page)
+        self.label_187.setObjectName(u"label_187")
+
+        self.horizontalLayout_66.addWidget(self.label_187)
+
+        self.right_leicd_l_avg_fn = QLabel(self.test_data_page)
+        self.right_leicd_l_avg_fn.setObjectName(u"right_leicd_l_avg_fn")
+
+        self.horizontalLayout_66.addWidget(self.right_leicd_l_avg_fn)
+
+        self.right_leicd_m_avg_fn = QLabel(self.test_data_page)
+        self.right_leicd_m_avg_fn.setObjectName(u"right_leicd_m_avg_fn")
+
+        self.horizontalLayout_66.addWidget(self.right_leicd_m_avg_fn)
+
+        self.right_leicd_h_avg_fn = QLabel(self.test_data_page)
+        self.right_leicd_h_avg_fn.setObjectName(u"right_leicd_h_avg_fn")
+
+        self.horizontalLayout_66.addWidget(self.right_leicd_h_avg_fn)
+
+        self.right_leicd_avg = QLabel(self.test_data_page)
+        self.right_leicd_avg.setObjectName(u"right_leicd_avg")
+
+        self.horizontalLayout_66.addWidget(self.right_leicd_avg)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_66)
+
+        self.horizontalLayout_69 = QHBoxLayout()
+        self.horizontalLayout_69.setObjectName(u"horizontalLayout_69")
+        self.label_192 = QLabel(self.test_data_page)
+        self.label_192.setObjectName(u"label_192")
+
+        self.horizontalLayout_69.addWidget(self.label_192)
+
+        self.right_leicd_l_max_p_fn = QLabel(self.test_data_page)
+        self.right_leicd_l_max_p_fn.setObjectName(u"right_leicd_l_max_p_fn")
+
+        self.horizontalLayout_69.addWidget(self.right_leicd_l_max_p_fn)
+
+        self.right_leicd_m_max_p_fn = QLabel(self.test_data_page)
+        self.right_leicd_m_max_p_fn.setObjectName(u"right_leicd_m_max_p_fn")
+
+        self.horizontalLayout_69.addWidget(self.right_leicd_m_max_p_fn)
+
+        self.right_leicd_h_max_p_fn = QLabel(self.test_data_page)
+        self.right_leicd_h_max_p_fn.setObjectName(u"right_leicd_h_max_p_fn")
+
+        self.horizontalLayout_69.addWidget(self.right_leicd_h_max_p_fn)
+
+        self.right_leicd_p_fn_ucl = QLabel(self.test_data_page)
+        self.right_leicd_p_fn_ucl.setObjectName(u"right_leicd_p_fn_ucl")
+
+        self.horizontalLayout_69.addWidget(self.right_leicd_p_fn_ucl)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_69)
+
+        self.horizontalLayout_78 = QHBoxLayout()
+        self.horizontalLayout_78.setObjectName(u"horizontalLayout_78")
+        self.label_197 = QLabel(self.test_data_page)
+        self.label_197.setObjectName(u"label_197")
+
+        self.horizontalLayout_78.addWidget(self.label_197)
+
+        self.right_leicd_l_max_n_fn = QLabel(self.test_data_page)
+        self.right_leicd_l_max_n_fn.setObjectName(u"right_leicd_l_max_n_fn")
+
+        self.horizontalLayout_78.addWidget(self.right_leicd_l_max_n_fn)
+
+        self.right_leicd_m_max_n_fn = QLabel(self.test_data_page)
+        self.right_leicd_m_max_n_fn.setObjectName(u"right_leicd_m_max_n_fn")
+
+        self.horizontalLayout_78.addWidget(self.right_leicd_m_max_n_fn)
+
+        self.right_leicd_h_max_n_fn = QLabel(self.test_data_page)
+        self.right_leicd_h_max_n_fn.setObjectName(u"right_leicd_h_max_n_fn")
+
+        self.horizontalLayout_78.addWidget(self.right_leicd_h_max_n_fn)
+
+        self.right_leicd_n_fn_ucl = QLabel(self.test_data_page)
+        self.right_leicd_n_fn_ucl.setObjectName(u"right_leicd_n_fn_ucl")
+
+        self.horizontalLayout_78.addWidget(self.right_leicd_n_fn_ucl)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_78)
+
+        self.horizontalLayout_73 = QHBoxLayout()
+        self.horizontalLayout_73.setObjectName(u"horizontalLayout_73")
+        self.label_202 = QLabel(self.test_data_page)
+        self.label_202.setObjectName(u"label_202")
+
+        self.horizontalLayout_73.addWidget(self.label_202)
+
+        self.right_leicd_l_max_dirft_rate = QLabel(self.test_data_page)
+        self.right_leicd_l_max_dirft_rate.setObjectName(u"right_leicd_l_max_dirft_rate")
+
+        self.horizontalLayout_73.addWidget(self.right_leicd_l_max_dirft_rate)
+
+        self.right_leicd_m_max_dirft_rate = QLabel(self.test_data_page)
+        self.right_leicd_m_max_dirft_rate.setObjectName(u"right_leicd_m_max_dirft_rate")
+
+        self.horizontalLayout_73.addWidget(self.right_leicd_m_max_dirft_rate)
+
+        self.right_leicd_h_max_dirft_rate = QLabel(self.test_data_page)
+        self.right_leicd_h_max_dirft_rate.setObjectName(u"right_leicd_h_max_dirft_rate")
+
+        self.horizontalLayout_73.addWidget(self.right_leicd_h_max_dirft_rate)
+
+        self.right_leicd_drift_rate = QLabel(self.test_data_page)
+        self.right_leicd_drift_rate.setObjectName(u"right_leicd_drift_rate")
+
+        self.horizontalLayout_73.addWidget(self.right_leicd_drift_rate)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_73)
+
+        self.horizontalLayout_74 = QHBoxLayout()
+        self.horizontalLayout_74.setObjectName(u"horizontalLayout_74")
+        self.label_207 = QLabel(self.test_data_page)
+        self.label_207.setObjectName(u"label_207")
+
+        self.horizontalLayout_74.addWidget(self.label_207)
+
+        self.right_leicd_l_max_dirft = QLabel(self.test_data_page)
+        self.right_leicd_l_max_dirft.setObjectName(u"right_leicd_l_max_dirft")
+
+        self.horizontalLayout_74.addWidget(self.right_leicd_l_max_dirft)
+
+        self.right_leicd_m_max_dirft = QLabel(self.test_data_page)
+        self.right_leicd_m_max_dirft.setObjectName(u"right_leicd_m_max_dirft")
+
+        self.horizontalLayout_74.addWidget(self.right_leicd_m_max_dirft)
+
+        self.right_leicd_h_max_dirft = QLabel(self.test_data_page)
+        self.right_leicd_h_max_dirft.setObjectName(u"right_leicd_h_max_dirft")
+
+        self.horizontalLayout_74.addWidget(self.right_leicd_h_max_dirft)
+
+        self.right_leicd_drift_range = QLabel(self.test_data_page)
+        self.right_leicd_drift_range.setObjectName(u"right_leicd_drift_range")
+
+        self.horizontalLayout_74.addWidget(self.right_leicd_drift_range)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_74)
+
+        self.horizontalLayout_77 = QHBoxLayout()
+        self.horizontalLayout_77.setObjectName(u"horizontalLayout_77")
+        self.label_211 = QLabel(self.test_data_page)
+        self.label_211.setObjectName(u"label_211")
+
+        self.horizontalLayout_77.addWidget(self.label_211)
+
+        self.right_leicd_l_avg_dirft = QLabel(self.test_data_page)
+        self.right_leicd_l_avg_dirft.setObjectName(u"right_leicd_l_avg_dirft")
+
+        self.horizontalLayout_77.addWidget(self.right_leicd_l_avg_dirft)
+
+        self.right_leicd_m_avg_dirft = QLabel(self.test_data_page)
+        self.right_leicd_m_avg_dirft.setObjectName(u"right_leicd_m_avg_dirft")
+
+        self.horizontalLayout_77.addWidget(self.right_leicd_m_avg_dirft)
+
+        self.right_leicd_h_avg_dirft = QLabel(self.test_data_page)
+        self.right_leicd_h_avg_dirft.setObjectName(u"right_leicd_h_avg_dirft")
+
+        self.horizontalLayout_77.addWidget(self.right_leicd_h_avg_dirft)
+
+        self.label_208 = QLabel(self.test_data_page)
+        self.label_208.setObjectName(u"label_208")
+
+        self.horizontalLayout_77.addWidget(self.label_208)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_77)
+
+        self.horizontalLayout_72 = QHBoxLayout()
+        self.horizontalLayout_72.setObjectName(u"horizontalLayout_72")
+        self.label_217 = QLabel(self.test_data_page)
+        self.label_217.setObjectName(u"label_217")
+
+        self.horizontalLayout_72.addWidget(self.label_217)
+
+        self.right_leicd_l_state = QLabel(self.test_data_page)
+        self.right_leicd_l_state.setObjectName(u"right_leicd_l_state")
+
+        self.horizontalLayout_72.addWidget(self.right_leicd_l_state)
+
+        self.right_leicd_m_state = QLabel(self.test_data_page)
+        self.right_leicd_m_state.setObjectName(u"right_leicd_m_state")
+
+        self.horizontalLayout_72.addWidget(self.right_leicd_m_state)
+
+        self.right_leicd_h_state = QLabel(self.test_data_page)
+        self.right_leicd_h_state.setObjectName(u"right_leicd_h_state")
+
+        self.horizontalLayout_72.addWidget(self.right_leicd_h_state)
+
+        self.label_213 = QLabel(self.test_data_page)
+        self.label_213.setObjectName(u"label_213")
+
+        self.horizontalLayout_72.addWidget(self.label_213)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_72)
+
+        self.line_8 = QFrame(self.test_data_page)
+        self.line_8.setObjectName(u"line_8")
+        self.line_8.setFrameShadow(QFrame.Plain)
+        self.line_8.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_26.addWidget(self.line_8)
+
+        self.horizontalLayout_71 = QHBoxLayout()
+        self.horizontalLayout_71.setObjectName(u"horizontalLayout_71")
+        self.label_220 = QLabel(self.test_data_page)
+        self.label_220.setObjectName(u"label_220")
+
+        self.horizontalLayout_71.addWidget(self.label_220)
+
+        self.label_218 = QLabel(self.test_data_page)
+        self.label_218.setObjectName(u"label_218")
+
+        self.horizontalLayout_71.addWidget(self.label_218)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_71)
+
+        self.horizontalLayout_76 = QHBoxLayout()
+        self.horizontalLayout_76.setObjectName(u"horizontalLayout_76")
+        self.label_227 = QLabel(self.test_data_page)
+        self.label_227.setObjectName(u"label_227")
+
+        self.horizontalLayout_76.addWidget(self.label_227)
+
+        self.label_226 = QLabel(self.test_data_page)
+        self.label_226.setObjectName(u"label_226")
+
+        self.horizontalLayout_76.addWidget(self.label_226)
+
+        self.label_225 = QLabel(self.test_data_page)
+        self.label_225.setObjectName(u"label_225")
+
+        self.horizontalLayout_76.addWidget(self.label_225)
+
+        self.label_224 = QLabel(self.test_data_page)
+        self.label_224.setObjectName(u"label_224")
+
+        self.horizontalLayout_76.addWidget(self.label_224)
+
+        self.label_223 = QLabel(self.test_data_page)
+        self.label_223.setObjectName(u"label_223")
+
+        self.horizontalLayout_76.addWidget(self.label_223)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_76)
+
+        self.horizontalLayout_75 = QHBoxLayout()
+        self.horizontalLayout_75.setObjectName(u"horizontalLayout_75")
+        self.label_232 = QLabel(self.test_data_page)
+        self.label_232.setObjectName(u"label_232")
+
+        self.horizontalLayout_75.addWidget(self.label_232)
+
+        self.right_less_l_over_fer = QLabel(self.test_data_page)
+        self.right_less_l_over_fer.setObjectName(u"right_less_l_over_fer")
+
+        self.horizontalLayout_75.addWidget(self.right_less_l_over_fer)
+
+        self.right_less_m_over_fer = QLabel(self.test_data_page)
+        self.right_less_m_over_fer.setObjectName(u"right_less_m_over_fer")
+
+        self.horizontalLayout_75.addWidget(self.right_less_m_over_fer)
+
+        self.right_less_h_over_fer = QLabel(self.test_data_page)
+        self.right_less_h_over_fer.setObjectName(u"right_less_h_over_fer")
+
+        self.horizontalLayout_75.addWidget(self.right_less_h_over_fer)
+
+        self.right_less_fer = QLabel(self.test_data_page)
+        self.right_less_fer.setObjectName(u"right_less_fer")
+
+        self.horizontalLayout_75.addWidget(self.right_less_fer)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_75)
+
+        self.horizontalLayout_68 = QHBoxLayout()
+        self.horizontalLayout_68.setObjectName(u"horizontalLayout_68")
+        self.label_237 = QLabel(self.test_data_page)
+        self.label_237.setObjectName(u"label_237")
+
+        self.horizontalLayout_68.addWidget(self.label_237)
+
+        self.right_less_l_total_frames_sent_tester = QLabel(self.test_data_page)
+        self.right_less_l_total_frames_sent_tester.setObjectName(u"right_less_l_total_frames_sent_tester")
+
+        self.horizontalLayout_68.addWidget(self.right_less_l_total_frames_sent_tester)
+
+        self.right_less_m_total_frames_sent_tester = QLabel(self.test_data_page)
+        self.right_less_m_total_frames_sent_tester.setObjectName(u"right_less_m_total_frames_sent_tester")
+
+        self.horizontalLayout_68.addWidget(self.right_less_m_total_frames_sent_tester)
+
+        self.right_less_h_total_frames_sent_tester = QLabel(self.test_data_page)
+        self.right_less_h_total_frames_sent_tester.setObjectName(u"right_less_h_total_frames_sent_tester")
+
+        self.horizontalLayout_68.addWidget(self.right_less_h_total_frames_sent_tester)
+
+        self.label_233 = QLabel(self.test_data_page)
+        self.label_233.setObjectName(u"label_233")
+
+        self.horizontalLayout_68.addWidget(self.label_233)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_68)
+
+        self.horizontalLayout_70 = QHBoxLayout()
+        self.horizontalLayout_70.setObjectName(u"horizontalLayout_70")
+        self.label_241 = QLabel(self.test_data_page)
+        self.label_241.setObjectName(u"label_241")
+
+        self.horizontalLayout_70.addWidget(self.label_241)
+
+        self.right_less_l_total_frames_counted_dut = QLabel(self.test_data_page)
+        self.right_less_l_total_frames_counted_dut.setObjectName(u"right_less_l_total_frames_counted_dut")
+
+        self.horizontalLayout_70.addWidget(self.right_less_l_total_frames_counted_dut)
+
+        self.right_less_m_total_frames_counted_dut = QLabel(self.test_data_page)
+        self.right_less_m_total_frames_counted_dut.setObjectName(u"right_less_m_total_frames_counted_dut")
+
+        self.horizontalLayout_70.addWidget(self.right_less_m_total_frames_counted_dut)
+
+        self.right_less_h_total_frames_counted_dut = QLabel(self.test_data_page)
+        self.right_less_h_total_frames_counted_dut.setObjectName(u"right_less_h_total_frames_counted_dut")
+
+        self.horizontalLayout_70.addWidget(self.right_less_h_total_frames_counted_dut)
+
+        self.label_238 = QLabel(self.test_data_page)
+        self.label_238.setObjectName(u"label_238")
+
+        self.horizontalLayout_70.addWidget(self.label_238)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_70)
+
+        self.horizontalLayout_67 = QHBoxLayout()
+        self.horizontalLayout_67.setObjectName(u"horizontalLayout_67")
+        self.label_246 = QLabel(self.test_data_page)
+        self.label_246.setObjectName(u"label_246")
+
+        self.horizontalLayout_67.addWidget(self.label_246)
+
+        self.right_less_l_status = QLabel(self.test_data_page)
+        self.right_less_l_status.setObjectName(u"right_less_l_status")
+
+        self.horizontalLayout_67.addWidget(self.right_less_l_status)
+
+        self.right_less_m_status = QLabel(self.test_data_page)
+        self.right_less_m_status.setObjectName(u"right_less_m_status")
+
+        self.horizontalLayout_67.addWidget(self.right_less_m_status)
+
+        self.right_less_h_status = QLabel(self.test_data_page)
+        self.right_less_h_status.setObjectName(u"right_less_h_status")
+
+        self.horizontalLayout_67.addWidget(self.right_less_h_status)
+
+        self.label_243 = QLabel(self.test_data_page)
+        self.label_243.setObjectName(u"label_243")
+
+        self.horizontalLayout_67.addWidget(self.label_243)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_67)
+
+        self.line_9 = QFrame(self.test_data_page)
+        self.line_9.setObjectName(u"line_9")
+        self.line_9.setFrameShadow(QFrame.Plain)
+        self.line_9.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_26.addWidget(self.line_9)
+
+        self.horizontalLayout_64 = QHBoxLayout()
+        self.horizontalLayout_64.setObjectName(u"horizontalLayout_64")
+        self.label_249 = QLabel(self.test_data_page)
+        self.label_249.setObjectName(u"label_249")
+
+        self.horizontalLayout_64.addWidget(self.label_249)
+
+        self.right_test_time_point = QLabel(self.test_data_page)
+        self.right_test_time_point.setObjectName(u"right_test_time_point")
+
+        self.horizontalLayout_64.addWidget(self.right_test_time_point)
+
+        self.label_251 = QLabel(self.test_data_page)
+        self.label_251.setObjectName(u"label_251")
+
+        self.horizontalLayout_64.addWidget(self.label_251)
+
+        self.right_test_time_during = QLabel(self.test_data_page)
+        self.right_test_time_during.setObjectName(u"right_test_time_during")
+
+        self.horizontalLayout_64.addWidget(self.right_test_time_during)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_64)
+
+        self.line_10 = QFrame(self.test_data_page)
+        self.line_10.setObjectName(u"line_10")
+        self.line_10.setFrameShadow(QFrame.Plain)
+        self.line_10.setFrameShape(QFrame.HLine)
+
+        self.verticalLayout_26.addWidget(self.line_10)
+
+        self.horizontalLayout_80 = QHBoxLayout()
+        self.horizontalLayout_80.setObjectName(u"horizontalLayout_80")
+        self.label_262 = QLabel(self.test_data_page)
+        self.label_262.setObjectName(u"label_262")
+
+        self.horizontalLayout_80.addWidget(self.label_262)
+
+        self.label_263 = QLabel(self.test_data_page)
+        self.label_263.setObjectName(u"label_263")
+
+        self.horizontalLayout_80.addWidget(self.label_263)
+
+        self.label_261 = QLabel(self.test_data_page)
+        self.label_261.setObjectName(u"label_261")
+
+        self.horizontalLayout_80.addWidget(self.label_261)
+
+        self.label_260 = QLabel(self.test_data_page)
+        self.label_260.setObjectName(u"label_260")
+
+        self.horizontalLayout_80.addWidget(self.label_260)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_80)
+
+        self.horizontalLayout_57 = QHBoxLayout()
+        self.horizontalLayout_57.setObjectName(u"horizontalLayout_57")
+        self.right_test_count = QLabel(self.test_data_page)
+        self.right_test_count.setObjectName(u"right_test_count")
+
+        self.horizontalLayout_57.addWidget(self.right_test_count)
+
+        self.right_pass_count = QLabel(self.test_data_page)
+        self.right_pass_count.setObjectName(u"right_pass_count")
+
+        self.horizontalLayout_57.addWidget(self.right_pass_count)
+
+        self.right_fail_count = QLabel(self.test_data_page)
+        self.right_fail_count.setObjectName(u"right_fail_count")
+
+        self.horizontalLayout_57.addWidget(self.right_fail_count)
+
+        self.right_fail_rate = QLabel(self.test_data_page)
+        self.right_fail_rate.setObjectName(u"right_fail_rate")
+
+        self.horizontalLayout_57.addWidget(self.right_fail_rate)
+
+
+        self.verticalLayout_26.addLayout(self.horizontalLayout_57)
 
 
         self.horizontalLayout_7.addLayout(self.verticalLayout_26)
@@ -1695,7 +3167,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_20.addLayout(self.horizontalLayout_7)
 
-        self.stackedWidget.addWidget(self.new_page)
+        self.stackedWidget.addWidget(self.test_data_page)
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
 
@@ -1837,7 +3309,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1845,12 +3317,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.titleLeftApp.setText(QCoreApplication.translate("MainWindow", u"PyDracula", None))
+        self.titleLeftApp.setText(QCoreApplication.translate("MainWindow", u"HCD-BTTP", None))
         self.titleLeftDescription.setText(QCoreApplication.translate("MainWindow", u"Modern GUI / Flat Style", None))
         self.toggleButton.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
-        self.btn_home.setText(QCoreApplication.translate("MainWindow", u"Home", None))
-        self.btn_widgets.setText(QCoreApplication.translate("MainWindow", u"Widgets", None))
-        self.btn_new.setText(QCoreApplication.translate("MainWindow", u"New", None))
+        self.btn_home.setText(QCoreApplication.translate("MainWindow", u"\u4e3b\u9875", None))
+        self.btn_test_data.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u754c\u9762", None))
+        self.btn_config.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u914d\u7f6e", None))
         self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.btn_exit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
@@ -1862,20 +3334,15 @@ class Ui_MainWindow(object):
         self.btn_share.setText(QCoreApplication.translate("MainWindow", u"Share", None))
         self.btn_adjustments.setText(QCoreApplication.translate("MainWindow", u"Adjustments", None))
         self.btn_more.setText(QCoreApplication.translate("MainWindow", u"More", None))
+        self.textEdit.setMarkdown(QCoreApplication.translate("MainWindow", u"**HCD - BBTP**  Test Framework Design by Emmovoo   Created by: Wanderson M.\n"
+"Pimenta\n"
+"\n"
+"", None))
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#ff79c6;\">PyDracula</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ffffff;\">An interface created using Python and PySide (support for PyQt), and with colors based on the Dracula theme created by Zeno Rocha.</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-inde"
-                        "nt:0; text-indent:0px;\"><span style=\" color:#ffffff;\">MIT License</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#bd93f9;\">Created by: Wanderson M. Pimenta</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#ff79c6;\">Convert UI</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#ffffff;\">pyside6-uic main.ui &gt; ui_main.py</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#ff79c6;\">Convert QRC</span></p>\n"
-"<p align=\"center\" "
-                        "style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#ffffff;\">pyside6-rcc resources.qrc -o resources_rc.py</span></p></body></html>", None))
+"<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">HCD - BBTP</span>  Test Framework Design by Emmovoo   Created by: Wanderson M. Pimenta</p></body></html>", None))
         self.titleRightInfo.setText(QCoreApplication.translate("MainWindow", u"PyDracula APP - Theme with colors based on Dracula for Python.", None))
 #if QT_CONFIG(tooltip)
         self.settingsTopBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Settings", None))
@@ -1903,9 +3370,10 @@ class Ui_MainWindow(object):
         self.signal_switch_status.setText(QCoreApplication.translate("MainWindow", u"\u5c04\u9891\u4fe1\u53f7\u5207\u6362\u5668\u8fde\u63a5...", None))
         self.mes_serice_status.setText(QCoreApplication.translate("MainWindow", u"MES\u670d\u52a1\u5668\u5668\u8fde\u63a5...", None))
         self.left_channel_status.setText(QCoreApplication.translate("MainWindow", u"\u5de6\u6d4b\u8bd5\u901a\u9053-\u5173\u95ed", None))
-        self.right_serice_status.setText(QCoreApplication.translate("MainWindow", u"\u53f3\u6d4b\u8bd5\u901a\u9053-\u5173\u95ed", None))
-        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u6d4b\u8bd5", None))
+        self.right_channel_status.setText(QCoreApplication.translate("MainWindow", u"\u53f3\u6d4b\u8bd5\u901a\u9053-\u5173\u95ed", None))
+        self.start_test_btn.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u6d4b\u8bd5", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"LOG \u6570\u636e\u663e\u793a\uff1a", None))
+        self.test_config_btn.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u8bbe\u7f6e", None))
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"MT8852B \u8fde\u63a5\u72b6\u6001", None))
         self.MT8852_ID.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
         self.MT8852_status_label.setText(QCoreApplication.translate("MainWindow", u"\u672a\u8fde\u63a5", None))
@@ -1945,8 +3413,234 @@ class Ui_MainWindow(object):
         self.cfg_save_btn.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58", None))
         self.default_btn.setText(QCoreApplication.translate("MainWindow", u"\u6062\u590d\u9ed8\u8ba4\u503c", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"SN\u7801\u8f93\u5165\uff1a", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u8f93\u51fa\u529f\u7387\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.left_leop_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u901a\u9053", None))
+        self.label_93.setText(QCoreApplication.translate("MainWindow", u"\u9608\u503c", None))
+        self.label_58.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u529f\u7387\uff1a", None))
+        self.left_leop_l_max.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_m_max.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_h_max.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_avg_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_54.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u5747\u529f\u7387\uff1a", None))
+        self.left_leop_l_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_m_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_h_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_53.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5c0f\u529f\u7387\uff1a", None))
+        self.left_leop_l_min.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_m_min.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_h_min.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_avg_lcl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_46.setText(QCoreApplication.translate("MainWindow", u"\u5cf0\u503c\u529f\u7387\uff1a", None))
+        self.left_leop_l_peak.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_m_peak.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_h_peak.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_peak_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_25.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.left_leop_l_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_m_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leop_h_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_62.setText(QCoreApplication.translate("MainWindow", u"\u8f7d\u6ce2\u9891\u504f\u548c\u6f02\u79fb\u6d4b\u8bd5\uff1a", None))
+        self.left_leicd_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.label_99.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.label_98.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
+        self.label_97.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
+        self.label_96.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u901a\u9053", None))
+        self.label_103.setText(QCoreApplication.translate("MainWindow", u"\u9608\u503c", None))
+        self.label_67.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u5747\u9891\u504f\uff1a", None))
+        self.left_leicd_l_avg_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_avg_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_avg_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_71.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u9891\u504f+ve\uff1a", None))
+        self.left_leicd_l_max_p_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_max_p_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_max_p_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_p_fn_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_75.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u9891\u504f-ve\uff1a", None))
+        self.left_leicd_l_max_n_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_max_n_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_max_n_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_n_fn_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_77.setText(QCoreApplication.translate("MainWindow", u"\u6f02\u79fb\u901f\u7387\uff1a", None))
+        self.left_leicd_l_max_dirft_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_max_dirft_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_max_dirft_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_drift_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_82.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u6f02\u79fb\uff1a", None))
+        self.left_leicd_l_max_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_max_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_max_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_drift_range.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_87.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u5747\u6f02\u79fb\uff1a", None))
+        self.left_leicd_l_avg_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_avg_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_avg_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_84.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_91.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.left_leicd_l_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_m_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_leicd_h_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_88.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_label.setText(QCoreApplication.translate("MainWindow", u"\u7075\u654f\u5ea6\u6d4b\u8bd5\uff1a", None))
+        self.left_less_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.label_116.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.label_115.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
+        self.label_114.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
+        self.label_113.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u901a\u9053", None))
+        self.label_112.setText(QCoreApplication.translate("MainWindow", u"\u9608\u503c", None))
+        self.label_118.setText(QCoreApplication.translate("MainWindow", u"\u8bef\u5e27\u7387\uff1a", None))
+        self.left_less_l_over_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_m_over_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_h_over_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_125.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u9001\u5305\u6570\uff1a", None))
+        self.left_less_l_total_frames_sent_tester.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_m_total_frames_sent_tester.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_h_total_frames_sent_tester.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_122.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_130.setText(QCoreApplication.translate("MainWindow", u"\u63a5\u6536\u5305\u6570\uff1a", None))
+        self.left_less_l_total_frames_counted_dut.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_m_total_frames_counted_dut.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_h_total_frames_counted_dut.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_127.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_135.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.left_less_l_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_m_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_less_h_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_132.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_138.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u65f6\u95f4\uff1a", None))
+        self.left_test_time_point.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_139.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7528\u65f6\uff1a", None))
+        self.left_test_time_during.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_144.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u603b\u6570", None))
+        self.label_143.setText(QCoreApplication.translate("MainWindow", u"\u901a\u8fc7\u4e2a\u6570", None))
+        self.label_142.setText(QCoreApplication.translate("MainWindow", u"\u5931\u8d25\u4e2a\u6570", None))
+        self.label_141.setText(QCoreApplication.translate("MainWindow", u"\u574f\u7387", None))
+        self.left_test_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_pass_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_fail_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.left_fail_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"SN\u7801\u8f93\u5165\uff1a", None))
+        self.label_149.setText(QCoreApplication.translate("MainWindow", u"\u8f93\u51fa\u529f\u7387\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.right_leop_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.label_153.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.label_155.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
+        self.label_154.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
+        self.label_152.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u901a\u9053", None))
+        self.label_151.setText(QCoreApplication.translate("MainWindow", u"\u9608\u503c", None))
+        self.label_159.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u529f\u7387\uff1a", None))
+        self.right_leop_l_max.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_m_max.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_h_max.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_avg_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_164.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u5747\u529f\u7387\uff1a", None))
+        self.right_leop_l_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_m_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_h_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_161.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_170.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5c0f\u529f\u7387\uff1a", None))
+        self.right_leop_l_min.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_m_min.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_h_min.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_avg_lcl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_174.setText(QCoreApplication.translate("MainWindow", u"\u5cf0\u503c\u529f\u7387\uff1a", None))
+        self.right_leop_l_peak.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_m_peak.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_h_peak.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_peak_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_180.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.right_leop_l_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_m_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leop_h_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_176.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_182.setText(QCoreApplication.translate("MainWindow", u"\u8f7d\u6ce2\u9891\u504f\u548c\u6f02\u79fb\u6d4b\u8bd5\uff1a", None))
+        self.label_181.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.label_222.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.label_259.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
+        self.label_258.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
+        self.label_221.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u901a\u9053", None))
+        self.label_219.setText(QCoreApplication.translate("MainWindow", u"\u9608\u503c", None))
+        self.label_187.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u5747\u9891\u504f\uff1a", None))
+        self.right_leicd_l_avg_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_avg_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_avg_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_avg.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_192.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u9891\u504f+ve\uff1a", None))
+        self.right_leicd_l_max_p_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_max_p_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_max_p_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_p_fn_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_197.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u9891\u504f-ve\uff1a", None))
+        self.right_leicd_l_max_n_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_max_n_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_max_n_fn.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_n_fn_ucl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_202.setText(QCoreApplication.translate("MainWindow", u"\u6f02\u79fb\u901f\u7387\uff1a", None))
+        self.right_leicd_l_max_dirft_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_max_dirft_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_max_dirft_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_drift_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_207.setText(QCoreApplication.translate("MainWindow", u"\u6700\u5927\u6f02\u79fb\uff1a", None))
+        self.right_leicd_l_max_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_max_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_max_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_drift_range.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_211.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u5747\u6f02\u79fb\uff1a", None))
+        self.right_leicd_l_avg_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_avg_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_avg_dirft.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_208.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_217.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.right_leicd_l_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_m_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_leicd_h_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_213.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_220.setText(QCoreApplication.translate("MainWindow", u"\u7075\u654f\u5ea6\u6d4b\u8bd5\uff1a", None))
+        self.label_218.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.label_227.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.label_226.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
+        self.label_225.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
+        self.label_224.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u901a\u9053", None))
+        self.label_223.setText(QCoreApplication.translate("MainWindow", u"\u9608\u503c", None))
+        self.label_232.setText(QCoreApplication.translate("MainWindow", u"\u8bef\u5e27\u7387\uff1a", None))
+        self.right_less_l_over_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_m_over_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_h_over_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_fer.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_237.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u9001\u5305\u6570\uff1a", None))
+        self.right_less_l_total_frames_sent_tester.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_m_total_frames_sent_tester.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_h_total_frames_sent_tester.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_233.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_241.setText(QCoreApplication.translate("MainWindow", u"\u63a5\u6536\u5305\u6570\uff1a", None))
+        self.right_less_l_total_frames_counted_dut.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_m_total_frames_counted_dut.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_h_total_frames_counted_dut.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_238.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_246.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
+        self.right_less_l_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_m_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_less_h_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_243.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_249.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u65f6\u95f4\uff1a", None))
+        self.right_test_time_point.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_251.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u7528\u65f6\uff1a", None))
+        self.right_test_time_during.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_262.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u603b\u6570", None))
+        self.label_263.setText(QCoreApplication.translate("MainWindow", u"\u901a\u8fc7\u4e2a\u6570", None))
+        self.label_261.setText(QCoreApplication.translate("MainWindow", u"\u5931\u8d25\u4e2a\u6570", None))
+        self.label_260.setText(QCoreApplication.translate("MainWindow", u"\u574f\u7387", None))
+        self.right_test_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_pass_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_fail_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.right_fail_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))
         self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))

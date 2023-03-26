@@ -682,7 +682,7 @@ Button */
               </font>
              </property>
              <property name="text">
-              <string>PyDracula</string>
+              <string>HCD-BTTP</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -869,12 +869,12 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-home.png);</string>
                   </property>
                   <property name="text">
-                   <string>Home</string>
+                   <string>主页</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_widgets">
+                 <widget class="QPushButton" name="btn_test_data">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -905,12 +905,12 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-gamepad.png);</string>
                   </property>
                   <property name="text">
-                   <string>Widgets</string>
+                   <string>测试界面</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_new">
+                 <widget class="QPushButton" name="btn_config">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -941,7 +941,7 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
                   </property>
                   <property name="text">
-                   <string>New</string>
+                   <string>测试配置</string>
                   </property>
                  </widget>
                 </item>
@@ -1420,6 +1420,9 @@ Button */
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
                  <widget class="QTextEdit" name="textEdit">
+                  <property name="enabled">
+                   <bool>false</bool>
+                  </property>
                   <property name="minimumSize">
                    <size>
                     <width>222</width>
@@ -1435,19 +1438,18 @@ Button */
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
+                  <property name="markdown">
+                   <string>**HCD - BBTP**  Test Framework Design by Emmovoo   Created by: Wanderson M.
+Pimenta
+
+</string>
+                  </property>
                   <property name="html">
                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff79c6;&quot;&gt;PyDracula&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;An interface created using Python and PySide (support for PyQt), and with colors based on the Dracula theme created by Zeno Rocha.&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;MIT License&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#bd93f9;&quot;&gt;Created by: Wanderson M. Pimenta&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff79c6;&quot;&gt;Convert UI&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#ffffff;&quot;&gt;pyside6-uic main.ui &amp;gt; ui_main.py&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff79c6;&quot;&gt;Convert QRC&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#ffffff;&quot;&gt;pyside6-rcc resources.qrc -o resources_rc.py&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;HCD - BBTP&lt;/span&gt;  Test Framework Design by Emmovoo   Created by: Wanderson M. Pimenta&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -1855,11 +1857,14 @@ p, li { white-space: pre-wrap; }
                    </property>
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -1996,7 +2001,7 @@ background-repeat: no-repeat;</string>
                          <string>左测试通道-关闭</string>
                         </property>
                        </widget>
-                       <widget class="QPushButton" name="right_serice_status">
+                       <widget class="QPushButton" name="right_channel_status">
                         <property name="geometry">
                          <rect>
                           <x>40</x>
@@ -2010,7 +2015,7 @@ background-repeat: no-repeat;</string>
                         </property>
                        </widget>
                       </widget>
-                      <widget class="QPushButton" name="pushButton_9">
+                      <widget class="QPushButton" name="start_test_btn">
                        <property name="geometry">
                         <rect>
                          <x>40</x>
@@ -2046,8 +2051,21 @@ background-repeat: no-repeat;</string>
                         </property>
                        </widget>
                       </widget>
+                      <widget class="QPushButton" name="test_config_btn">
+                       <property name="geometry">
+                        <rect>
+                         <x>210</x>
+                         <y>660</y>
+                         <width>141</width>
+                         <height>51</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>测试设置</string>
+                       </property>
+                      </widget>
                      </widget>
-                     <widget class="QWidget" name="widgets">
+                     <widget class="QWidget" name="test_config_page">
                       <property name="styleSheet">
                        <string notr="true">b</string>
                       </property>
@@ -2809,7 +2827,7 @@ background-repeat: no-repeat;</string>
                        </item>
                       </layout>
                      </widget>
-                     <widget class="QWidget" name="new_page">
+                     <widget class="QWidget" name="test_data_page">
                       <layout class="QVBoxLayout" name="verticalLayout_20">
                        <item>
                         <widget class="QLabel" name="label">
@@ -2829,17 +2847,970 @@ background-repeat: no-repeat;</string>
                          <item>
                           <layout class="QVBoxLayout" name="verticalLayout_21">
                            <item>
-                            <widget class="QLineEdit" name="lineEdit_2"/>
+                            <layout class="QHBoxLayout" name="horizontalLayout_14">
+                             <item>
+                              <layout class="QHBoxLayout" name="horizontalLayout_15">
+                               <item>
+                                <widget class="QLabel" name="label_4">
+                                 <property name="text">
+                                  <string>SN码输入：</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLineEdit" name="left_sn_in"/>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
                            </item>
                            <item>
-                            <widget class="QTextEdit" name="textEdit_2"/>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_2">
-                             <property name="text">
-                              <string>TextLabel</string>
+                            <widget class="Line" name="line">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
                              </property>
                             </widget>
+                           </item>
+                           <item>
+                            <widget class="QProgressBar" name="left_test_result_bar">
+                             <property name="value">
+                              <number>24</number>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_29">
+                             <item>
+                              <widget class="QLabel" name="label_2">
+                               <property name="text">
+                                <string>输出功率测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_result">
+                               <property name="text">
+                                <string>NULL</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_19">
+                             <item>
+                              <widget class="QLabel" name="label_21">
+                               <property name="text">
+                                <string>+</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_22">
+                               <property name="text">
+                                <string>低通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_23">
+                               <property name="text">
+                                <string>中通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_20">
+                               <property name="text">
+                                <string>高通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_93">
+                               <property name="text">
+                                <string>阈值</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_26">
+                             <item>
+                              <widget class="QLabel" name="label_58">
+                               <property name="text">
+                                <string>最大功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_l_max">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_m_max">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_h_max">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_avg_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_25">
+                             <item>
+                              <widget class="QLabel" name="label_54">
+                               <property name="text">
+                                <string>平均功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_l_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_m_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_h_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_53">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_22">
+                             <item>
+                              <widget class="QLabel" name="label_50">
+                               <property name="text">
+                                <string>最小功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_l_min">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_m_min">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_h_min">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_avg_lcl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_21">
+                             <item>
+                              <widget class="QLabel" name="label_46">
+                               <property name="text">
+                                <string>峰值功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_l_peak">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_m_peak">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_h_peak">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_peak_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_20">
+                             <item>
+                              <widget class="QLabel" name="label_25">
+                               <property name="text">
+                                <string>测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_l_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_m_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leop_h_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_24">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_2">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_34">
+                             <item>
+                              <widget class="QLabel" name="label_62">
+                               <property name="text">
+                                <string>载波频偏和漂移测试：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_result">
+                               <property name="text">
+                                <string>NULL</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_46">
+                             <item>
+                              <widget class="QLabel" name="label_99">
+                               <property name="text">
+                                <string>+</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_98">
+                               <property name="text">
+                                <string>低通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_97">
+                               <property name="text">
+                                <string>中通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_96">
+                               <property name="text">
+                                <string>高通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_103">
+                               <property name="text">
+                                <string>阈值</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_41">
+                             <item>
+                              <widget class="QLabel" name="label_67">
+                               <property name="text">
+                                <string>平均频偏：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_avg_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_avg_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_avg_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_45">
+                             <item>
+                              <widget class="QLabel" name="label_71">
+                               <property name="text">
+                                <string>最大频偏+ve：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_max_p_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_max_p_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_max_p_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_p_fn_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_44">
+                             <item>
+                              <widget class="QLabel" name="label_75">
+                               <property name="text">
+                                <string>最大频偏-ve：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_max_n_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_max_n_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_max_n_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_n_fn_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_43">
+                             <item>
+                              <widget class="QLabel" name="label_77">
+                               <property name="text">
+                                <string>漂移速率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_max_dirft_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_max_dirft_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_max_dirft_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_drift_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_42">
+                             <item>
+                              <widget class="QLabel" name="label_82">
+                               <property name="text">
+                                <string>最大漂移：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_max_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_max_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_max_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_drift_range">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_40">
+                             <item>
+                              <widget class="QLabel" name="label_87">
+                               <property name="text">
+                                <string>平均漂移：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_avg_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_avg_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_avg_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_84">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_39">
+                             <item>
+                              <widget class="QLabel" name="label_91">
+                               <property name="text">
+                                <string>测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_l_state">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_m_state">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_leicd_h_state">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_88">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_3">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_35">
+                             <item>
+                              <widget class="QLabel" name="left_less_label">
+                               <property name="text">
+                                <string>灵敏度测试：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_result">
+                               <property name="text">
+                                <string>NULL</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_48">
+                             <item>
+                              <widget class="QLabel" name="label_116">
+                               <property name="text">
+                                <string>+</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_115">
+                               <property name="text">
+                                <string>低通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_114">
+                               <property name="text">
+                                <string>中通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_113">
+                               <property name="text">
+                                <string>高通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_112">
+                               <property name="text">
+                                <string>阈值</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_51">
+                             <item>
+                              <widget class="QLabel" name="label_118">
+                               <property name="text">
+                                <string>误帧率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_l_over_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_m_over_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_h_over_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_50">
+                             <item>
+                              <widget class="QLabel" name="label_125">
+                               <property name="text">
+                                <string>发送包数：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_l_total_frames_sent_tester">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_m_total_frames_sent_tester">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_h_total_frames_sent_tester">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_122">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_49">
+                             <item>
+                              <widget class="QLabel" name="label_130">
+                               <property name="text">
+                                <string>接收包数：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_l_total_frames_counted_dut">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_m_total_frames_counted_dut">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_h_total_frames_counted_dut">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_127">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_52">
+                             <item>
+                              <widget class="QLabel" name="label_135">
+                               <property name="text">
+                                <string>测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_l_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_m_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_less_h_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_132">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_4">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_53">
+                             <item>
+                              <widget class="QLabel" name="label_138">
+                               <property name="text">
+                                <string>测试时间：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_test_time_point">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_139">
+                               <property name="text">
+                                <string>测试用时：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_test_time_during">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_5">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_54">
+                             <item>
+                              <widget class="QLabel" name="label_144">
+                               <property name="text">
+                                <string>测试总数</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_143">
+                               <property name="text">
+                                <string>通过个数</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_142">
+                               <property name="text">
+                                <string>失败个数</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_141">
+                               <property name="text">
+                                <string>坏率</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_47">
+                             <item>
+                              <widget class="QLabel" name="left_test_count">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_pass_count">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_fail_count">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="left_fail_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
                            </item>
                           </layout>
                          </item>
@@ -2862,17 +3833,966 @@ background-repeat: no-repeat;</string>
                          <item>
                           <layout class="QVBoxLayout" name="verticalLayout_26">
                            <item>
-                            <widget class="QLineEdit" name="lineEdit_3"/>
+                            <layout class="QHBoxLayout" name="horizontalLayout_55">
+                             <item>
+                              <widget class="QLabel" name="label_3">
+                               <property name="text">
+                                <string>SN码输入：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLineEdit" name="right_sn_in"/>
+                             </item>
+                            </layout>
                            </item>
                            <item>
-                            <widget class="QTextEdit" name="textEdit_3"/>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_3">
-                             <property name="text">
-                              <string>TextLabel</string>
+                            <widget class="Line" name="line_7">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
                              </property>
                             </widget>
+                           </item>
+                           <item>
+                            <widget class="QProgressBar" name="right_test_result_bar">
+                             <property name="value">
+                              <number>24</number>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_56">
+                             <item>
+                              <widget class="QLabel" name="label_149">
+                               <property name="text">
+                                <string>输出功率测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_result">
+                               <property name="text">
+                                <string>NULL</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_58">
+                             <item>
+                              <widget class="QLabel" name="label_153">
+                               <property name="text">
+                                <string>+</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_155">
+                               <property name="text">
+                                <string>低通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_154">
+                               <property name="text">
+                                <string>中通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_152">
+                               <property name="text">
+                                <string>高通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_151">
+                               <property name="text">
+                                <string>阈值</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_60">
+                             <item>
+                              <widget class="QLabel" name="label_159">
+                               <property name="text">
+                                <string>最大功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_l_max">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_m_max">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_h_max">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_avg_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_61">
+                             <item>
+                              <widget class="QLabel" name="label_164">
+                               <property name="text">
+                                <string>平均功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_l_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_m_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_h_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_161">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_63">
+                             <item>
+                              <widget class="QLabel" name="label_170">
+                               <property name="text">
+                                <string>最小功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_l_min">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_m_min">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_h_min">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_avg_lcl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_62">
+                             <item>
+                              <widget class="QLabel" name="label_174">
+                               <property name="text">
+                                <string>峰值功率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_l_peak">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_m_peak">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_h_peak">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_peak_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_59">
+                             <item>
+                              <widget class="QLabel" name="label_180">
+                               <property name="text">
+                                <string>测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_l_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_m_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leop_h_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_176">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_6">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_65">
+                             <item>
+                              <widget class="QLabel" name="label_182">
+                               <property name="text">
+                                <string>载波频偏和漂移测试：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_181">
+                               <property name="text">
+                                <string>NULL</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_79">
+                             <item>
+                              <widget class="QLabel" name="label_222">
+                               <property name="text">
+                                <string>+</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_259">
+                               <property name="text">
+                                <string>低通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_258">
+                               <property name="text">
+                                <string>中通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_221">
+                               <property name="text">
+                                <string>高通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_219">
+                               <property name="text">
+                                <string>阈值</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_66">
+                             <item>
+                              <widget class="QLabel" name="label_187">
+                               <property name="text">
+                                <string>平均频偏：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_avg_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_avg_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_avg_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_avg">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_69">
+                             <item>
+                              <widget class="QLabel" name="label_192">
+                               <property name="text">
+                                <string>最大频偏+ve：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_max_p_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_max_p_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_max_p_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_p_fn_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_78">
+                             <item>
+                              <widget class="QLabel" name="label_197">
+                               <property name="text">
+                                <string>最大频偏-ve：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_max_n_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_max_n_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_max_n_fn">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_n_fn_ucl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_73">
+                             <item>
+                              <widget class="QLabel" name="label_202">
+                               <property name="text">
+                                <string>漂移速率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_max_dirft_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_max_dirft_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_max_dirft_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_drift_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_74">
+                             <item>
+                              <widget class="QLabel" name="label_207">
+                               <property name="text">
+                                <string>最大漂移：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_max_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_max_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_max_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_drift_range">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_77">
+                             <item>
+                              <widget class="QLabel" name="label_211">
+                               <property name="text">
+                                <string>平均漂移：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_avg_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_avg_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_avg_dirft">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_208">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_72">
+                             <item>
+                              <widget class="QLabel" name="label_217">
+                               <property name="text">
+                                <string>测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_l_state">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_m_state">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_leicd_h_state">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_213">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_8">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_71">
+                             <item>
+                              <widget class="QLabel" name="label_220">
+                               <property name="text">
+                                <string>灵敏度测试：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_218">
+                               <property name="text">
+                                <string>NULL</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_76">
+                             <item>
+                              <widget class="QLabel" name="label_227">
+                               <property name="text">
+                                <string>+</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_226">
+                               <property name="text">
+                                <string>低通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_225">
+                               <property name="text">
+                                <string>中通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_224">
+                               <property name="text">
+                                <string>高通道</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_223">
+                               <property name="text">
+                                <string>阈值</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_75">
+                             <item>
+                              <widget class="QLabel" name="label_232">
+                               <property name="text">
+                                <string>误帧率：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_l_over_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_m_over_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_h_over_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_fer">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_68">
+                             <item>
+                              <widget class="QLabel" name="label_237">
+                               <property name="text">
+                                <string>发送包数：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_l_total_frames_sent_tester">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_m_total_frames_sent_tester">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_h_total_frames_sent_tester">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_233">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_70">
+                             <item>
+                              <widget class="QLabel" name="label_241">
+                               <property name="text">
+                                <string>接收包数：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_l_total_frames_counted_dut">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_m_total_frames_counted_dut">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_h_total_frames_counted_dut">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_238">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_67">
+                             <item>
+                              <widget class="QLabel" name="label_246">
+                               <property name="text">
+                                <string>测试结果：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_l_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_m_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_less_h_status">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_243">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_9">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_64">
+                             <item>
+                              <widget class="QLabel" name="label_249">
+                               <property name="text">
+                                <string>测试时间：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_test_time_point">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_251">
+                               <property name="text">
+                                <string>测试用时：</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_test_time_during">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_10">
+                             <property name="frameShadow">
+                              <enum>QFrame::Plain</enum>
+                             </property>
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_80">
+                             <item>
+                              <widget class="QLabel" name="label_262">
+                               <property name="text">
+                                <string>测试总数</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_263">
+                               <property name="text">
+                                <string>通过个数</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_261">
+                               <property name="text">
+                                <string>失败个数</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label_260">
+                               <property name="text">
+                                <string>坏率</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_57">
+                             <item>
+                              <widget class="QLabel" name="right_test_count">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_pass_count">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_fail_count">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="right_fail_rate">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
                            </item>
                           </layout>
                          </item>
