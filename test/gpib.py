@@ -30,6 +30,10 @@ def MT8852B_Connect_Cheak():
     
 
 
+start_time = time.time()
+    
+
+
 rm = pyvisa.ResourceManager()   # 打开资源管理器
 rm_list = rm.list_resources()   # 获取设备列表
 print('LOG: device list:',rm_list)
@@ -193,6 +197,60 @@ else:
 MT8852B_Write("SCPTTSTGR 10,STDTSTS,OFF")   # 关闭标准测试
 MT8852B_Write("SCPTTSTGR 10,EDRTSTS,OFF")   # 关闭EDR测试
 MT8852B_Write("SCPTTSTGR 10,BLETSTS,ON")   # 开启BLE测试
+
+## =============== debug ===============
+
+## leop test setting
+# MT8852B_Write("OPMD SCRIPT")     # 打开脚本
+MT8852B_Write("LEOPCFG 10,LFREQSEL,ON")  # 开启低频测试
+MT8852B_Write("LEOPCFG 10,MFREQSEL,ON")  # 开启中频测试
+MT8852B_Write("LEOPCFG 10,HFREQSEL,ON")  # 开启高频测试
+
+MT8852B_Write("LEOPCFG 10,LTXFREQ,FREQ,2402MHZ")  # 设置低频发送频率
+MT8852B_Write("LEOPCFG 10,MTXFREQ,FREQ,2440MHZ")  # 设置中频发送频率
+MT8852B_Write("LEOPCFG 10,HTXFREQ,FREQ,2480MHZ")  # 设置高频发送频率
+
+MT8852B_Write("LEOPCFG 10,NUMPKTS,10")
+
+# MT8852B_Query("OPTSTATUS?") # 查询测试状态
+# MT8852B_Query("SCPTSEL?")   # 查询脚本选择
+
+MT8852B_Write("LEOPCFG 10, AVGMXLIM,10DBM") # 设置最大平均功率
+MT8852B_Write("LEOPCFG 10, AVGMNLIM,-20DBM") # 设置最小平均功率
+MT8852B_Write("LEOPCFG 10, PEAKLIM,3DBM") # 设置最大功率
+
+MT8852B_Write("SCPTCFG 10,LEOP,ON")   # 开启LEOP测试
+
+
+## leicd test setting
+MT8852B_Write("LEICDCFG 10,LFREQSEL,ON")  # 开启低频测试
+MT8852B_Write("LEICDCFG 10,MFREQSEL,ON")  # 开启中频测试
+MT8852B_Write("LEICDCFG 10,HFREQSEL,ON")  # 开启高频测试
+
+MT8852B_Write("LEICDCFG 10,LTXFREQ,FREQ,2402MHZ")  # 设置低频发送频率
+MT8852B_Write("LEICDCFG 10,MTXFREQ,FREQ,2440MHZ")  # 设置中频发送频率
+MT8852B_Write("LEICDCFG 10,HTXFREQ,FREQ,2480MHZ")  # 设置高频发送频率
+
+MT8852B_Write("LEICDCFG 10,NUMPKTS,10")
+
+MT8852B_Write("LEICDCFG 10,MXPOSLIM,150KHZ")   # 设置最大频偏
+MT8852B_Write("LEICDCFG 10,MXNEGLIM,150KHZ")   # 设置最小频偏
+MT8852B_Write("LEICDCFG 10,DFTBLERATE,20KHZ")   # 设置DFT测试速率
+MT8852B_Write("LEICDCFG 10,DFTBLELIM,50KHZ")   # 设置DFT测试速率
+MT8852B_Write("SCPTEUTCFG 10,LEICD,ON")   # 开启LEICD测试
+
+## less test setting
+MT8852B_Write("LESSCFG 10,DIRTYTX,ON")   # 开启脏发射测试
+MT8852B_Write("OPMD SCRIPT")     # 打开脚本
+MT8852B_Write("LESSCFG 10,TXPWR,-70")   # 开启脏发射测试
+
+
+
+## less test setting
+
+
+
+## =============== debug ===============
 
 MT8852B_Write("RUN")    # 运行脚本
 # device.set_visa_attribute(VI_ATTR_TMO_VALUE, 12000)  # 设置超时时间
@@ -623,4 +681,9 @@ less_pass = '0'
 less_pass_cnt = 0
 
 ## ================================================================================================
+
+
+end_time = time.time()
+
+print('spend time:',end_time - start_time)
 

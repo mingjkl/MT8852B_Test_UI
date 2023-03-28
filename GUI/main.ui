@@ -1448,6 +1448,7 @@ Pimenta
                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;HCD - BBTP&lt;/span&gt;  Test Framework Design by Emmovoo   Created by: Wanderson M. Pimenta&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
@@ -2403,8 +2404,8 @@ background-repeat: no-repeat;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>1160</width>
-                               <height>560</height>
+                               <width>76</width>
+                               <height>146</height>
                               </rect>
                              </property>
                              <widget class="QWidget" name="verticalLayoutWidget">
@@ -2885,6 +2886,12 @@ background-repeat: no-repeat;</string>
                             <layout class="QHBoxLayout" name="horizontalLayout_29">
                              <item>
                               <widget class="QLabel" name="label_2">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
                                <property name="text">
                                 <string>输出功率测试结果：</string>
                                </property>
@@ -2894,6 +2901,9 @@ background-repeat: no-repeat;</string>
                               <widget class="QLabel" name="left_leop_result">
                                <property name="text">
                                 <string>NULL</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
                                </property>
                               </widget>
                              </item>
@@ -3147,6 +3157,12 @@ background-repeat: no-repeat;</string>
                             <layout class="QHBoxLayout" name="horizontalLayout_34">
                              <item>
                               <widget class="QLabel" name="label_62">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
                                <property name="text">
                                 <string>载波频偏和漂移测试：</string>
                                </property>
@@ -3156,6 +3172,9 @@ background-repeat: no-repeat;</string>
                               <widget class="QLabel" name="left_leicd_result">
                                <property name="text">
                                 <string>NULL</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
                                </property>
                               </widget>
                              </item>
@@ -3487,6 +3506,12 @@ background-repeat: no-repeat;</string>
                             <layout class="QHBoxLayout" name="horizontalLayout_35">
                              <item>
                               <widget class="QLabel" name="left_less_label">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
                                <property name="text">
                                 <string>灵敏度测试：</string>
                                </property>
@@ -3496,6 +3521,9 @@ background-repeat: no-repeat;</string>
                               <widget class="QLabel" name="left_less_result">
                                <property name="text">
                                 <string>NULL</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
                                </property>
                               </widget>
                              </item>
@@ -3867,6 +3895,12 @@ background-repeat: no-repeat;</string>
                             <layout class="QHBoxLayout" name="horizontalLayout_56">
                              <item>
                               <widget class="QLabel" name="label_149">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
                                <property name="text">
                                 <string>输出功率测试结果：</string>
                                </property>
@@ -3876,6 +3910,9 @@ background-repeat: no-repeat;</string>
                               <widget class="QLabel" name="right_leop_result">
                                <property name="text">
                                 <string>NULL</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
                                </property>
                               </widget>
                              </item>
@@ -4129,15 +4166,24 @@ background-repeat: no-repeat;</string>
                             <layout class="QHBoxLayout" name="horizontalLayout_65">
                              <item>
                               <widget class="QLabel" name="label_182">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
                                <property name="text">
                                 <string>载波频偏和漂移测试：</string>
                                </property>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLabel" name="label_181">
+                              <widget class="QLabel" name="right_leicd_result">
                                <property name="text">
                                 <string>NULL</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
                                </property>
                               </widget>
                              </item>
@@ -4469,15 +4515,24 @@ background-repeat: no-repeat;</string>
                             <layout class="QHBoxLayout" name="horizontalLayout_71">
                              <item>
                               <widget class="QLabel" name="label_220">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>150</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
                                <property name="text">
                                 <string>灵敏度测试：</string>
                                </property>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLabel" name="label_218">
+                              <widget class="QLabel" name="right_less_result">
                                <property name="text">
                                 <string>NULL</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
                                </property>
                               </widget>
                              </item>

@@ -29,7 +29,7 @@ def setting_data_display(widgets,setting_data):
     widgets.right_less_fer.setText('<= '+setting_data['less_config']['fer']+' %')
 
 
-def leop_result_display(global_status, widgets, leop_l, leop_m, leop_h):
+def leop_result_display(global_status, widgets, leop_l, leop_m, leop_h, status):
 
     # print('===================================================================')
     # print('输出功率测试结果：',leop_pass)
@@ -76,6 +76,14 @@ def leop_result_display(global_status, widgets, leop_l, leop_m, leop_h):
         else:
             widgets.left_leop_h_status.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
+        widgets.left_leop_result.setText(status)
+        if status == 'PASS':
+            widgets.left_leop_result.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+            widgets.label_2.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+        else:
+            widgets.left_leop_result.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+            widgets.label_2.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+
     elif global_status['finished_channel'] == 'right':
         widgets.right_leop_l_max.setText(str(leop_l['max']))
         widgets.right_leop_m_max.setText(str(leop_m['max']))
@@ -112,8 +120,17 @@ def leop_result_display(global_status, widgets, leop_l, leop_m, leop_h):
         else:
             widgets.right_leop_h_status.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
+        widgets.right_leop_result.setText(status)
+        if status == 'PASS':
+            widgets.right_leop_result.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+            widgets.label_149.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+        else:
+            widgets.right_leop_result.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+            widgets.label_149.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+        
 
-def leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h):
+
+def leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h, status):
 
     # print('===================================================================')
     # print('载波频率偏移和漂移测试：',leicd_pass)
@@ -171,6 +188,15 @@ def leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h):
         else:
             widgets.left_leicd_h_state.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
+        if status == 'PASS':
+            widgets.left_leicd_result.setText('PASS')
+            widgets.left_leicd_result.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+            widgets.label_62.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+        else:
+            widgets.left_leicd_result.setText('FAIL')
+            widgets.left_leicd_result.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+            widgets.label_62.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+
     elif global_status['finished_channel'] == 'right':
             
             widgets.right_leicd_l_avg_fn.setText(str(leicd_l['avg_fn']))
@@ -216,9 +242,18 @@ def leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h):
             else:
                 widgets.right_leicd_h_state.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
+            if status == 'PASS':
+                widgets.right_leicd_result.setText('PASS')
+                widgets.right_leicd_result.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+                widgets.label_182.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+            else:
+                widgets.right_leicd_result.setText('FAIL')
+                widgets.right_leicd_result.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+                widgets.label_182.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
 
-def less_result_display(global_status, widgets, less_l,less_m,less_h):
+
+def less_result_display(global_status, widgets, less_l,less_m,less_h, status):
 
 
     # print('===================================================================')
@@ -264,6 +299,15 @@ def less_result_display(global_status, widgets, less_l,less_m,less_h):
         else:
             widgets.left_less_h_status.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
+        if status == 'PASS':
+            widgets.left_less_result.setText('PASS')
+            widgets.left_less_result.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+            widgets.left_less_label.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+        else:
+            widgets.left_less_result.setText('FAIL')
+            widgets.left_less_result.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+            widgets.left_less_label.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+
     else:
             
             widgets.right_less_l_over_fer.setText(str(less_l['over_fer_%']))
@@ -296,6 +340,15 @@ def less_result_display(global_status, widgets, less_l,less_m,less_h):
                 widgets.right_less_h_status.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
             else:
                 widgets.right_less_h_status.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+            
+            if status == 'PASS':
+                widgets.right_less_result.setText('PASS')
+                widgets.right_less_result.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+                widgets.label_220.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
+            else:
+                widgets.right_less_result.setText('FAIL')
+                widgets.right_less_result.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
+                widgets.label_220.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
 
 
 def result_time_display(global_status,widgets, point, during):
@@ -396,6 +449,16 @@ def result_display_reset(widgets,channel):
         widgets.left_test_time_point.setText('-')
         widgets.left_test_time_during.setText('-')
 
+        widgets.left_less_result.setText('NULL')
+        widgets.left_less_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+        widgets.left_leicd_result.setText('NULL')
+        widgets.left_leicd_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+        widgets.left_leop_result.setText('NULL')
+        widgets.left_leop_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+        
+
     elif channel == 'right':
             
             widgets.right_leop_l_max.setText('-')
@@ -478,6 +541,17 @@ def result_display_reset(widgets,channel):
             widgets.right_test_time_point.setText('-')
             widgets.right_test_time_during.setText('-')
 
+            widgets.right_leop_result.setText('NULL')
+            widgets.right_leop_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+            widgets.right_leicd_result.setText('NULL')
+            widgets.right_leicd_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+            widgets.right_less_result.setText('NULL')
+            widgets.right_less_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+            
+
 
 def test_total_cnt_display(widgets, channel, total_cnt):
     if channel == 'left':
@@ -502,5 +576,7 @@ def test_fail_rate_display(widgets, channel, fail_rate):
         widgets.left_fail_rate.setText(str(fail_rate))
     elif channel == 'right':
         widgets.right_fail_rate.setText(str(fail_rate))
+
+
 
 

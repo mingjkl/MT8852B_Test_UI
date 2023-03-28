@@ -126,8 +126,8 @@ class MainWindow(QMainWindow):
         # SETTING INIT
         plam_det.log_display(widgets,'Start init...')
 
-        device_id = mt8852b_ctrl.connect(widgets)
-        mt8852b_ctrl.init(widgets,device_id)
+        device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
+        mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b
 
         mt8852b_ctrl.leop_result_read(widgets,device_id) # read leop result
         mt8852b_ctrl.leicd_result_read(widgets,device_id) # read leicd result
@@ -161,18 +161,27 @@ class MainWindow(QMainWindow):
         leop_m = {'max': 5, 'avg': 6, 'min': 7, 'peak_to_avg': 8, 'state': 'FAIL'}
         leop_h = {'max': 9, 'avg': 10, 'min': 11, 'peak_to_avg': 12, 'state': 'PASS'}
 
-        tr_dis.leop_result_display(global_status,widgets,leop_l, leop_m, leop_h)
+        leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
+        leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
+        less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
+
+        # tr_dis.leop_result_display(global_status,widgets,leop_l, leop_m, leop_h)
+
+        tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
 
 
         leicd_l = {'avg_fn': 1, 'max_p_fn': 2, 'max_n_fn': 3, 'max_dirft_rate': 4, 'max_drift': 5, 'avg_drift': 6, 'state': 'PASS'}
         leicd_m = {'avg_fn': 7, 'max_p_fn': 8, 'max_n_fn': 9, 'max_dirft_rate': 10, 'max_drift': 11, 'avg_drift': 12, 'state': 'FAIL'}
         leicd_h = {'avg_fn': 13, 'max_p_fn': 14, 'max_n_fn': 15, 'max_dirft_rate': 16, 'max_drift': 17, 'avg_drift': 18, 'state': 'PASS'}
-        tr_dis.leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h)
+        
+        tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
+        # tr_dis.leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h)
 
         less_l = {'over_fer_%': 1, 'total_frames_sent_tester': 2, 'total_frames_counted_dut': 3, 'state': 'PASS'}
         less_m = {'over_fer_%': 4, 'total_frames_sent_tester': 5, 'total_frames_counted_dut': 6, 'state': 'FAIL'}
         less_h = {'over_fer_%': 7, 'total_frames_sent_tester': 8, 'total_frames_counted_dut': 9, 'state': 'PASS'}
-        tr_dis.less_result_display(global_status,widgets,less_h, less_m, less_l)
+        # tr_dis.less_result_display(global_status,widgets,less_h, less_m, less_l)
+        tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
 
         tr_dis.result_time_display(global_status,widgets,'123','456')
 

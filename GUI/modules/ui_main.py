@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QMainWindow, QProgressBar, QPushButton, QScrollArea,
     QSizePolicy, QSpacerItem, QStackedWidget, QTextEdit,
     QVBoxLayout, QWidget)
-import resources_rc
+from . resources_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1285,7 +1285,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1160, 560))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 76, 146))
         self.verticalLayoutWidget = QWidget(self.scrollAreaWidgetContents)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(19, 10, 1121, 131))
@@ -1692,11 +1692,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
         self.label_2 = QLabel(self.test_data_page)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_29.addWidget(self.label_2)
 
         self.left_leop_result = QLabel(self.test_data_page)
         self.left_leop_result.setObjectName(u"left_leop_result")
+        self.left_leop_result.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_29.addWidget(self.left_leop_result)
 
@@ -1894,11 +1896,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
         self.label_62 = QLabel(self.test_data_page)
         self.label_62.setObjectName(u"label_62")
+        self.label_62.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_34.addWidget(self.label_62)
 
         self.left_leicd_result = QLabel(self.test_data_page)
         self.left_leicd_result.setObjectName(u"left_leicd_result")
+        self.left_leicd_result.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_34.addWidget(self.left_leicd_result)
 
@@ -2156,11 +2160,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
         self.left_less_label = QLabel(self.test_data_page)
         self.left_less_label.setObjectName(u"left_less_label")
+        self.left_less_label.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_35.addWidget(self.left_less_label)
 
         self.left_less_result = QLabel(self.test_data_page)
         self.left_less_result.setObjectName(u"left_less_result")
+        self.left_less_result.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_35.addWidget(self.left_less_result)
 
@@ -2447,11 +2453,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_56.setObjectName(u"horizontalLayout_56")
         self.label_149 = QLabel(self.test_data_page)
         self.label_149.setObjectName(u"label_149")
+        self.label_149.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_56.addWidget(self.label_149)
 
         self.right_leop_result = QLabel(self.test_data_page)
         self.right_leop_result.setObjectName(u"right_leop_result")
+        self.right_leop_result.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_56.addWidget(self.right_leop_result)
 
@@ -2649,13 +2657,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_65.setObjectName(u"horizontalLayout_65")
         self.label_182 = QLabel(self.test_data_page)
         self.label_182.setObjectName(u"label_182")
+        self.label_182.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_65.addWidget(self.label_182)
 
-        self.label_181 = QLabel(self.test_data_page)
-        self.label_181.setObjectName(u"label_181")
+        self.right_leicd_result = QLabel(self.test_data_page)
+        self.right_leicd_result.setObjectName(u"right_leicd_result")
+        self.right_leicd_result.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_65.addWidget(self.label_181)
+        self.horizontalLayout_65.addWidget(self.right_leicd_result)
 
 
         self.verticalLayout_26.addLayout(self.horizontalLayout_65)
@@ -2911,13 +2921,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_71.setObjectName(u"horizontalLayout_71")
         self.label_220 = QLabel(self.test_data_page)
         self.label_220.setObjectName(u"label_220")
+        self.label_220.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_71.addWidget(self.label_220)
 
-        self.label_218 = QLabel(self.test_data_page)
-        self.label_218.setObjectName(u"label_218")
+        self.right_less_result = QLabel(self.test_data_page)
+        self.right_less_result.setObjectName(u"right_less_result")
+        self.right_less_result.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_71.addWidget(self.label_218)
+        self.horizontalLayout_71.addWidget(self.right_less_result)
 
 
         self.verticalLayout_26.addLayout(self.horizontalLayout_71)
@@ -3341,6 +3353,7 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">HCD - BBTP</span>  Test Framework Design by Emmovoo   Created by: Wanderson M. Pimenta</p></body></html>", None))
         self.titleRightInfo.setText(QCoreApplication.translate("MainWindow", u"PyDracula APP - Theme with colors based on Dracula for Python.", None))
@@ -3561,7 +3574,7 @@ class Ui_MainWindow(object):
         self.right_leop_h_status.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_176.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_182.setText(QCoreApplication.translate("MainWindow", u"\u8f7d\u6ce2\u9891\u504f\u548c\u6f02\u79fb\u6d4b\u8bd5\uff1a", None))
-        self.label_181.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.right_leicd_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
         self.label_222.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.label_259.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
         self.label_258.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
@@ -3603,7 +3616,7 @@ class Ui_MainWindow(object):
         self.right_leicd_h_state.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_213.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_220.setText(QCoreApplication.translate("MainWindow", u"\u7075\u654f\u5ea6\u6d4b\u8bd5\uff1a", None))
-        self.label_218.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
+        self.right_less_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
         self.label_227.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.label_226.setText(QCoreApplication.translate("MainWindow", u"\u4f4e\u901a\u9053", None))
         self.label_225.setText(QCoreApplication.translate("MainWindow", u"\u4e2d\u901a\u9053", None))
