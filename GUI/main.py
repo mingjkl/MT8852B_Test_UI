@@ -21,11 +21,14 @@ import json
 import time
 import serial
 import serial.tools.list_ports
+from PySide6.QtCore import QThread
+
 
 import tr_dis
 import plam_det
 import setting_ctrl
 import mt8852b_ctrl
+import test_statistics
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -57,6 +60,7 @@ global_status = {'setting_loaded': False,
                  'finished_channel':'NULL'}
 
 
+setting_data = None
 
 ## Read and detect COM port
 def com_list_cherk(setting_info):   
@@ -85,6 +89,8 @@ def com_list_cherk(setting_info):
         else:
             plam_det.log_display(widgets,'Setting file not loaded, please check!')
             
+
+
     
 
 
@@ -126,12 +132,12 @@ class MainWindow(QMainWindow):
         # SETTING INIT
         plam_det.log_display(widgets,'Start init...')
 
-        device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
-        mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b
+        # device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
+        # mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b
 
-        mt8852b_ctrl.leop_result_read(widgets,device_id) # read leop result
-        mt8852b_ctrl.leicd_result_read(widgets,device_id) # read leicd result
-        mt8852b_ctrl.less_result_read(widgets,device_id) # read less result
+        # mt8852b_ctrl.leop_result_read(widgets,device_id) # read leop result
+        # mt8852b_ctrl.leicd_result_read(widgets,device_id) # read leicd result
+        # mt8852b_ctrl.less_result_read(widgets,device_id) # read less result
 
         widgets.default_btn.setEnabled(False)   # disable default button
         widgets.cfg_save_btn.setEnabled(False)  # disable save button
@@ -139,7 +145,12 @@ class MainWindow(QMainWindow):
         widgets.start_test_btn.setEnabled(False)    # disable start test button
         widgets.start_test_btn.setStyleSheet("color: rgb(128,138,135);")
 
+        global setting_data
+
         setting_data = setting_ctrl.setting_load(widgets,global_status)  # load setting from file
+
+        test_statistics.test_statisics_init(widgets)    # init test statistics
+
 
         plam_det.mt8852b_check(global_status, widgets) # check mt8852b
 
@@ -161,35 +172,35 @@ class MainWindow(QMainWindow):
         leop_m = {'max': 5, 'avg': 6, 'min': 7, 'peak_to_avg': 8, 'state': 'FAIL'}
         leop_h = {'max': 9, 'avg': 10, 'min': 11, 'peak_to_avg': 12, 'state': 'PASS'}
 
-        leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
-        leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
-        less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
+        # leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
+        # leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
+        # less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
 
         # tr_dis.leop_result_display(global_status,widgets,leop_l, leop_m, leop_h)
 
-        tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
+        # tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
 
 
-        leicd_l = {'avg_fn': 1, 'max_p_fn': 2, 'max_n_fn': 3, 'max_dirft_rate': 4, 'max_drift': 5, 'avg_drift': 6, 'state': 'PASS'}
-        leicd_m = {'avg_fn': 7, 'max_p_fn': 8, 'max_n_fn': 9, 'max_dirft_rate': 10, 'max_drift': 11, 'avg_drift': 12, 'state': 'FAIL'}
-        leicd_h = {'avg_fn': 13, 'max_p_fn': 14, 'max_n_fn': 15, 'max_dirft_rate': 16, 'max_drift': 17, 'avg_drift': 18, 'state': 'PASS'}
+        # leicd_l = {'avg_fn': 1, 'max_p_fn': 2, 'max_n_fn': 3, 'max_dirft_rate': 4, 'max_drift': 5, 'avg_drift': 6, 'state': 'PASS'}
+        # leicd_m = {'avg_fn': 7, 'max_p_fn': 8, 'max_n_fn': 9, 'max_dirft_rate': 10, 'max_drift': 11, 'avg_drift': 12, 'state': 'FAIL'}
+        # leicd_h = {'avg_fn': 13, 'max_p_fn': 14, 'max_n_fn': 15, 'max_dirft_rate': 16, 'max_drift': 17, 'avg_drift': 18, 'state': 'PASS'}
         
-        tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
-        # tr_dis.leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h)
+        # tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
+        # # tr_dis.leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h)
 
-        less_l = {'over_fer_%': 1, 'total_frames_sent_tester': 2, 'total_frames_counted_dut': 3, 'state': 'PASS'}
-        less_m = {'over_fer_%': 4, 'total_frames_sent_tester': 5, 'total_frames_counted_dut': 6, 'state': 'FAIL'}
-        less_h = {'over_fer_%': 7, 'total_frames_sent_tester': 8, 'total_frames_counted_dut': 9, 'state': 'PASS'}
-        # tr_dis.less_result_display(global_status,widgets,less_h, less_m, less_l)
-        tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
+        # less_l = {'over_fer_%': 1, 'total_frames_sent_tester': 2, 'total_frames_counted_dut': 3, 'state': 'PASS'}
+        # less_m = {'over_fer_%': 4, 'total_frames_sent_tester': 5, 'total_frames_counted_dut': 6, 'state': 'FAIL'}
+        # less_h = {'over_fer_%': 7, 'total_frames_sent_tester': 8, 'total_frames_counted_dut': 9, 'state': 'PASS'}
+        # # tr_dis.less_result_display(global_status,widgets,less_h, less_m, less_l)
+        # tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
 
-        tr_dis.result_time_display(global_status,widgets,'123','456')
+        # tr_dis.result_time_display(global_status,widgets,'123','456')
 
 
-        tr_dis.test_total_cnt_display(widgets,global_status['finished_channel'],789)
-        tr_dis.test_fail_count_display(widgets,global_status['finished_channel'],456)
-        tr_dis.test_pass_count_display(widgets,global_status['finished_channel'],123)
-        tr_dis.test_fail_rate_display(widgets,global_status['finished_channel'],13.2)
+        # tr_dis.test_total_cnt_display(widgets,global_status['finished_channel'],789)
+        # tr_dis.test_fail_count_display(widgets,global_status['finished_channel'],456)
+        # tr_dis.test_pass_count_display(widgets,global_status['finished_channel'],123)
+        # tr_dis.test_fail_rate_display(widgets,global_status['finished_channel'],13.2)
 
         # tr_dis.result_display_reset(widgets,global_status['finished_channel'])
 
@@ -197,12 +208,12 @@ class MainWindow(QMainWindow):
         widgets.left_test_result_bar.setAlignment(Qt.AlignCenter)
         widgets.left_test_result_bar.setMinimumHeight(100)
 
-        widgets.left_test_result_bar.setValue(35)
-        widgets.left_test_result_bar.setFormat('测试中...')
+        widgets.left_test_result_bar.setValue(100)
+        widgets.left_test_result_bar.setFormat('READY')
 
-        widgets.left_test_result_bar.setStyleSheet("QProgressBar::chunk {font-size: 20px; font-weight: bold; color: rgb(255, 255, 255); background-color: rgb(255, 255, 0);};")
+        # widgets.left_test_result_bar.setStyleSheet("QProgressBar::chunk {font-size: 20px; font-weight: bold; color: rgb(255, 255, 255); background-color: rgb(255, 255, 0);};")
 
-        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
                                                    font-weight: bold; color: rgb(0, 0, 0);}')
 
         # widgets.left_test_result_bar.setValue(100)
@@ -218,8 +229,8 @@ class MainWindow(QMainWindow):
 
         widgets.right_test_result_bar.setValue(100)
 
-        widgets.right_test_result_bar.setFormat('PASS')
-        widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
+        widgets.right_test_result_bar.setFormat('READY')
+        widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
                                                     font-weight: bold; color: rgb(0, 0, 0);}')
 
         # BUTTONS CLICK
@@ -381,8 +392,230 @@ class MainWindow(QMainWindow):
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
 
+
+
+
+left_box_com = None
+right_box_com = None
+left_bttc_com = None
+right_bttc_com = None
+signal_switch_com = None
+
+
+
+class thread_com_moniter(QThread):
+    def __init__(self):
+        super().__init__()
+        self.working = True
+
+        global setting_data
+
+        plam_det.log_display(widgets, 'COM LIST CHECKING...')
+        comlist = serial.tools.list_ports.comports()
+        comlist_len = len(comlist)
+        # print(setting_data['connect']['left_box_com'])
+
+        for i in range(0, comlist_len):
+            print(comlist[i])
+            plam_det.log_display(widgets, str(comlist[i]))
+
+            if comlist[i].device == setting_data['connect']['left_box_com']:
+                global left_box_com
+                left_box_com = serial.Serial(setting_data['connect']['left_box_com'], 115200, timeout=1)
+                plam_det.log_display(widgets, 'LEFT BOX COM OPENED!')
+                global_status['left_box_connected'] = True
+                plam_det.left_box_check(global_status, widgets)
+
+            if comlist[i].device == setting_data['connect']['right_box_com']:
+                global right_box_com
+                right_box_com = serial.Serial(setting_data['connect']['right_box_com'], 115200, timeout=1)
+                plam_det.log_display(widgets, 'RIGHT BOX COM OPENED!')
+                global_status['right_box_connected'] = True
+                plam_det.right_box_check(global_status, widgets)
+
+            if comlist[i].device == setting_data['connect']['left_bttc_com']:
+                global left_bttc_com
+                left_bttc_com = serial.Serial(setting_data['connect']['left_bttc_com'], 115200, timeout=1)
+                plam_det.log_display(widgets, 'LEFT BTTC COM OPENED!')
+                global_status['left_bttc_connected'] = True
+                plam_det.left_bttc_check(global_status, widgets)
+
+            if comlist[i].device == setting_data['connect']['right_bttc_com']:
+                global right_bttc_com
+                right_bttc_com = serial.Serial(setting_data['connect']['right_bttc_com'], 115200, timeout=1)
+                plam_det.log_display(widgets, 'RIGHT BTTC COM OPENED!')
+                global_status['right_bttc_connected'] = True
+                plam_det.right_bttc_check(global_status, widgets)
+
+            if comlist[i].device == setting_data['connect']['signal_ctrl_com']:
+                global signal_switch_com
+                signal_switch_com = serial.Serial(setting_data['connect']['signal_ctrl_com'], 115200, timeout=1)
+                plam_det.log_display(widgets, 'SIGNAL SWITCH COM OPENED!')
+                global_status['signal_switch_connected'] = True
+                plam_det.signal_ctrl_check(global_status, widgets)
+
+
+    def run(self):
+        while self.working:
+            
+            if global_status['left_box_connected'] == True:
+                if left_box_com.in_waiting:
+                    left_box_data = left_box_com.readline()
+                    if 'OPEN' in str(left_box_data):
+                        plam_det.log_display(widgets, 'LEFT BOX OPENED!')
+                        global_status['channel_left_ready'] = True
+                    # print(left_box_data)
+            
+            if global_status['right_box_connected'] == True:
+                if right_box_com.in_waiting:
+                    right_box_data = right_box_com.readline()
+                    if 'OPEN' in str(right_box_data):
+                        plam_det.log_display(widgets, 'RIGHT BOX OPENED!')
+                        global_status['channel_right_ready'] = True
+                    # print(right_box_data)
+
+            if global_status['left_bttc_connected'] == True:
+                if left_bttc_com.in_waiting:
+                    left_bttc_data = left_bttc_com.readline()
+                    # print(left_bttc_data)
+
+            if global_status['right_bttc_connected'] == True:
+                if right_bttc_com.in_waiting:
+                    right_bttc_data = right_bttc_com.readline()
+                    # print(right_bttc_data)
+
+            if global_status['signal_ctrl_connected'] == True:
+                if signal_switch_com.in_waiting:
+                    signal_switch_data = signal_switch_com.readline()
+                    # print(signal_switch_data)
+
+
+            time.sleep(0.1)
+
+
+
+def mt8852b_test_run():
+
+    start_time = time.time()
+
+    device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
+
+    plam_det.log_display(widgets, 'MT8852B TEST RUN')
+    
+
+    if global_status['mt8852b_connected'] == True:
+
+        tr_dis.result_display_reset(widgets,global_status['finished_channel'])
+        
+        if global_status['finished_channel'] == 'left':
+            widgets.left_test_result_bar.setFormat('测试中...')
+            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+                                                   font-weight: bold; color: rgb(0, 0, 0);}')
+        elif global_status['finished_channel'] == 'right':
+            widgets.right_test_result_bar.setFormat('测试中...')
+            widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+                                                    font-weight: bold; color: rgb(0, 0, 0);}')
+
+        
+        mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b and run script
+
+        plam_det.log_display(widgets,"MT8852B TEST RESULT READ")
+
+        leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
+        leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
+        less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
+
+        end_time = time.time()
+        current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+
+        tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
+        tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
+        tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
+        tr_dis.result_time_display(global_status,widgets,current_time, str(round(end_time - start_time, 1)) + 's')
+
+        if global_status['finished_channel'] == 'left':
+        
+            if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
+                test_result = 'fail'
+                widgets.left_test_result_bar.setFormat('FAIL')
+                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                    font-weight: bold; color: rgb(0, 0, 0);}')
+                
+            else:
+                test_result= 'pass'
+                widgets.left_test_result_bar.setFormat('PASS')
+                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
+                                                        font-weight: bold; color: rgb(0, 0, 0);}')
+            test_statistics.test_statisics_save(widgets,'left',test_result)
+
+        elif global_status['finished_channel'] == 'right':
+
+            if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
+                test_result = 'fail'
+                widgets.right_test_result_bar.setFormat('FAIL')
+                widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                    font-weight: bold; color: rgb(0, 0, 0);}')
+            else:
+                test_result= 'pass'
+                widgets.right_test_result_bar.setFormat('PASS')
+                widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
+                                                        font-weight: bold; color: rgb(0, 0, 0);}')
+                
+            test_statistics.test_statisics_save(widgets,'right',test_result)
+            
+
+
+
+    else:
+        plam_det.log_display(widgets, 'MT8852B CONNECT FAIL')
+
+class thread_test_process_management(QThread):
+    def __init__(self):
+        super().__init__()
+        self.working = True
+
+    
+
+    def run(self):
+        while self.working:
+            global_status['channel_right_enable'] = True     ## for test
+
+
+            if global_status['channel_left_ready']:
+                if global_status['channel_left_enable']:
+                    plam_det.log_display(widgets, 'LEFT CHANNEL READY')
+                    global_status['finished_channel'] = 'left'
+                    mt8852b_test_run()                  
+                else:
+                    plam_det.log_display(widgets, 'LEFT CHANNEL DISABLED')
+                global_status['finished_channel'] = 'NONE'
+                global_status['channel_left_ready'] = False
+
+            elif global_status['channel_right_ready']:
+                if global_status['channel_right_enable']:
+                    plam_det.log_display(widgets, 'RIGHT CHANNEL READY')
+                    global_status['finished_channel'] = 'right'
+                    mt8852b_test_run()
+                else:
+                    plam_det.log_display(widgets, 'RIGHT CHANNEL DISABLED')
+                global_status['finished_channel'] = 'NONE'
+                global_status['channel_right_ready'] = False
+
+            time.sleep(0.1)
+
+
+
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
-    sys.exit(app.exec_())
+
+    th_com_moniter = thread_com_moniter()
+    th_test_pm = thread_test_process_management()
+
+    th_com_moniter.start()
+    th_test_pm.start()
+
+    sys.exit(app.exec_())    

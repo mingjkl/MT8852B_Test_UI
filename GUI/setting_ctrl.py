@@ -44,7 +44,7 @@ def setting_load(widgets, global_status):
             widgets.less_op_le.setText(setting_data['less_config']['op'])
             widgets.less_fer_le.setText(setting_data['less_config']['fer'])
 
-            
+
 
         except:
             print('setting.json load error')
@@ -141,3 +141,6 @@ def setting_disable(widgets):
     widgets.less_op_le.setEnabled(False)
     widgets.less_fer_le.setEnabled(False)
     widgets.less_IFR_LE.setEnabled(False)
+
+
+

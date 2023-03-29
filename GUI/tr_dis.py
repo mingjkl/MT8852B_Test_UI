@@ -145,33 +145,58 @@ def leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h, status
 
     if global_status['finished_channel'] == 'left':
 
-        widgets.left_leicd_l_avg_fn.setText(str(leicd_l['avg_fn']))
-        widgets.left_leicd_m_avg_fn.setText(str(leicd_m['avg_fn']))
-        widgets.left_leicd_h_avg_fn.setText(str(leicd_h['avg_fn']))
+        # widgets.left_leicd_l_avg_fn.setText(str(leicd_l['avg_fn']))
+        # widgets.left_leicd_m_avg_fn.setText(str(leicd_m['avg_fn']))
+        # widgets.left_leicd_h_avg_fn.setText(str(leicd_h['avg_fn']))
 
-        widgets.left_leicd_l_max_p_fn.setText(str(leicd_l['max_p_fn']))
-        widgets.left_leicd_m_max_p_fn.setText(str(leicd_m['max_p_fn']))
-        widgets.left_leicd_h_max_p_fn.setText(str(leicd_h['max_p_fn']))
+        # widgets.left_leicd_l_max_p_fn.setText(str(leicd_l['max_p_fn']))
+        # widgets.left_leicd_m_max_p_fn.setText(str(leicd_m['max_p_fn']))
+        # widgets.left_leicd_h_max_p_fn.setText(str(leicd_h['max_p_fn']))
 
-        widgets.left_leicd_l_max_n_fn.setText(str(leicd_l['max_n_fn']))
-        widgets.left_leicd_m_max_n_fn.setText(str(leicd_m['max_n_fn']))
-        widgets.left_leicd_h_max_n_fn.setText(str(leicd_h['max_n_fn']))
+        # widgets.left_leicd_l_max_n_fn.setText(str(leicd_l['max_n_fn']))
+        # widgets.left_leicd_m_max_n_fn.setText(str(leicd_m['max_n_fn']))
+        # widgets.left_leicd_h_max_n_fn.setText(str(leicd_h['max_n_fn']))
 
-        widgets.left_leicd_l_max_dirft_rate.setText(str(leicd_l['max_dirft_rate']))
-        widgets.left_leicd_m_max_dirft_rate.setText(str(leicd_m['max_dirft_rate']))
-        widgets.left_leicd_h_max_dirft_rate.setText(str(leicd_h['max_dirft_rate']))
+        # widgets.left_leicd_l_max_dirft_rate.setText(str(leicd_l['max_dirft_rate']))
+        # widgets.left_leicd_m_max_dirft_rate.setText(str(leicd_m['max_dirft_rate']))
+        # widgets.left_leicd_h_max_dirft_rate.setText(str(leicd_h['max_dirft_rate']))
 
-        widgets.left_leicd_l_max_dirft.setText(str(leicd_l['max_drift']))
-        widgets.left_leicd_m_max_dirft.setText(str(leicd_m['max_drift']))
-        widgets.left_leicd_h_max_dirft.setText(str(leicd_h['max_drift']))
+        # widgets.left_leicd_l_max_dirft.setText(str(leicd_l['max_drift']))
+        # widgets.left_leicd_m_max_dirft.setText(str(leicd_m['max_drift']))
+        # widgets.left_leicd_h_max_dirft.setText(str(leicd_h['max_drift']))
 
-        widgets.left_leicd_l_avg_dirft.setText(str(leicd_l['avg_drift']))
-        widgets.left_leicd_m_avg_dirft.setText(str(leicd_m['avg_drift']))
-        widgets.left_leicd_h_avg_dirft.setText(str(leicd_h['avg_drift']))
+        # widgets.left_leicd_l_avg_dirft.setText(str(leicd_l['avg_drift']))
+        # widgets.left_leicd_m_avg_dirft.setText(str(leicd_m['avg_drift']))
+        # widgets.left_leicd_h_avg_dirft.setText(str(leicd_h['avg_drift']))
 
         widgets.left_leicd_l_state.setText(str(leicd_l['state']))
         widgets.left_leicd_m_state.setText(str(leicd_m['state']))
         widgets.left_leicd_h_state.setText(str(leicd_h['state']))
+
+        widgets.left_leicd_l_avg_fn.setText(str(int(float(leicd_l['avg_fn'])) / 1000))
+        widgets.left_leicd_m_avg_fn.setText(str(int(float(leicd_m['avg_fn'])) / 1000))
+        widgets.left_leicd_h_avg_fn.setText(str(int(float(leicd_h['avg_fn'])) / 1000))
+
+        widgets.left_leicd_l_max_p_fn.setText(str(int(float(leicd_l['max_p_fn'])) / 1000))
+        widgets.left_leicd_m_max_p_fn.setText(str(int(float(leicd_m['max_p_fn'])) / 1000))
+        widgets.left_leicd_h_max_p_fn.setText(str(int(float(leicd_h['max_p_fn'])) / 1000))
+
+        widgets.left_leicd_l_max_n_fn.setText(str(int(float(leicd_l['max_n_fn'])) / 1000))
+        widgets.left_leicd_m_max_n_fn.setText(str(int(float(leicd_m['max_n_fn'])) / 1000))
+        widgets.left_leicd_h_max_n_fn.setText(str(int(float(leicd_h['max_n_fn'])) / 1000))
+
+        widgets.left_leicd_l_max_dirft_rate.setText(str(int(float(leicd_l['max_dirft_rate'])) / 1000))
+        widgets.left_leicd_m_max_dirft_rate.setText(str(int(float(leicd_m['max_dirft_rate'])) / 1000))
+        widgets.left_leicd_h_max_dirft_rate.setText(str(int(float(leicd_h['max_dirft_rate'])) / 1000))
+
+        widgets.left_leicd_l_max_dirft.setText(str(int(float(leicd_l['max_drift'])) / 1000))
+        widgets.left_leicd_m_max_dirft.setText(str(int(float(leicd_m['max_drift'])) / 1000))
+        widgets.left_leicd_h_max_dirft.setText(str(int(float(leicd_h['max_drift'])) / 1000))
+
+        widgets.left_leicd_l_avg_dirft.setText(str(int(float(leicd_l['avg_drift'])) / 1000))
+        widgets.left_leicd_m_avg_dirft.setText(str(int(float(leicd_m['avg_drift'])) / 1000))
+        widgets.left_leicd_h_avg_dirft.setText(str(int(float(leicd_h['avg_drift'])) / 1000))
+
 
         if leicd_l['state'] == 'PASS':
             widgets.left_leicd_l_state.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
@@ -199,33 +224,57 @@ def leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h, status
 
     elif global_status['finished_channel'] == 'right':
             
-            widgets.right_leicd_l_avg_fn.setText(str(leicd_l['avg_fn']))
-            widgets.right_leicd_m_avg_fn.setText(str(leicd_m['avg_fn']))
-            widgets.right_leicd_h_avg_fn.setText(str(leicd_h['avg_fn']))
+            # widgets.right_leicd_l_avg_fn.setText(str(leicd_l['avg_fn']))
+            # widgets.right_leicd_m_avg_fn.setText(str(leicd_m['avg_fn']))
+            # widgets.right_leicd_h_avg_fn.setText(str(leicd_h['avg_fn']))
     
-            widgets.right_leicd_l_max_p_fn.setText(str(leicd_l['max_p_fn']))
-            widgets.right_leicd_m_max_p_fn.setText(str(leicd_m['max_p_fn']))
-            widgets.right_leicd_h_max_p_fn.setText(str(leicd_h['max_p_fn']))
+            # widgets.right_leicd_l_max_p_fn.setText(str(leicd_l['max_p_fn']))
+            # widgets.right_leicd_m_max_p_fn.setText(str(leicd_m['max_p_fn']))
+            # widgets.right_leicd_h_max_p_fn.setText(str(leicd_h['max_p_fn']))
     
-            widgets.right_leicd_l_max_n_fn.setText(str(leicd_l['max_n_fn']))
-            widgets.right_leicd_m_max_n_fn.setText(str(leicd_m['max_n_fn']))
-            widgets.right_leicd_h_max_n_fn.setText(str(leicd_h['max_n_fn']))
+            # widgets.right_leicd_l_max_n_fn.setText(str(leicd_l['max_n_fn']))
+            # widgets.right_leicd_m_max_n_fn.setText(str(leicd_m['max_n_fn']))
+            # widgets.right_leicd_h_max_n_fn.setText(str(leicd_h['max_n_fn']))
     
-            widgets.right_leicd_l_max_dirft_rate.setText(str(leicd_l['max_dirft_rate']))
-            widgets.right_leicd_m_max_dirft_rate.setText(str(leicd_m['max_dirft_rate']))
-            widgets.right_leicd_h_max_dirft_rate.setText(str(leicd_h['max_dirft_rate']))
+            # widgets.right_leicd_l_max_dirft_rate.setText(str(leicd_l['max_dirft_rate']))
+            # widgets.right_leicd_m_max_dirft_rate.setText(str(leicd_m['max_dirft_rate']))
+            # widgets.right_leicd_h_max_dirft_rate.setText(str(leicd_h['max_dirft_rate']))
     
-            widgets.right_leicd_l_max_dirft.setText(str(leicd_l['max_drift']))
-            widgets.right_leicd_m_max_dirft.setText(str(leicd_m['max_drift']))
-            widgets.right_leicd_h_max_dirft.setText(str(leicd_h['max_drift']))
+            # widgets.right_leicd_l_max_dirft.setText(str(leicd_l['max_drift']))
+            # widgets.right_leicd_m_max_dirft.setText(str(leicd_m['max_drift']))
+            # widgets.right_leicd_h_max_dirft.setText(str(leicd_h['max_drift']))
     
-            widgets.right_leicd_l_avg_dirft.setText(str(leicd_l['avg_drift']))
-            widgets.right_leicd_m_avg_dirft.setText(str(leicd_m['avg_drift']))
-            widgets.right_leicd_h_avg_dirft.setText(str(leicd_h['avg_drift']))
+            # widgets.right_leicd_l_avg_dirft.setText(str(leicd_l['avg_drift']))
+            # widgets.right_leicd_m_avg_dirft.setText(str(leicd_m['avg_drift']))
+            # widgets.right_leicd_h_avg_dirft.setText(str(leicd_h['avg_drift']))
     
             widgets.right_leicd_l_state.setText(str(leicd_l['state']))
             widgets.right_leicd_m_state.setText(str(leicd_m['state']))
             widgets.right_leicd_h_state.setText(str(leicd_h['state']))
+
+            widgets.right_leicd_l_avg_fn.setText(str(int(float(leicd_l['avg_fn'])) / 1000))
+            widgets.right_leicd_m_avg_fn.setText(str(int(float(leicd_m['avg_fn'])) / 1000))
+            widgets.right_leicd_h_avg_fn.setText(str(int(float(leicd_h['avg_fn'])) / 1000))
+
+            widgets.right_leicd_l_max_p_fn.setText(str(int(float(leicd_l['max_p_fn'])) / 1000))
+            widgets.right_leicd_m_max_p_fn.setText(str(int(float(leicd_m['max_p_fn'])) / 1000))
+            widgets.right_leicd_h_max_p_fn.setText(str(int(float(leicd_h['max_p_fn'])) / 1000))
+
+            widgets.right_leicd_l_max_n_fn.setText(str(int(float(leicd_l['max_n_fn'])) / 1000))
+            widgets.right_leicd_m_max_n_fn.setText(str(int(float(leicd_m['max_n_fn'])) / 1000))
+            widgets.right_leicd_h_max_n_fn.setText(str(int(float(leicd_h['max_n_fn'])) / 1000))
+
+            widgets.right_leicd_l_max_dirft_rate.setText(str(int(float(leicd_l['max_dirft_rate'])) / 1000))
+            widgets.right_leicd_m_max_dirft_rate.setText(str(int(float(leicd_m['max_dirft_rate'])) / 1000))
+            widgets.right_leicd_h_max_dirft_rate.setText(str(int(float(leicd_h['max_dirft_rate'])) / 1000))
+
+            widgets.right_leicd_l_max_dirft.setText(str(int(float(leicd_l['max_drift'])) / 1000))
+            widgets.right_leicd_m_max_dirft.setText(str(int(float(leicd_m['max_drift'])) / 1000))
+            widgets.right_leicd_h_max_dirft.setText(str(int(float(leicd_h['max_drift'])) / 1000))
+
+            widgets.right_leicd_l_avg_dirft.setText(str(int(float(leicd_l['avg_drift'])) / 1000))
+            widgets.right_leicd_m_avg_dirft.setText(str(int(float(leicd_m['avg_drift'])) / 1000))
+            widgets.right_leicd_h_avg_dirft.setText(str(int(float(leicd_h['avg_drift'])) / 1000))
     
             if leicd_l['state'] == 'PASS':
                 widgets.right_leicd_l_state.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
@@ -457,6 +506,10 @@ def result_display_reset(widgets,channel):
 
         widgets.left_leop_result.setText('NULL')
         widgets.left_leop_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+        widgets.label_62.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+        widgets.left_less_label.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+        widgets.label_2.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
         
 
     elif channel == 'right':
@@ -549,6 +602,10 @@ def result_display_reset(widgets,channel):
 
             widgets.right_less_result.setText('NULL')
             widgets.right_less_result.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+
+            widgets.label_149.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+            widgets.label_182.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
+            widgets.label_220.setStyleSheet("color: white; background-color: rgb(40, 44, 52);")
 
             
 
