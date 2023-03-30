@@ -243,10 +243,13 @@ class MainWindow(QMainWindow):
         widgets.btn_test_data.clicked.connect(self.buttonClick)
         widgets.btn_config.clicked.connect(self.buttonClick)
         widgets.btn_save.clicked.connect(self.buttonClick)
+        widgets.btn_exit.clicked.connect(self.buttonClick)
+
         
         widgets.cfg_save_btn.clicked.connect(self.buttonClick)
         widgets.start_test_btn.clicked.connect(self.buttonClick)
         widgets.test_config_btn.clicked.connect(self.buttonClick)
+        
 
         widgets.setting_status.clicked.connect(self.buttonClick)
         widgets.mt8852b_status.clicked.connect(self.buttonClick)
@@ -256,6 +259,7 @@ class MainWindow(QMainWindow):
         widgets.right_bttc_status.clicked.connect(self.buttonClick)
         widgets.signal_switch_status.clicked.connect(self.buttonClick)
         widgets.mes_serice_status.clicked.connect(self.buttonClick)
+        
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
@@ -287,7 +291,7 @@ class MainWindow(QMainWindow):
 
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
-        widgets.stackedWidget.setCurrentWidget(widgets.home)
+        widgets.stackedWidget.setCurrentWidget(widgets.test_data_page)
         widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
 
 
@@ -317,6 +321,11 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.test_config_page) # SET PAGE
             UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
+
+        if btnName == "btn_exit":
+            th_com_moniter.quit()
+            th_test_pm.quit()
+            sys.exit()
 
         if btnName == "btn_save":
             print("Save BTN clicked!")
@@ -617,5 +626,7 @@ if __name__ == "__main__":
 
     th_com_moniter.start()
     th_test_pm.start()
+
+    
 
     sys.exit(app.exec_())    
