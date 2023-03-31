@@ -12,6 +12,7 @@ def mt8852b_check(global_status, widgets):
         log_display(widgets,'mt8852b connected')
         widgets.mt8852b_status.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")
         widgets.mt8852b_status.setText('MT8852B已连接')
+        widgets.MT8852_status_label.setText('已连接')
         return True
     else:
         global_status['mt8852b_connected'] = False
@@ -19,6 +20,7 @@ def mt8852b_check(global_status, widgets):
         widgets.mt8852b_status.setText('MT8852B连接失败')
         print('mt8852b connect failed')
         log_display(widgets,'mt8852b connect failed')
+        widgets.MT8852_status_label.setText('未连接')
         return False
     
 

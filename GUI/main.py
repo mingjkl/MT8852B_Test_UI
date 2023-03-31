@@ -57,7 +57,9 @@ global_status = {'setting_loaded': False,
                  'channel_left_enable': False,
                  'channel_left_ready': False,
                  'channel_right_ready': False,
-                 'finished_channel':'NULL'}
+                 'finished_channel':'NULL',
+                 'left_sn': 'NULL',
+                 'right_sn': 'NULL',}
 
 
 setting_data = None
@@ -171,6 +173,8 @@ class MainWindow(QMainWindow):
         leop_l = {'max': 1, 'avg': 2, 'min': 3, 'peak_to_avg': 4, 'state': 'PASS'}
         leop_m = {'max': 5, 'avg': 6, 'min': 7, 'peak_to_avg': 8, 'state': 'FAIL'}
         leop_h = {'max': 9, 'avg': 10, 'min': 11, 'peak_to_avg': 12, 'state': 'PASS'}
+
+        
 
         # leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
         # leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
@@ -411,6 +415,80 @@ right_bttc_com = None
 signal_switch_com = None
 
 
+def bttc_ctrl_signal_connect(channel):
+        if channel == 'left':
+            if global_status['left_bttc_connected'] == True:
+                time.sleep(1)
+                global left_bttc_com
+                data = 0xAA
+                data_bytes = data.to_bytes(1, byteorder='little')
+                left_bttc_com.write(data_bytes)
+                str = 'CONN'
+                str = str + '\r\n'
+                RS232_str = str.encode('utf-8')
+                left_bttc_com.write(RS232_str)
+                plam_det.log_display(widgets, 'LEFT BTTC SIGNAL CONNECT!')
+                print('LEFT BTTC SIGNAL CONNECT!')
+            else:
+                plam_det.log_display('LEFT BTTC NOT CONNECTED!')
+                print('LEFT BTTC NOT CONNECTED!')
+        
+        if channel == 'right':
+            if global_status['right_bttc_connected'] == True:
+                time.sleep(1)
+                global right_bttc_com
+                data = 0xAA
+                data_bytes = data.to_bytes(1, byteorder='little')
+                right_bttc_com.write(data_bytes)
+                str = 'CONN'
+                str = str + '\r\n'
+                RS232_str = str.encode('utf-8')
+                right_bttc_com.write(RS232_str)
+                plam_det.log_display(widgets, 'RIGHT BTTC SIGNAL CONNECT!')
+                print('RIGHT BTTC SIGNAL CONNECT!')
+            else:
+                plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
+                print('RIGHT BTTC NOT CONNECTED!')
+
+                
+
+                
+    
+def bttc_ctrl_signal_disconnect(channel):
+    if channel == 'left':
+            if global_status['left_bttc_connected'] == True:
+                global left_bttc_com
+                print('==============================')
+                data = 0xAA
+                data_bytes = data.to_bytes(1, byteorder='little')
+                left_bttc_com.write(data_bytes)
+                str = 'DCONN'
+                str = str + '\r\n'
+                RS232_str = str.encode('utf-8')
+                left_bttc_com.write(RS232_str)
+                plam_det.log_display(widgets, 'LEFT BTTC SIGNAL DISCONNECT!')
+                print('LEFT BTTC SIGNAL DISCONNECT!')
+            else:
+                plam_det.log_display('LEFT BTTC NOT CONNECTED!')
+                print('LEFT BTTC NOT CONNECTED!')
+    
+    if channel == 'right':
+            if global_status['right_bttc_connected'] == True:
+                global right_bttc_com
+                print('==============================')
+                data = 0xAA
+                data_bytes = data.to_bytes(1, byteorder='little')
+                right_bttc_com.write(data_bytes)
+                str = 'DCONN'
+                str = str + '\r\n'
+                RS232_str = str.encode('utf-8')
+                right_bttc_com.write(RS232_str)
+                plam_det.log_display(widgets, 'RIGHT BTTC SIGNAL DISCONNECT!')
+                print('RIGHT BTTC SIGNAL DISCONNECT!')
+            else:
+                plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
+                print('RIGHT BTTC NOT CONNECTED!')
+
 
 class thread_com_moniter(QThread):
     def __init__(self):
@@ -464,6 +542,8 @@ class thread_com_moniter(QThread):
                 plam_det.signal_ctrl_check(global_status, widgets)
 
 
+    
+
     def run(self):
         while self.working:
             
@@ -472,7 +552,23 @@ class thread_com_moniter(QThread):
                     left_box_data = left_box_com.readline()
                     if 'OPEN' in str(left_box_data):
                         plam_det.log_display(widgets, 'LEFT BOX OPENED!')
-                        global_status['channel_left_ready'] = True
+                        if widgets.left_sn_in.text() != '':
+                            plam_det.log_display(widgets, 'Left SN:' + widgets.left_sn_in.text())
+                            print('LEFT SN:' + widgets.left_sn_in.text())
+                            if global_status['channel_right_enable'] == True:
+                                widgets.right_sn_in.clear()
+                                widgets.right_sn_in.setFocus()
+                            else:
+                                widgets.left_sn_in.clear()
+                                widgets.left_sn_in.setFocus()
+                            global_status['left_sn'] = widgets.left_sn_in.text()
+                            global_status['channel_left_ready'] = True
+                        else:
+                            plam_det.log_display(widgets, 'Left SN:NULL')
+                            print('LEFT SN:NULL')
+                            global_status['left_sn'] = 'NULL'
+                            
+                        
                     # print(left_box_data)
             
             if global_status['right_box_connected'] == True:
@@ -480,8 +576,21 @@ class thread_com_moniter(QThread):
                     right_box_data = right_box_com.readline()
                     if 'OPEN' in str(right_box_data):
                         plam_det.log_display(widgets, 'RIGHT BOX OPENED!')
-                        global_status['channel_right_ready'] = True
-                    # print(right_box_data)
+                        if widgets.right_sn_in.text() != '':
+                            plam_det.log_display(widgets, 'Right SN:' + widgets.right_sn_in.text())
+                            print('RIGHT SN:' + widgets.right_sn_in.text())
+                            if global_status['channel_left_enable'] == True:
+                                widgets.left_sn_in.clear()
+                                widgets.left_sn_in.setFocus()
+                            else:
+                                widgets.right_sn_in.clear()
+                                widgets.right_sn_in.setFocus()
+                            global_status['channel_right_ready'] = True
+                            global_status['right_sn'] = widgets.right_sn_in.text()
+                        else:
+                            plam_det.log_display(widgets, 'Right SN:NULL')
+                            print('RIGHT SN:NULL')
+                            global_status['right_sn'] = 'NULL'
 
             if global_status['left_bttc_connected'] == True:
                 if left_bttc_com.in_waiting:
@@ -517,11 +626,11 @@ def mt8852b_test_run():
         tr_dis.result_display_reset(widgets,global_status['finished_channel'])
         
         if global_status['finished_channel'] == 'left':
-            widgets.left_test_result_bar.setFormat('测试中...')
+            widgets.left_test_result_bar.setFormat(str(global_status['left_sn'] +'测试中...'))
             widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
                                                    font-weight: bold; color: rgb(0, 0, 0);}')
         elif global_status['finished_channel'] == 'right':
-            widgets.right_test_result_bar.setFormat('测试中...')
+            widgets.right_test_result_bar.setFormat(global_status['right_sn']+'测试中...')
             widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
                                                     font-weight: bold; color: rgb(0, 0, 0);}')
 
@@ -546,13 +655,13 @@ def mt8852b_test_run():
         
             if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
                 test_result = 'fail'
-                widgets.left_test_result_bar.setFormat('FAIL')
+                widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'FAIL')
                 widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
                                                     font-weight: bold; color: rgb(0, 0, 0);}')
                 
             else:
                 test_result= 'pass'
-                widgets.left_test_result_bar.setFormat('PASS')
+                widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'PASS')
                 widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
                                                         font-weight: bold; color: rgb(0, 0, 0);}')
             test_statistics.test_statisics_save(widgets,'left',test_result)
@@ -561,12 +670,12 @@ def mt8852b_test_run():
 
             if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
                 test_result = 'fail'
-                widgets.right_test_result_bar.setFormat('FAIL')
+                widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'FAIL')
                 widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
                                                     font-weight: bold; color: rgb(0, 0, 0);}')
             else:
                 test_result= 'pass'
-                widgets.right_test_result_bar.setFormat('PASS')
+                widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'PASS')
                 widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
                                                         font-weight: bold; color: rgb(0, 0, 0);}')
                 
@@ -587,14 +696,18 @@ class thread_test_process_management(QThread):
 
     def run(self):
         while self.working:
-            global_status['channel_right_enable'] = True     ## for test
-
+            ## ==================== test process ====================
+            global_status['channel_left_enable'] = True     ## for test
+            ## ==================== test process ====================
 
             if global_status['channel_left_ready']:
                 if global_status['channel_left_enable']:
+                    bttc_ctrl_signal_connect('left')
                     plam_det.log_display(widgets, 'LEFT CHANNEL READY')
                     global_status['finished_channel'] = 'left'
-                    mt8852b_test_run()                  
+                    mt8852b_test_run()
+                    time.sleep(2)   ##  for test
+                    bttc_ctrl_signal_disconnect('left')                  
                 else:
                     plam_det.log_display(widgets, 'LEFT CHANNEL DISABLED')
                 global_status['finished_channel'] = 'NONE'
@@ -602,9 +715,12 @@ class thread_test_process_management(QThread):
 
             elif global_status['channel_right_ready']:
                 if global_status['channel_right_enable']:
+                    bttc_ctrl_signal_connect('right')
                     plam_det.log_display(widgets, 'RIGHT CHANNEL READY')
                     global_status['finished_channel'] = 'right'
                     mt8852b_test_run()
+                    time.sleep(2)   ##  for test
+                    bttc_ctrl_signal_disconnect('right')
                 else:
                     plam_det.log_display(widgets, 'RIGHT CHANNEL DISABLED')
                 global_status['finished_channel'] = 'NONE'
@@ -620,9 +736,10 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
-
+    
     th_com_moniter = thread_com_moniter()
     th_test_pm = thread_test_process_management()
+
 
     th_com_moniter.start()
     th_test_pm.start()

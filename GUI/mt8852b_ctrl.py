@@ -13,7 +13,7 @@ def print_log(widgets,msg):
 
 def connect_check(widgets, device, global_status):
     
-    try:
+    # try:
         ID = device.query('*IDN?')
         if "MT8852B" in ID:
             print_log(widgets, "MT8852B ID: " + ID)
@@ -25,10 +25,10 @@ def connect_check(widgets, device, global_status):
             print_log(widgets, "MT8852B Lost")
             return False
         
-    except:
-        global_status['mt8852b_connected'] = False
-        print_log(widgets, "MT8852B Lost")
-        return False
+    # except:
+    #     global_status['mt8852b_connected'] = False
+    #     print_log(widgets, "MT8852B Lost")
+    #     return False
     
 
 def MT8852B_Write(widgets,device, order):
@@ -51,10 +51,11 @@ def connect(widgets, global_status):
     try:
         rm = pyvisa.ResourceManager()   # 打开资源管理器
         rm_list = rm.list_resources()   # 获取设备列表
+        print(rm_list)
 
         for i in rm_list:
             print_log(widgets,'device: '+i)
-            if '::27::INSTR' in i:
+            if 'GPIB1::27::INSTR' in i:             ## for test
                 device = rm.open_resource(i)
                 connect_check(widgets, device, global_status)
                 print_log(widgets,'GPIB init success')

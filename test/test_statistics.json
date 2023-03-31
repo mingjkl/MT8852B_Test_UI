@@ -1,10 +1,10 @@
 {
     "test_data": {
         "left_box": {
-            "total_count": "6",
-            "pass_count": "3",
-            "fail_count": "3",
-            "fail_rate": "0.5"
+            "total_count": "17",
+            "pass_count": "8",
+            "fail_count": "9",
+            "fail_rate": "0.53"
         },
         "right_box": {
             "total_count": "54",

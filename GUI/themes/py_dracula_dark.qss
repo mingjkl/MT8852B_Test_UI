@@ -251,7 +251,7 @@ QHeaderView::section:vertical
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 LineEdit */
 QLineEdit {
-	background-color: rgb(33, 37, 43);
+	background-color: rgb(108, 117, 131);
 	border-radius: 5px;
 	border: 2px solid rgb(33, 37, 43);
 	padding-left: 10px;
