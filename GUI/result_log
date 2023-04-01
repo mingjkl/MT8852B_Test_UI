@@ -1,0 +1,6 @@
+import os
+import datetime
+
+def result_log():
+    
+    return {}

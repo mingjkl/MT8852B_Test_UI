@@ -1,0 +1,18 @@
+'''
+Author: emmovo
+Date: 2023-04-01 23:25:56
+LastEditors: emmovo
+LastEditTime: 2023-04-01 23:27:35
+FilePath: \BluetoothKB_Freq_test\test\import_if
+Description: 
+
+Copyright (c) 2023 by mingjkl@live.com/emmovo.com, All Rights Reserved. 
+'''
+
+test = False
+
+if test == True:
+    import pyvisa
+
+
+print('test print')

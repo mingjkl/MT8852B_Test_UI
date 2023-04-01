@@ -14,6 +14,8 @@
 #
 # ///////////////////////////////////////////////////////////////
 
+mt8852b_online = False
+
 import sys
 import os
 import platform
@@ -27,8 +29,10 @@ from PySide6.QtCore import QThread
 import tr_dis
 import plam_det
 import setting_ctrl
-import mt8852b_ctrl
+if mt8852b_online == True:
+    import mt8852b_ctrl
 import test_statistics
+# import result_log
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -296,7 +300,8 @@ class MainWindow(QMainWindow):
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
         widgets.stackedWidget.setCurrentWidget(widgets.test_data_page)
-        widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
+        # widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
+        # widgets.test_data_page.setStyleSheet(UIFunctions.selectMenu(widgets.test_data_page.styleSheet()))
 
 
 
@@ -555,18 +560,24 @@ class thread_com_moniter(QThread):
                         if widgets.left_sn_in.text() != '':
                             plam_det.log_display(widgets, 'Left SN:' + widgets.left_sn_in.text())
                             print('LEFT SN:' + widgets.left_sn_in.text())
+
+                            global_status['left_sn'] = widgets.left_sn_in.text()
+                            global_status['channel_left_ready'] = True
+
                             if global_status['channel_right_enable'] == True:
                                 widgets.right_sn_in.clear()
                                 widgets.right_sn_in.setFocus()
                             else:
                                 widgets.left_sn_in.clear()
                                 widgets.left_sn_in.setFocus()
-                            global_status['left_sn'] = widgets.left_sn_in.text()
-                            global_status['channel_left_ready'] = True
+                            
                         else:
                             plam_det.log_display(widgets, 'Left SN:NULL')
                             print('LEFT SN:NULL')
                             global_status['left_sn'] = 'NULL'
+                            widgets.left_test_result_bar.setFormat('未输入SN码')
+                            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
+                                                   font-weight: bold; color: rgb(0, 0, 0);}')
                             
                         
                     # print(left_box_data)
@@ -579,18 +590,24 @@ class thread_com_moniter(QThread):
                         if widgets.right_sn_in.text() != '':
                             plam_det.log_display(widgets, 'Right SN:' + widgets.right_sn_in.text())
                             print('RIGHT SN:' + widgets.right_sn_in.text())
+
+                            global_status['channel_right_ready'] = True
+                            global_status['right_sn'] = widgets.right_sn_in.text()
+
                             if global_status['channel_left_enable'] == True:
                                 widgets.left_sn_in.clear()
                                 widgets.left_sn_in.setFocus()
                             else:
                                 widgets.right_sn_in.clear()
                                 widgets.right_sn_in.setFocus()
-                            global_status['channel_right_ready'] = True
-                            global_status['right_sn'] = widgets.right_sn_in.text()
+                            
                         else:
                             plam_det.log_display(widgets, 'Right SN:NULL')
                             print('RIGHT SN:NULL')
                             global_status['right_sn'] = 'NULL'
+                            widgets.left_test_result_bar.setFormat('未输入SN码')
+                            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
+                                                   font-weight: bold; color: rgb(0, 0, 0);}')
 
             if global_status['left_bttc_connected'] == True:
                 if left_bttc_com.in_waiting:
@@ -609,124 +626,131 @@ class thread_com_moniter(QThread):
 
 
             time.sleep(0.1)
-
-
-
-def mt8852b_test_run():
-
-    start_time = time.time()
-
-    device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
-
-    plam_det.log_display(widgets, 'MT8852B TEST RUN')
     
 
-    if global_status['mt8852b_connected'] == True:
 
-        tr_dis.result_display_reset(widgets,global_status['finished_channel'])
+if mt8852b_online == True:
+    def mt8852b_test_run():
+
+        start_time = time.time()
+
+
+        device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
+
+        plam_det.log_display(widgets, 'MT8852B TEST RUN')
         
-        if global_status['finished_channel'] == 'left':
-            widgets.left_test_result_bar.setFormat(str(global_status['left_sn'] +'测试中...'))
-            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
-                                                   font-weight: bold; color: rgb(0, 0, 0);}')
-        elif global_status['finished_channel'] == 'right':
-            widgets.right_test_result_bar.setFormat(global_status['right_sn']+'测试中...')
-            widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
-                                                    font-weight: bold; color: rgb(0, 0, 0);}')
 
-        
-        mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b and run script
+        if global_status['mt8852b_connected'] == True:
 
-        plam_det.log_display(widgets,"MT8852B TEST RESULT READ")
-
-        leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
-        leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
-        less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
-
-        end_time = time.time()
-        current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-
-        tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
-        tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
-        tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
-        tr_dis.result_time_display(global_status,widgets,current_time, str(round(end_time - start_time, 1)) + 's')
-
-        if global_status['finished_channel'] == 'left':
-        
-            if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
-                test_result = 'fail'
-                widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'FAIL')
-                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
-                                                    font-weight: bold; color: rgb(0, 0, 0);}')
-                
-            else:
-                test_result= 'pass'
-                widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'PASS')
-                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
-                                                        font-weight: bold; color: rgb(0, 0, 0);}')
-            test_statistics.test_statisics_save(widgets,'left',test_result)
-
-        elif global_status['finished_channel'] == 'right':
-
-            if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
-                test_result = 'fail'
-                widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'FAIL')
-                widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
-                                                    font-weight: bold; color: rgb(0, 0, 0);}')
-            else:
-                test_result= 'pass'
-                widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'PASS')
-                widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
-                                                        font-weight: bold; color: rgb(0, 0, 0);}')
-                
-            test_statistics.test_statisics_save(widgets,'right',test_result)
+            tr_dis.result_display_reset(widgets,global_status['finished_channel'])
             
+            if global_status['finished_channel'] == 'left':
+                print('LEFT SN:'+global_status['left_sn'])
+                left_test_result_bat_text = global_status['left_sn'] + '  测试中...'
+                print(left_test_result_bat_text)
+                widgets.left_test_result_bar.setFormat(left_test_result_bat_text)
+                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+                                                    font-weight: bold; color: rgb(0, 0, 0);}')
+            elif global_status['finished_channel'] == 'right':
+                widgets.right_test_result_bar.setFormat(global_status['right_sn']+'  测试中...')
+                widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+                                                        font-weight: bold; color: rgb(0, 0, 0);}')
 
+            
+            mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b and run script
 
+            plam_det.log_display(widgets,"MT8852B TEST RESULT READ")
 
-    else:
-        plam_det.log_display(widgets, 'MT8852B CONNECT FAIL')
+            leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
+            leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
+            less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
 
-class thread_test_process_management(QThread):
-    def __init__(self):
-        super().__init__()
-        self.working = True
+            end_time = time.time()
+            current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 
-    
+            # result_log.log_write()
 
-    def run(self):
-        while self.working:
-            ## ==================== test process ====================
-            global_status['channel_left_enable'] = True     ## for test
-            ## ==================== test process ====================
+            tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
+            tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
+            tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
+            tr_dis.result_time_display(global_status,widgets,current_time, str(round(end_time - start_time, 1)) + 's')
 
-            if global_status['channel_left_ready']:
-                if global_status['channel_left_enable']:
-                    bttc_ctrl_signal_connect('left')
-                    plam_det.log_display(widgets, 'LEFT CHANNEL READY')
-                    global_status['finished_channel'] = 'left'
-                    mt8852b_test_run()
-                    time.sleep(2)   ##  for test
-                    bttc_ctrl_signal_disconnect('left')                  
+            if global_status['finished_channel'] == 'left':
+            
+                if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
+                    test_result = 'fail'
+                    widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'  FAIL')
+                    widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                        font-weight: bold; color: rgb(0, 0, 0);}')
+                    
                 else:
-                    plam_det.log_display(widgets, 'LEFT CHANNEL DISABLED')
-                global_status['finished_channel'] = 'NONE'
-                global_status['channel_left_ready'] = False
+                    test_result= 'pass'
+                    widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'  PASS')
+                    widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
+                                                            font-weight: bold; color: rgb(0, 0, 0);}')
+                test_statistics.test_statisics_save(widgets,'left',test_result)
 
-            elif global_status['channel_right_ready']:
-                if global_status['channel_right_enable']:
-                    bttc_ctrl_signal_connect('right')
-                    plam_det.log_display(widgets, 'RIGHT CHANNEL READY')
-                    global_status['finished_channel'] = 'right'
-                    mt8852b_test_run()
-                    time.sleep(2)   ##  for test
-                    bttc_ctrl_signal_disconnect('right')
+            elif global_status['finished_channel'] == 'right':
+
+                if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
+                    test_result = 'fail'
+                    widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'  FAIL')
+                    widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                        font-weight: bold; color: rgb(0, 0, 0);}')
                 else:
-                    plam_det.log_display(widgets, 'RIGHT CHANNEL DISABLED')
-                global_status['finished_channel'] = 'NONE'
-                global_status['channel_right_ready'] = False
+                    test_result= 'pass'
+                    widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'  PASS')
+                    widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(34, 139, 34); \
+                                                            font-weight: bold; color: rgb(0, 0, 0);}')
+                    
+                test_statistics.test_statisics_save(widgets,'right',test_result)
+                
 
-            time.sleep(0.1)
+
+
+        else:
+            plam_det.log_display(widgets, 'MT8852B CONNECT FAIL')
+
+    class thread_test_process_management(QThread):
+        def __init__(self):
+            super().__init__()
+            self.working = True
+
+        
+
+        def run(self):
+            while self.working:
+                ## ==================== test process ====================
+                global_status['channel_left_enable'] = True     ## for test
+                ## ==================== test process ====================
+
+                if global_status['channel_left_ready']:
+                    if global_status['channel_left_enable']:
+                        bttc_ctrl_signal_connect('left')
+                        plam_det.log_display(widgets, 'LEFT CHANNEL READY')
+                        global_status['finished_channel'] = 'left'
+                        mt8852b_test_run()
+                        time.sleep(2)   ##  for test
+                        bttc_ctrl_signal_disconnect('left')                  
+                    else:
+                        plam_det.log_display(widgets, 'LEFT CHANNEL DISABLED')
+                    global_status['finished_channel'] = 'NONE'
+                    global_status['channel_left_ready'] = False
+
+                elif global_status['channel_right_ready']:
+                    if global_status['channel_right_enable']:
+                        bttc_ctrl_signal_connect('right')
+                        plam_det.log_display(widgets, 'RIGHT CHANNEL READY')
+                        global_status['finished_channel'] = 'right'
+                        mt8852b_test_run()
+                        time.sleep(2)   ##  for test
+                        bttc_ctrl_signal_disconnect('right')
+                    else:
+                        plam_det.log_display(widgets, 'RIGHT CHANNEL DISABLED')
+                    global_status['finished_channel'] = 'NONE'
+                    global_status['channel_right_ready'] = False
+
+                time.sleep(0.1)
 
 
 
@@ -737,12 +761,15 @@ if __name__ == "__main__":
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
     
+    
     th_com_moniter = thread_com_moniter()
-    th_test_pm = thread_test_process_management()
+    if mt8852b_online == True:
+        th_test_pm = thread_test_process_management()
 
 
     th_com_moniter.start()
-    th_test_pm.start()
+    if mt8852b_online == True:
+        th_test_pm.start()
 
     
 
