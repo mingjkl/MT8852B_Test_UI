@@ -79,6 +79,7 @@ right_bttc_com = None
 signal_switch_com = None
 
 
+
 ## Read and detect COM port
 def com_list_cherk(setting_info):   
     try:
@@ -245,6 +246,10 @@ class MainWindow(QMainWindow):
         widgets.right_bttc_status.clicked.connect(self.buttonClick)
         widgets.signal_switch_status.clicked.connect(self.buttonClick)
         widgets.mes_serice_status.clicked.connect(self.buttonClick)
+
+        widgets.btn_debug.clicked.connect(self.buttonClick)
+        widgets.Unlock_btn.clicked.connect(self.buttonClick)
+        widgets.password_le.setEchoMode(QLineEdit.Password) # set password input type
         
 
         # EXTRA LEFT BOX
@@ -385,6 +390,17 @@ class MainWindow(QMainWindow):
             if global_status['mes_service_connected'] == False:
                 plam_det.mes_serice_check(global_status, widgets)
 
+        if btnName == "btn_debug":
+            widgets.stackedWidget.setCurrentWidget(widgets.unlock)
+            UIFunctions.toggleLeftBox(self, True)   # hide left box
+
+        if btnName == "Unlock_btn":
+            
+            if widgets.password_le.text() == "123":
+                widgets.stackedWidget.setCurrentWidget(widgets.debug)
+                widgets.password_le.setText("")
+            else:
+                widgets.password_le.setText("")
         
 
         # PRINT BTN NAME
@@ -788,15 +804,16 @@ class test_thread(QThread):
 
     def run(self):
 
-        left_test_result_bat_text = '54646A54654' + '  测试中...'
-        widgets.left_test_result_bar.setValue(10)
-        widgets.left_test_result_bar.setFormat(left_test_result_bat_text)
-        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
-                                            font-weight: bold; color: rgb(0, 0, 0);}')
+        # left_test_result_bat_text = '54646A54654' + '  测试中...'
+        # widgets.left_test_result_bar.setValue(10)
+        # widgets.left_test_result_bar.setFormat(left_test_result_bat_text)
+        # widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+        #                                     font-weight: bold; color: rgb(0, 0, 0);}')
         
-        for i in range(1,10):
-            time.sleep(0.5)
-            widgets.left_test_result_bar.setValue(i * 10)
+        # for i in range(1,10):
+        #     time.sleep(0.5)
+        #     widgets.left_test_result_bar.setValue(i * 10)
+        print('test thread start')
         
 
 

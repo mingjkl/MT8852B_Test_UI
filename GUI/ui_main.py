@@ -691,7 +691,7 @@ class Ui_MainWindow(object):
         self.btn_config.setFont(font)
         self.btn_config.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_config.setLayoutDirection(Qt.LeftToRight)
-        self.btn_config.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-file.png);")
+        self.btn_config.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-equalizer.png);")
 
         self.verticalLayout_8.addWidget(self.btn_config)
 
@@ -703,7 +703,7 @@ class Ui_MainWindow(object):
         self.btn_save.setFont(font)
         self.btn_save.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_save.setLayoutDirection(Qt.LeftToRight)
-        self.btn_save.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-save.png)")
+        self.btn_save.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-folder-open.png)")
 
         self.verticalLayout_8.addWidget(self.btn_save)
 
@@ -825,17 +825,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setSpacing(0)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
-        self.btn_share = QPushButton(self.extraTopMenu)
-        self.btn_share.setObjectName(u"btn_share")
-        sizePolicy.setHeightForWidth(self.btn_share.sizePolicy().hasHeightForWidth())
-        self.btn_share.setSizePolicy(sizePolicy)
-        self.btn_share.setMinimumSize(QSize(0, 45))
-        self.btn_share.setFont(font)
-        self.btn_share.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_share.setLayoutDirection(Qt.LeftToRight)
-        self.btn_share.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-share-boxed.png);")
+        self.btn_debug = QPushButton(self.extraTopMenu)
+        self.btn_debug.setObjectName(u"btn_debug")
+        sizePolicy.setHeightForWidth(self.btn_debug.sizePolicy().hasHeightForWidth())
+        self.btn_debug.setSizePolicy(sizePolicy)
+        self.btn_debug.setMinimumSize(QSize(0, 45))
+        self.btn_debug.setFont(font)
+        self.btn_debug.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_debug.setLayoutDirection(Qt.LeftToRight)
+        self.btn_debug.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-code.png);")
 
-        self.verticalLayout_11.addWidget(self.btn_share)
+        self.verticalLayout_11.addWidget(self.btn_debug)
 
         self.btn_adjustments = QPushButton(self.extraTopMenu)
         self.btn_adjustments.setObjectName(u"btn_adjustments")
@@ -3180,6 +3180,100 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.addLayout(self.horizontalLayout_7)
 
         self.stackedWidget.addWidget(self.test_data_page)
+        self.debug = QWidget()
+        self.debug.setObjectName(u"debug")
+        self.horizontalLayoutWidget = QWidget(self.debug)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(20, 10, 1141, 841))
+        self.horizontalLayout_30 = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
+        self.horizontalLayout_30.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_30 = QVBoxLayout()
+        self.verticalLayout_30.setObjectName(u"verticalLayout_30")
+        self.debug_gpib_list_get_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_gpib_list_get_btn.setObjectName(u"debug_gpib_list_get_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_gpib_list_get_btn)
+
+        self.debug_mt8852b_get_id_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_mt8852b_get_id_btn.setObjectName(u"debug_mt8852b_get_id_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_mt8852b_get_id_btn)
+
+        self.debug_left_bttc_connect_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_left_bttc_connect_btn.setObjectName(u"debug_left_bttc_connect_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_left_bttc_connect_btn)
+
+        self.debug_left_bttc_disconnect_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_left_bttc_disconnect_btn.setObjectName(u"debug_left_bttc_disconnect_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_left_bttc_disconnect_btn)
+
+        self.debug_right_bttc_connect_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_right_bttc_connect_btn.setObjectName(u"debug_right_bttc_connect_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_right_bttc_connect_btn)
+
+        self.debug_right_bttc_disconnect_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_right_bttc_disconnect_btn.setObjectName(u"debug_right_bttc_disconnect_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_right_bttc_disconnect_btn)
+
+        self.debug_set_ant1_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_set_ant1_btn.setObjectName(u"debug_set_ant1_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_set_ant1_btn)
+
+        self.debug_set_ant2_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_set_ant2_btn.setObjectName(u"debug_set_ant2_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_set_ant2_btn)
+
+        self.debug_set_ant3_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_set_ant3_btn.setObjectName(u"debug_set_ant3_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_set_ant3_btn)
+
+        self.debug_set_ant4_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_set_ant4_btn.setObjectName(u"debug_set_ant4_btn")
+        self.debug_set_ant4_btn.setMinimumSize(QSize(300, 0))
+
+        self.verticalLayout_30.addWidget(self.debug_set_ant4_btn)
+
+        self.debug_com_list_get_btn = QPushButton(self.horizontalLayoutWidget)
+        self.debug_com_list_get_btn.setObjectName(u"debug_com_list_get_btn")
+
+        self.verticalLayout_30.addWidget(self.debug_com_list_get_btn)
+
+
+        self.horizontalLayout_30.addLayout(self.verticalLayout_30)
+
+        self.verticalLayout_31 = QVBoxLayout()
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.debug_log = QTextEdit(self.horizontalLayoutWidget)
+        self.debug_log.setObjectName(u"debug_log")
+
+        self.verticalLayout_31.addWidget(self.debug_log)
+
+        self.debug_line_edit = QLineEdit(self.horizontalLayoutWidget)
+        self.debug_line_edit.setObjectName(u"debug_line_edit")
+
+        self.verticalLayout_31.addWidget(self.debug_line_edit)
+
+
+        self.horizontalLayout_30.addLayout(self.verticalLayout_31)
+
+        self.stackedWidget.addWidget(self.debug)
+        self.unlock = QWidget()
+        self.unlock.setObjectName(u"unlock")
+        self.password_le = QLineEdit(self.unlock)
+        self.password_le.setObjectName(u"password_le")
+        self.password_le.setGeometry(QRect(360, 400, 231, 31))
+        self.Unlock_btn = QPushButton(self.unlock)
+        self.Unlock_btn.setObjectName(u"Unlock_btn")
+        self.Unlock_btn.setGeometry(QRect(610, 400, 91, 31))
+        self.stackedWidget.addWidget(self.unlock)
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
 
@@ -3343,7 +3437,7 @@ class Ui_MainWindow(object):
         self.extraCloseColumnBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close left box", None))
 #endif // QT_CONFIG(tooltip)
         self.extraCloseColumnBtn.setText("")
-        self.btn_share.setText(QCoreApplication.translate("MainWindow", u"Share", None))
+        self.btn_debug.setText(QCoreApplication.translate("MainWindow", u"Debug", None))
         self.btn_adjustments.setText(QCoreApplication.translate("MainWindow", u"Adjustments", None))
         self.btn_more.setText(QCoreApplication.translate("MainWindow", u"More", None))
         self.textEdit.setMarkdown(QCoreApplication.translate("MainWindow", u"**                HCD - BTTP** \n"
@@ -3658,6 +3752,18 @@ class Ui_MainWindow(object):
         self.right_pass_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.right_fail_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.right_fail_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.debug_gpib_list_get_btn.setText(QCoreApplication.translate("MainWindow", u"GPIB List Get", None))
+        self.debug_mt8852b_get_id_btn.setText(QCoreApplication.translate("MainWindow", u"MT8852B Get ID", None))
+        self.debug_left_bttc_connect_btn.setText(QCoreApplication.translate("MainWindow", u"LEFT BTTC Signal Connect", None))
+        self.debug_left_bttc_disconnect_btn.setText(QCoreApplication.translate("MainWindow", u"LEFT BTTC Signal Disconnect", None))
+        self.debug_right_bttc_connect_btn.setText(QCoreApplication.translate("MainWindow", u"Right BTTC Signal Connect", None))
+        self.debug_right_bttc_disconnect_btn.setText(QCoreApplication.translate("MainWindow", u"Right BTTC Signal Disconnect", None))
+        self.debug_set_ant1_btn.setText(QCoreApplication.translate("MainWindow", u"BTTC RF set ANT1", None))
+        self.debug_set_ant2_btn.setText(QCoreApplication.translate("MainWindow", u"BTTC RF set ANT2", None))
+        self.debug_set_ant3_btn.setText(QCoreApplication.translate("MainWindow", u"BTTC RF set ANT3", None))
+        self.debug_set_ant4_btn.setText(QCoreApplication.translate("MainWindow", u"BTTC RF set ANT4", None))
+        self.debug_com_list_get_btn.setText(QCoreApplication.translate("MainWindow", u"COM List Get", None))
+        self.Unlock_btn.setText(QCoreApplication.translate("MainWindow", u"Unlock", None))
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Message", None))
         self.btn_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))
         self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))

@@ -938,7 +938,7 @@ Button */
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-file.png);</string>
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-equalizer.png);</string>
                   </property>
                   <property name="text">
                    <string>测试配置</string>
@@ -974,7 +974,7 @@ Button */
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-save.png)</string>
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-folder-open.png)</string>
                   </property>
                   <property name="text">
                    <string>Save</string>
@@ -1299,7 +1299,7 @@ Button */
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="btn_share">
+                 <widget class="QPushButton" name="btn_debug">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -1327,10 +1327,10 @@ Button */
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-share-boxed.png);</string>
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-code.png);</string>
                   </property>
                   <property name="text">
-                   <string>Share</string>
+                   <string>Debug</string>
                   </property>
                  </widget>
                 </item>
@@ -4858,6 +4858,142 @@ background-repeat: no-repeat;</string>
                         </layout>
                        </item>
                       </layout>
+                     </widget>
+                     <widget class="QWidget" name="debug">
+                      <widget class="QWidget" name="horizontalLayoutWidget">
+                       <property name="geometry">
+                        <rect>
+                         <x>20</x>
+                         <y>10</y>
+                         <width>1141</width>
+                         <height>841</height>
+                        </rect>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_30">
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_30">
+                          <item>
+                           <widget class="QPushButton" name="debug_gpib_list_get_btn">
+                            <property name="text">
+                             <string>GPIB List Get</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_mt8852b_get_id_btn">
+                            <property name="text">
+                             <string>MT8852B Get ID</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_left_bttc_connect_btn">
+                            <property name="text">
+                             <string>LEFT BTTC Signal Connect</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_left_bttc_disconnect_btn">
+                            <property name="text">
+                             <string>LEFT BTTC Signal Disconnect</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_right_bttc_connect_btn">
+                            <property name="text">
+                             <string>Right BTTC Signal Connect</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_right_bttc_disconnect_btn">
+                            <property name="text">
+                             <string>Right BTTC Signal Disconnect</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_set_ant1_btn">
+                            <property name="text">
+                             <string>BTTC RF set ANT1</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_set_ant2_btn">
+                            <property name="text">
+                             <string>BTTC RF set ANT2</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_set_ant3_btn">
+                            <property name="text">
+                             <string>BTTC RF set ANT3</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_set_ant4_btn">
+                            <property name="minimumSize">
+                             <size>
+                              <width>300</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>BTTC RF set ANT4</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="debug_com_list_get_btn">
+                            <property name="text">
+                             <string>COM List Get</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item>
+                         <layout class="QVBoxLayout" name="verticalLayout_31">
+                          <item>
+                           <widget class="QTextEdit" name="debug_log"/>
+                          </item>
+                          <item>
+                           <widget class="QLineEdit" name="debug_line_edit"/>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </widget>
+                     </widget>
+                     <widget class="QWidget" name="unlock">
+                      <widget class="QLineEdit" name="password_le">
+                       <property name="geometry">
+                        <rect>
+                         <x>360</x>
+                         <y>400</y>
+                         <width>231</width>
+                         <height>31</height>
+                        </rect>
+                       </property>
+                      </widget>
+                      <widget class="QPushButton" name="Unlock_btn">
+                       <property name="geometry">
+                        <rect>
+                         <x>610</x>
+                         <y>400</y>
+                         <width>91</width>
+                         <height>31</height>
+                        </rect>
+                       </property>
+                       <property name="text">
+                        <string>Unlock</string>
+                       </property>
+                      </widget>
                      </widget>
                     </widget>
                    </item>

@@ -10,7 +10,12 @@ def print_log(widgets,msg):
     plam_det.log_display(widgets, msg)
     print("LOG: " + msg)
 
-
+def get_id():
+    try:
+        ID = device.query('*IDN?')
+        return ID
+    except:
+        return 'NULL'
 
 def connect_check(widgets, device, global_status):
     
@@ -54,7 +59,14 @@ def MT8852B_Query(widgets,device, order):
 
     return res
 
-
+def get_gpib_list():
+    try:
+        rm = pyvisa.ResourceManager()   # 打开资源管理器
+        rm_list = rm.list_resources()   # 获取设备列表
+        return rm_list
+    except:
+        print('get_gpib_list failed')
+        return None
 
 def connect(widgets, global_status):
     
