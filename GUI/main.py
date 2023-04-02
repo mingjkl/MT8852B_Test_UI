@@ -16,6 +16,8 @@
 
 mt8852b_online = False
 
+VERSION = "v1.1.6"
+
 import sys
 import os
 import platform
@@ -32,7 +34,7 @@ import setting_ctrl
 if mt8852b_online == True:
     import mt8852b_ctrl
 import test_statistics
-# import result_log
+import result_log
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -137,6 +139,12 @@ class MainWindow(QMainWindow):
 
         # SETTING INIT
         plam_det.log_display(widgets,'Start init...')
+
+        widgets.version.setText(VERSION)
+        widgets.titleLeftDescription.setText("Bluetooth Test Platform")
+        widgets.btn_save.setText("储存")
+        widgets.btn_exit.setText("退出")
+        widgets.label.setText("")
 
         # device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
         # mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b
@@ -634,7 +642,6 @@ if mt8852b_online == True:
 
         start_time = time.time()
 
-
         device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
 
         plam_det.log_display(widgets, 'MT8852B TEST RUN')
@@ -668,8 +675,6 @@ if mt8852b_online == True:
             end_time = time.time()
             current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 
-            # result_log.log_write()
-
             tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
             tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
             tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
@@ -690,6 +695,9 @@ if mt8852b_online == True:
                                                             font-weight: bold; color: rgb(0, 0, 0);}')
                 test_statistics.test_statisics_save(widgets,'left',test_result)
 
+                result_log.output(widgets, global_status['left_sn'], start_time, end_time, str(round(end_time - start_time, 1)), 
+                                  leop_result, leicd_result, less_result, test_result, global_status['finished_channel'])
+
             elif global_status['finished_channel'] == 'right':
 
                 if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
@@ -704,9 +712,9 @@ if mt8852b_online == True:
                                                             font-weight: bold; color: rgb(0, 0, 0);}')
                     
                 test_statistics.test_statisics_save(widgets,'right',test_result)
-                
 
-
+                result_log.output(widgets, global_status['left_sn'], start_time, end_time, str(round(end_time - start_time, 1)), 
+                                  leop_result, leicd_result, less_result, test_result, global_status['finished_channel'])      
 
         else:
             plam_det.log_display(widgets, 'MT8852B CONNECT FAIL')

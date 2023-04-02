@@ -1285,7 +1285,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 76, 146))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1160, 560))
         self.verticalLayoutWidget = QWidget(self.scrollAreaWidgetContents)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(19, 10, 1121, 131))
@@ -3330,7 +3330,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.titleLeftApp.setText(QCoreApplication.translate("MainWindow", u"HCD-BTTP", None))
-        self.titleLeftDescription.setText(QCoreApplication.translate("MainWindow", u"Modern GUI / Flat Style", None))
+        self.titleLeftDescription.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Bluetooth Test Platform</p></body></html>", None))
         self.toggleButton.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
         self.btn_home.setText(QCoreApplication.translate("MainWindow", u"\u4e3b\u9875", None))
         self.btn_test_data.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u8bd5\u754c\u9762", None))
@@ -3346,16 +3346,20 @@ class Ui_MainWindow(object):
         self.btn_share.setText(QCoreApplication.translate("MainWindow", u"Share", None))
         self.btn_adjustments.setText(QCoreApplication.translate("MainWindow", u"Adjustments", None))
         self.btn_more.setText(QCoreApplication.translate("MainWindow", u"More", None))
-        self.textEdit.setMarkdown(QCoreApplication.translate("MainWindow", u"**HCD - BBTP**  Test Framework Design by Emmovoo   Created by: Wanderson M.\n"
-"Pimenta\n"
+        self.textEdit.setMarkdown(QCoreApplication.translate("MainWindow", u"**                HCD - BTTP** \n"
+"\n"
+"Test Framework Design by: emmovo \n"
+"\n"
+"Created by: Wanderson M. Pimenta\n"
 "\n"
 "", None))
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">HCD - BBTP</span>  Test Framework Design by Emmovoo   Created by: Wanderson M. Pimenta</p></body></html>", None))
+"<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">                HCD - BTTP</span> </p>\n"
+"<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Test Framework Design by: emmovo </p>\n"
+"<p style=\" margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Created by: Wanderson M. Pimenta</p></body></html>", None))
         self.titleRightInfo.setText(QCoreApplication.translate("MainWindow", u"PyDracula APP - Theme with colors based on Dracula for Python.", None))
 #if QT_CONFIG(tooltip)
         self.settingsTopBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Settings", None))
