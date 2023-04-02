@@ -70,6 +70,13 @@ global_status = {'setting_loaded': False,
 
 setting_data = None
 
+left_box_com = None
+right_box_com = None
+left_bttc_com = None
+right_bttc_com = None
+signal_switch_com = None
+
+
 ## Read and detect COM port
 def com_list_cherk(setting_info):   
     plam_det.log_display(widgets,'COM list checking...')
@@ -146,13 +153,6 @@ class MainWindow(QMainWindow):
         widgets.btn_exit.setText("退出")
         widgets.label.setText("")
 
-        # device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
-        # mt8852b_ctrl.init(widgets,device_id,global_status) # init mt8852b
-
-        # mt8852b_ctrl.leop_result_read(widgets,device_id) # read leop result
-        # mt8852b_ctrl.leicd_result_read(widgets,device_id) # read leicd result
-        # mt8852b_ctrl.less_result_read(widgets,device_id) # read less result
-
         widgets.default_btn.setEnabled(False)   # disable default button
         widgets.cfg_save_btn.setEnabled(False)  # disable save button
 
@@ -186,40 +186,6 @@ class MainWindow(QMainWindow):
         leop_m = {'max': 5, 'avg': 6, 'min': 7, 'peak_to_avg': 8, 'state': 'FAIL'}
         leop_h = {'max': 9, 'avg': 10, 'min': 11, 'peak_to_avg': 12, 'state': 'PASS'}
 
-        
-
-        # leop_result = mt8852b_ctrl.leop_result_read(widgets,device_id)
-        # leicd_result = mt8852b_ctrl.leicd_result_read(widgets,device_id)
-        # less_result = mt8852b_ctrl.less_result_read(widgets,device_id)
-
-        # tr_dis.leop_result_display(global_status,widgets,leop_l, leop_m, leop_h)
-
-        # tr_dis.leop_result_display(global_status,widgets,leop_result['leop_l'], leop_result['leop_m'], leop_result['leop_h'], leop_result['status'])
-
-
-        # leicd_l = {'avg_fn': 1, 'max_p_fn': 2, 'max_n_fn': 3, 'max_dirft_rate': 4, 'max_drift': 5, 'avg_drift': 6, 'state': 'PASS'}
-        # leicd_m = {'avg_fn': 7, 'max_p_fn': 8, 'max_n_fn': 9, 'max_dirft_rate': 10, 'max_drift': 11, 'avg_drift': 12, 'state': 'FAIL'}
-        # leicd_h = {'avg_fn': 13, 'max_p_fn': 14, 'max_n_fn': 15, 'max_dirft_rate': 16, 'max_drift': 17, 'avg_drift': 18, 'state': 'PASS'}
-        
-        # tr_dis.leicd_result_display(global_status,widgets,leicd_result['leicd_l'], leicd_result['leicd_m'], leicd_result['leicd_h'], leicd_result['status'])
-        # # tr_dis.leicd_result_display(global_status,widgets,leicd_l, leicd_m, leicd_h)
-
-        # less_l = {'over_fer_%': 1, 'total_frames_sent_tester': 2, 'total_frames_counted_dut': 3, 'state': 'PASS'}
-        # less_m = {'over_fer_%': 4, 'total_frames_sent_tester': 5, 'total_frames_counted_dut': 6, 'state': 'FAIL'}
-        # less_h = {'over_fer_%': 7, 'total_frames_sent_tester': 8, 'total_frames_counted_dut': 9, 'state': 'PASS'}
-        # # tr_dis.less_result_display(global_status,widgets,less_h, less_m, less_l)
-        # tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
-
-        # tr_dis.result_time_display(global_status,widgets,'123','456')
-
-
-        # tr_dis.test_total_cnt_display(widgets,global_status['finished_channel'],789)
-        # tr_dis.test_fail_count_display(widgets,global_status['finished_channel'],456)
-        # tr_dis.test_pass_count_display(widgets,global_status['finished_channel'],123)
-        # tr_dis.test_fail_rate_display(widgets,global_status['finished_channel'],13.2)
-
-        # tr_dis.result_display_reset(widgets,global_status['finished_channel'])
-
 
         widgets.left_test_result_bar.setAlignment(Qt.AlignCenter)
         widgets.left_test_result_bar.setMinimumHeight(100)
@@ -227,18 +193,9 @@ class MainWindow(QMainWindow):
         widgets.left_test_result_bar.setValue(100)
         widgets.left_test_result_bar.setFormat('READY')
 
-        # widgets.left_test_result_bar.setStyleSheet("QProgressBar::chunk {font-size: 20px; font-weight: bold; color: rgb(255, 255, 255); background-color: rgb(255, 255, 0);};")
-
         widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
                                                    font-weight: bold; color: rgb(0, 0, 0);}')
 
-        # widgets.left_test_result_bar.setValue(100)
-        # widgets.left_test_result_bar.setFormat('FAIL')
-        # widgets.left_test_result_bar.setStyleSheet("QProgressBar::chunk {background-color: rgb(255, 0, 0);};")
-
-        # widgets.left_test_result_bar.setValue(100)
-        # widgets.left_test_result_bar.setFormat('PASS')
-        # widgets.left_test_result_bar.setStyleSheet("QProgressBar::chunk {background-color: rgb(34, 139, 34);};")
 
         widgets.right_test_result_bar.setAlignment(Qt.AlignCenter)
         widgets.right_test_result_bar.setMinimumHeight(100)
@@ -311,7 +268,12 @@ class MainWindow(QMainWindow):
         # widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
         # widgets.test_data_page.setStyleSheet(UIFunctions.selectMenu(widgets.test_data_page.styleSheet()))
 
-
+    def closeEvent(self, event):
+        th_com_moniter.stop()
+        if mt8852b_online == True:
+            th_test_pm.stop()
+        time.sleep(0.1)
+        event.accept()
 
     # BUTTONS CLICK
     # Post here your functions for clicked buttons
@@ -419,15 +381,6 @@ class MainWindow(QMainWindow):
             print('Mouse click: RIGHT CLICK')
 
 
-
-
-left_box_com = None
-right_box_com = None
-left_bttc_com = None
-right_bttc_com = None
-signal_switch_com = None
-
-
 def bttc_ctrl_signal_connect(channel):
         if channel == 'left':
             if global_status['left_bttc_connected'] == True:
@@ -463,10 +416,6 @@ def bttc_ctrl_signal_connect(channel):
                 plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
                 print('RIGHT BTTC NOT CONNECTED!')
 
-                
-
-                
-    
 def bttc_ctrl_signal_disconnect(channel):
     if channel == 'left':
             if global_status['left_bttc_connected'] == True:
@@ -554,8 +503,8 @@ class thread_com_moniter(QThread):
                 global_status['signal_switch_connected'] = True
                 plam_det.signal_ctrl_check(global_status, widgets)
 
-
-    
+    def stop(self):
+        self.working = False
 
     def run(self):
         while self.working:
@@ -634,7 +583,7 @@ class thread_com_moniter(QThread):
 
 
             time.sleep(0.1)
-    
+
 
 
 if mt8852b_online == True:
@@ -724,6 +673,8 @@ if mt8852b_online == True:
             super().__init__()
             self.working = True
 
+        def stop(self):
+            self.working = False
         
 
         def run(self):
@@ -781,4 +732,4 @@ if __name__ == "__main__":
 
     
 
-    sys.exit(app.exec_())    
+    sys.exit(app.exec())    
