@@ -15,7 +15,7 @@
 # ///////////////////////////////////////////////////////////////
 
 MT8852B_ONLINE = False
-VERSION = "v1.1.6"
+VERSION = "v1.1.7"
 ACCIDENT_WARNNING = True
 
 import sys
@@ -77,10 +77,6 @@ right_box_com = None
 left_bttc_com = None
 right_bttc_com = None
 signal_switch_com = None
-
-
-
-
 
 
 ## Read and detect COM port
@@ -284,6 +280,9 @@ class MainWindow(QMainWindow):
         widgets.stackedWidget.setCurrentWidget(widgets.test_data_page)      ## set default page
         # widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
         # widgets.test_data_page.setStyleSheet(UIFunctions.selectMenu(widgets.test_data_page.styleSheet()))
+
+        
+        
 
     def closeEvent(self, event):
         th_com_moniter.stop()
@@ -782,6 +781,23 @@ if MT8852B_ONLINE == True:
 
 
 
+class test_thread(QThread):
+
+    def __init__(self):
+        super().__init__()
+
+    def run(self):
+
+        left_test_result_bat_text = '54646A54654' + '  测试中...'
+        widgets.left_test_result_bar.setValue(10)
+        widgets.left_test_result_bar.setFormat(left_test_result_bat_text)
+        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+                                            font-weight: bold; color: rgb(0, 0, 0);}')
+        
+        for i in range(1,10):
+            time.sleep(0.5)
+            widgets.left_test_result_bar.setValue(i * 10)
+        
 
 
 if __name__ == "__main__":
@@ -789,7 +805,7 @@ if __name__ == "__main__":
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
     window.resize(1500, 980)
-    
+  
     th_com_moniter = thread_com_moniter()
     if MT8852B_ONLINE == True:
         th_test_pm = thread_test_process_management()
@@ -798,6 +814,9 @@ if __name__ == "__main__":
     th_com_moniter.start()
     if MT8852B_ONLINE == True:
         th_test_pm.start()
+
+    th_test = test_thread()
+    th_test.start()
 
     
 

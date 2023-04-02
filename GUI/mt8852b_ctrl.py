@@ -133,17 +133,49 @@ def init(widgets,device, global_status):
         ins = MT8852B_Query(widgets,device,'*INS?')
         print_log(widgets,'LOG: Wait for Script 10 Result')
 
+
+        if global_status['finished_channel'] == 'left':
+            bar_text = global_status['left_sn'] + '  测试中...'
+        else:
+            bar_text = global_status['right_sn'] + '  测试中...'
+
+        widgets.left_test_result_bar.setValue(10)
+        widgets.left_test_result_bar.setFormat(bar_text)
+        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+                                            font-weight: bold; color: rgb(0, 0, 0);}')
+        
+        for i in range(1,10):
+            time.sleep(0.5)
+            widgets.left_test_result_bar.setValue(i * 10)
+
         timeout = False
         while_time = 0
         while int(ins) != 46:
             ins = device.query('*INS?')   # 查询仪器状态
             time.sleep(1)
             while_time = while_time + 1
-            if while_time > 20:
+            if global_status['finished_channel'] == 'left':
+                widgets.left_test_result_bar.setValue(10 + while_time * 6)
+            else:
+                widgets.right_test_result_bar.setValue(10 + while_time * 6)
+
+            if while_time > 14:
+                if global_status['finished_channel'] == 'left':
+                    widgets.left_test_result_bar.setValue(95)
+                else:
+                    widgets.right_test_result_bar.setValue(95)
+
                 print_log(widgets,'LOG: Script 10 Run Timeout')
                 accident.warnning(widgets,'MT8852B 测试超时',True)
                 timeout = True
                 break
+
+            if global_status['finished_channel'] == 'left':
+                widgets.left_test_result_bar.setValue(100)
+            else:
+                widgets.right_test_result_bar.setValue(100)
+            
+            time.sleep(1)
 
         if timeout == False:
             print_log(widgets,'LOG: Script 10 Run Success')
