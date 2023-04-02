@@ -1,5 +1,6 @@
 import pyvisa
 import time
+import accident
 
 import plam_det
 
@@ -13,22 +14,27 @@ def print_log(widgets,msg):
 
 def connect_check(widgets, device, global_status):
     
-    # try:
+    try:
         ID = device.query('*IDN?')
         if "MT8852B" in ID:
             print_log(widgets, "MT8852B ID: " + ID)
             print_log(widgets, "MT8852B Connected")
             global_status['mt8852b_connected'] = True
+            widgets.MT8852_ID.setText(ID)
+            widgets.MT8852_status_label.setText("已连接")
             return True
         else:
             global_status['mt8852b_connected'] = False
             print_log(widgets, "MT8852B Lost")
+            widgets.MT8852_ID.setText("NULL")
+            widgets.MT8852_status_label.setText("未连接")
             return False
         
-    # except:
-    #     global_status['mt8852b_connected'] = False
-    #     print_log(widgets, "MT8852B Lost")
-    #     return False
+    except:
+        global_status['mt8852b_connected'] = False
+        print_log(widgets, "MT8852B Lost")
+        accident.warnning(widgets,'MT8852B 连接失败',True)
+        return False
     
 
 def MT8852B_Write(widgets,device, order):
@@ -37,10 +43,14 @@ def MT8852B_Write(widgets,device, order):
 
 def MT8852B_Query(widgets,device, order):
 
-    res = device.query(order)
+    try:
+        res = device.query(order)
 
-    print_log(widgets,"MT8852B Query: " + order)
-    print_log(widgets,"MT8852B Result: " + res)
+        print_log(widgets,"MT8852B Query: " + order)
+        print_log(widgets,"MT8852B Result: " + res)
+    except:
+        accident.warnning(widgets,'MT8852B 查询失败',True)
+        res = 'NULL'
 
     return res
 
@@ -67,6 +77,7 @@ def connect(widgets, global_status):
         
     except:
         print_log(widgets,'mt8852b connect failed')
+        accident.warnning(widgets,'MT8852B 连接失败',True)
         return None
 
 def init(widgets,device, global_status):
@@ -121,38 +132,49 @@ def init(widgets,device, global_status):
         ins = 0
         ins = MT8852B_Query(widgets,device,'*INS?')
         print_log(widgets,'LOG: Wait for Script 10 Result')
+
+        timeout = False
+        while_time = 0
         while int(ins) != 46:
             ins = device.query('*INS?')   # 查询仪器状态
             time.sleep(1)
-        print_log(widgets,'LOG: Script 10 Run Success')
+            while_time = while_time + 1
+            if while_time > 20:
+                print_log(widgets,'LOG: Script 10 Run Timeout')
+                accident.warnning(widgets,'MT8852B 测试超时',True)
+                timeout = True
+                break
 
-        # device.set_visa_attribute(VI_ATTR_TMO_VALUE, 3000)  # 设置超时时间
+        if timeout == False:
+            print_log(widgets,'LOG: Script 10 Run Success')
 
-        MT8852B_Write(widgets,device,'OPMD SCRIPT')     # 打开脚本
-        MT8852B_Query(widgets,device,'ERRLST') # 查询错误列表
-        MT8852B_Query(widgets,device,'*ESR?')   # 查询错误状态寄存器
+            # device.set_visa_attribute(VI_ATTR_TMO_VALUE, 3000)  # 设置超时时间
 
-        opt = MT8852B_Query(widgets, device, 'OPTSTATUS?')  # 查询测试结果
-        if '15' in opt:
-            print_log(widgets,'LOG: AFH (Adaptive frequency hopping) support')
-        if '17' in opt:
-            print_log(widgets,'LOG: Allows IQ data output for EDR measurements')
-        if '25' in opt:
-            print_log(widgets,'LOG: EDR Measurements support')
-        if '27' in opt:
-            print_log(widgets,'LOG: BLE Measurements support')
-        if '29' in opt:
-            print_log(widgets,'LOG:  BLE Measurements only')
-        if '34' in opt:
-            print_log(widgets,'LOG: BLE Data Length Extension support')
-        if '35' in opt:
-            print_log(widgets,'LOG:  BLE 2LE support')
-        if '36' in opt:
-            print_log(widgets,'LOG:  BLE BLR support')
-        if '37' in opt:
-            print_log(widgets,'LOG: BLE AoA/AoD support')
-        if '70' in opt:
-            print_log(widgets,'LOG: Platform Enhanced option')
+            MT8852B_Write(widgets,device,'OPMD SCRIPT')     # 打开脚本
+            MT8852B_Query(widgets,device,'ERRLST') # 查询错误列表
+            MT8852B_Query(widgets,device,'*ESR?')   # 查询错误状态寄存器
+
+            opt = MT8852B_Query(widgets, device, 'OPTSTATUS?')  # 查询测试结果
+            if '15' in opt:
+                print_log(widgets,'LOG: AFH (Adaptive frequency hopping) support')
+            if '17' in opt:
+                print_log(widgets,'LOG: Allows IQ data output for EDR measurements')
+            if '25' in opt:
+                print_log(widgets,'LOG: EDR Measurements support')
+            if '27' in opt:
+                print_log(widgets,'LOG: BLE Measurements support')
+            if '29' in opt:
+                print_log(widgets,'LOG:  BLE Measurements only')
+            if '34' in opt:
+                print_log(widgets,'LOG: BLE Data Length Extension support')
+            if '35' in opt:
+                print_log(widgets,'LOG:  BLE 2LE support')
+            if '36' in opt:
+                print_log(widgets,'LOG:  BLE BLR support')
+            if '37' in opt:
+                print_log(widgets,'LOG: BLE AoA/AoD support')
+            if '70' in opt:
+                print_log(widgets,'LOG: Platform Enhanced option')
 
     else:
         print_log(widgets,'MT8852B init failed')

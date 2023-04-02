@@ -14,9 +14,9 @@
 #
 # ///////////////////////////////////////////////////////////////
 
-mt8852b_online = False
-
+MT8852B_ONLINE = False
 VERSION = "v1.1.6"
+ACCIDENT_WARNNING = True
 
 import sys
 import os
@@ -28,13 +28,15 @@ import serial.tools.list_ports
 from PySide6.QtCore import QThread
 
 
+
 import tr_dis
 import plam_det
 import setting_ctrl
-if mt8852b_online == True:
+if MT8852B_ONLINE == True:
     import mt8852b_ctrl
 import test_statistics
 import result_log
+import accident
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -77,36 +79,41 @@ right_bttc_com = None
 signal_switch_com = None
 
 
+
+
+
+
 ## Read and detect COM port
 def com_list_cherk(setting_info):   
-    plam_det.log_display(widgets,'COM list checking...')
-    com_list = serial.tools.list_ports.comports()
-    comlist_len = len(com_list)
-    for i in range(0, comlist_len):
-        print(com_list[i])
-        plam_det.log_display(widgets,str(com_list[i]))
-        if global_status['setting_loaded'] == True:
-            if setting_info['connect']['left_box_com'] == str(com_list[i].name):    
-                plam_det.log_display(widgets,'Left box COM port found!')
-                global_status['left_box_connected'] = True
-            if setting_info['connect']['right_box_com'] == str(com_list[i].name):
-                plam_det.log_display(widgets,'Right box COM port found!')
-                global_status['right_box_connected'] = True
-            if setting_info['connect']['left_bttc_com'] == str(com_list[i].name):
-                plam_det.log_display(widgets,'Left BTTC COM port found!')
-                global_status['left_bttc_connected'] = True
-            if setting_info['connect']['right_bttc_com'] == str(com_list[i].name):
-                plam_det.log_display(widgets,'Right BTTC COM port found!')
-                global_status['right_bttc_connected'] = True
-            if setting_info['connect']['signal_ctrl_com'] == str(com_list[i].name):
-                plam_det.log_display(widgets,'Signal controller COM port found!')
-                global_status['signal_ctrl_connected'] = True
-        else:
-            plam_det.log_display(widgets,'Setting file not loaded, please check!')
-            
-
-
-    
+    try:
+        plam_det.log_display(widgets,'COM list checking...')
+        com_list = serial.tools.list_ports.comports()
+        comlist_len = len(com_list)
+        for i in range(0, comlist_len):
+            print(com_list[i])
+            plam_det.log_display(widgets,str(com_list[i]))
+            if global_status['setting_loaded'] == True:
+                if setting_info['connect']['left_box_com'] == str(com_list[i].name):    
+                    plam_det.log_display(widgets,'Left box COM port found!')
+                    global_status['left_box_connected'] = True
+                if setting_info['connect']['right_box_com'] == str(com_list[i].name):
+                    plam_det.log_display(widgets,'Right box COM port found!')
+                    global_status['right_box_connected'] = True
+                if setting_info['connect']['left_bttc_com'] == str(com_list[i].name):
+                    plam_det.log_display(widgets,'Left BTTC COM port found!')
+                    global_status['left_bttc_connected'] = True
+                if setting_info['connect']['right_bttc_com'] == str(com_list[i].name):
+                    plam_det.log_display(widgets,'Right BTTC COM port found!')
+                    global_status['right_bttc_connected'] = True
+                if setting_info['connect']['signal_ctrl_com'] == str(com_list[i].name):
+                    plam_det.log_display(widgets,'Signal controller COM port found!')
+                    global_status['signal_ctrl_connected'] = True
+            else:
+                plam_det.log_display(widgets,'Setting file not loaded, please check!')
+    except:
+        plam_det.log_display(widgets,'ERROR:COM list checking failed!')
+        print('ERROR:COM list checking failed!')
+        accident.warnning(widgets,'ERROR:COM list checking failed!',ACCIDENT_WARNNING)
 
 
 class MainWindow(QMainWindow):
@@ -149,9 +156,13 @@ class MainWindow(QMainWindow):
 
         widgets.version.setText(VERSION)
         widgets.titleLeftDescription.setText("Bluetooth Test Platform")
-        widgets.btn_save.setText("储存")
+        widgets.btn_save.setText("测试数据文件夹")
         widgets.btn_exit.setText("退出")
         widgets.label.setText("")
+
+        UIFunctions.toggleMenu(self, True)  # hide menu
+        
+        
 
         widgets.default_btn.setEnabled(False)   # disable default button
         widgets.cfg_save_btn.setEnabled(False)  # disable save button
@@ -205,6 +216,12 @@ class MainWindow(QMainWindow):
         widgets.right_test_result_bar.setFormat('READY')
         widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
                                                     font-weight: bold; color: rgb(0, 0, 0);}')
+        
+        if global_status['channel_left_enable'] == True:
+            widgets.left_sn_in.setFocus()
+        else:
+            if global_status['channel_right_enable'] == True:
+                widgets.right_sn_in.setFocus()
 
         # BUTTONS CLICK
         # ///////////////////////////////////////////////////////////////
@@ -264,13 +281,13 @@ class MainWindow(QMainWindow):
 
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
-        widgets.stackedWidget.setCurrentWidget(widgets.test_data_page)
+        widgets.stackedWidget.setCurrentWidget(widgets.test_data_page)      ## set default page
         # widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
         # widgets.test_data_page.setStyleSheet(UIFunctions.selectMenu(widgets.test_data_page.styleSheet()))
 
     def closeEvent(self, event):
         th_com_moniter.stop()
-        if mt8852b_online == True:
+        if MT8852B_ONLINE == True:
             th_test_pm.stop()
         time.sleep(0.1)
         event.accept()
@@ -302,14 +319,27 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
 
         if btnName == "btn_exit":
-            th_com_moniter.quit()
-            th_test_pm.quit()
+            th_com_moniter.stop()
+            if MT8852B_ONLINE == True:
+                th_test_pm.stop()
+            time.sleep(0.1)
             sys.exit()
 
         if btnName == "btn_save":
+            try:
+                os.startfile('result_log')
+                print("result_log folder opened!")
+                plam_det.log_display(widgets, "result_log folder opened")
+            except:
+                print("No result_log folder")
+                plam_det.log_display(widgets, "No result_log folder")
+                accident.warnning(widgets,'未找到测试数据文件夹',ACCIDENT_WARNNING)
             print("Save BTN clicked!")
 
+            
+
         if btnName == "cfg_save_btn":
+            ## 禁忌の機能
             setting_ctrl.setting_save(widgets)
 
         if btnName == "setting_status":
@@ -361,7 +391,6 @@ class MainWindow(QMainWindow):
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')
 
-
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////
     def resizeEvent(self, event):
@@ -382,74 +411,86 @@ class MainWindow(QMainWindow):
 
 
 def bttc_ctrl_signal_connect(channel):
-        if channel == 'left':
-            if global_status['left_bttc_connected'] == True:
-                time.sleep(1)
-                global left_bttc_com
-                data = 0xAA
-                data_bytes = data.to_bytes(1, byteorder='little')
-                left_bttc_com.write(data_bytes)
-                str = 'CONN'
-                str = str + '\r\n'
-                RS232_str = str.encode('utf-8')
-                left_bttc_com.write(RS232_str)
-                plam_det.log_display(widgets, 'LEFT BTTC SIGNAL CONNECT!')
-                print('LEFT BTTC SIGNAL CONNECT!')
-            else:
-                plam_det.log_display('LEFT BTTC NOT CONNECTED!')
-                print('LEFT BTTC NOT CONNECTED!')
         
-        if channel == 'right':
-            if global_status['right_bttc_connected'] == True:
-                time.sleep(1)
-                global right_bttc_com
-                data = 0xAA
-                data_bytes = data.to_bytes(1, byteorder='little')
-                right_bttc_com.write(data_bytes)
-                str = 'CONN'
-                str = str + '\r\n'
-                RS232_str = str.encode('utf-8')
-                right_bttc_com.write(RS232_str)
-                plam_det.log_display(widgets, 'RIGHT BTTC SIGNAL CONNECT!')
-                print('RIGHT BTTC SIGNAL CONNECT!')
-            else:
-                plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
-                print('RIGHT BTTC NOT CONNECTED!')
+        try:
+            if channel == 'left':
+                if global_status['left_bttc_connected'] == True:
+                    time.sleep(1)
+                    global left_bttc_com
+                    data = 0xAA
+                    data_bytes = data.to_bytes(1, byteorder='little')
+                    left_bttc_com.write(data_bytes)
+                    str = 'CONN'
+                    str = str + '\r\n'
+                    RS232_str = str.encode('utf-8')
+                    left_bttc_com.write(RS232_str)
+                    plam_det.log_display(widgets, 'LEFT BTTC SIGNAL CONNECT!')
+                    print('LEFT BTTC SIGNAL CONNECT!')
+                else:
+                    plam_det.log_display('LEFT BTTC NOT CONNECTED!')
+                    print('LEFT BTTC NOT CONNECTED!')
+            
+            if channel == 'right':
+                if global_status['right_bttc_connected'] == True:
+                    time.sleep(1)
+                    global right_bttc_com
+                    data = 0xAA
+                    data_bytes = data.to_bytes(1, byteorder='little')
+                    right_bttc_com.write(data_bytes)
+                    str = 'CONN'
+                    str = str + '\r\n'
+                    RS232_str = str.encode('utf-8')
+                    right_bttc_com.write(RS232_str)
+                    plam_det.log_display(widgets, 'RIGHT BTTC SIGNAL CONNECT!')
+                    print('RIGHT BTTC SIGNAL CONNECT!')
+                else:
+                    plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
+                    print('RIGHT BTTC NOT CONNECTED!')
+        except:
+            print('ERROR: BTTC Ctrl ERROR!')
+            plam_det.log_display(widgets, 'Nimahai write magoucha break again')
+            plam_det.log_display(widgets, 'ERROR: BTTC Ctrl ERROR!')
+            accident.warnning(widgets,'BTTC 连接错误',ACCIDENT_WARNNING)
 
 def bttc_ctrl_signal_disconnect(channel):
-    if channel == 'left':
-            if global_status['left_bttc_connected'] == True:
-                global left_bttc_com
-                print('==============================')
-                data = 0xAA
-                data_bytes = data.to_bytes(1, byteorder='little')
-                left_bttc_com.write(data_bytes)
-                str = 'DCONN'
-                str = str + '\r\n'
-                RS232_str = str.encode('utf-8')
-                left_bttc_com.write(RS232_str)
-                plam_det.log_display(widgets, 'LEFT BTTC SIGNAL DISCONNECT!')
-                print('LEFT BTTC SIGNAL DISCONNECT!')
-            else:
-                plam_det.log_display('LEFT BTTC NOT CONNECTED!')
-                print('LEFT BTTC NOT CONNECTED!')
-    
-    if channel == 'right':
-            if global_status['right_bttc_connected'] == True:
-                global right_bttc_com
-                print('==============================')
-                data = 0xAA
-                data_bytes = data.to_bytes(1, byteorder='little')
-                right_bttc_com.write(data_bytes)
-                str = 'DCONN'
-                str = str + '\r\n'
-                RS232_str = str.encode('utf-8')
-                right_bttc_com.write(RS232_str)
-                plam_det.log_display(widgets, 'RIGHT BTTC SIGNAL DISCONNECT!')
-                print('RIGHT BTTC SIGNAL DISCONNECT!')
-            else:
-                plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
-                print('RIGHT BTTC NOT CONNECTED!')
+    try:
+        if channel == 'left':
+                if global_status['left_bttc_connected'] == True:
+                    global left_bttc_com
+                    print('==============================')
+                    data = 0xAA
+                    data_bytes = data.to_bytes(1, byteorder='little')
+                    left_bttc_com.write(data_bytes)
+                    str = 'DCONN'
+                    str = str + '\r\n'
+                    RS232_str = str.encode('utf-8')
+                    left_bttc_com.write(RS232_str)
+                    plam_det.log_display(widgets, 'LEFT BTTC SIGNAL DISCONNECT!')
+                    print('LEFT BTTC SIGNAL DISCONNECT!')
+                else:
+                    plam_det.log_display('LEFT BTTC NOT CONNECTED!')
+                    print('LEFT BTTC NOT CONNECTED!')
+        
+        if channel == 'right':
+                if global_status['right_bttc_connected'] == True:
+                    global right_bttc_com
+                    print('==============================')
+                    data = 0xAA
+                    data_bytes = data.to_bytes(1, byteorder='little')
+                    right_bttc_com.write(data_bytes)
+                    str = 'DCONN'
+                    str = str + '\r\n'
+                    RS232_str = str.encode('utf-8')
+                    right_bttc_com.write(RS232_str)
+                    plam_det.log_display(widgets, 'RIGHT BTTC SIGNAL DISCONNECT!')
+                    print('RIGHT BTTC SIGNAL DISCONNECT!')
+                else:
+                    plam_det.log_display('RIGHT BTTC NOT CONNECTED!')
+                    print('RIGHT BTTC NOT CONNECTED!')
+    except:
+        print('ERROR: BTTC Ctrl ERROR!')
+        plam_det.log_display(widgets, 'ERROR: BTTC Ctrl ERROR!')
+        accident.warnning(widgets,'BTTC 连接错误',ACCIDENT_WARNNING)
 
 
 class thread_com_moniter(QThread):
@@ -460,48 +501,73 @@ class thread_com_moniter(QThread):
         global setting_data
 
         plam_det.log_display(widgets, 'COM LIST CHECKING...')
-        comlist = serial.tools.list_ports.comports()
-        comlist_len = len(comlist)
-        # print(setting_data['connect']['left_box_com'])
+        try:
+            comlist = serial.tools.list_ports.comports()
+            comlist_len = len(comlist)
+        except:
+            plam_det.log_display(widgets, 'ERROR: COM LIST CHECKING ERROR!')
+            print('ERROR: COM LIST CHECKING ERROR!')
+            return
+        
 
         for i in range(0, comlist_len):
             print(comlist[i])
             plam_det.log_display(widgets, str(comlist[i]))
 
             if comlist[i].device == setting_data['connect']['left_box_com']:
-                global left_box_com
-                left_box_com = serial.Serial(setting_data['connect']['left_box_com'], 115200, timeout=1)
-                plam_det.log_display(widgets, 'LEFT BOX COM OPENED!')
-                global_status['left_box_connected'] = True
-                plam_det.left_box_check(global_status, widgets)
+                try:
+                    global left_box_com
+                    left_box_com = serial.Serial(setting_data['connect']['left_box_com'], 115200, timeout=1)
+                    plam_det.log_display(widgets, 'LEFT BOX COM OPENED!')
+                    global_status['left_box_connected'] = True
+                    plam_det.left_box_check(global_status, widgets)
+                except:
+                    plam_det.log_display(widgets, 'ERROR: LEFT BOX COM OPENED ERROR!')
+                    print('ERROR: LEFT BOX COM OPENED ERROR!')
 
             if comlist[i].device == setting_data['connect']['right_box_com']:
-                global right_box_com
-                right_box_com = serial.Serial(setting_data['connect']['right_box_com'], 115200, timeout=1)
-                plam_det.log_display(widgets, 'RIGHT BOX COM OPENED!')
-                global_status['right_box_connected'] = True
-                plam_det.right_box_check(global_status, widgets)
+                try:
+                    global right_box_com
+                    right_box_com = serial.Serial(setting_data['connect']['right_box_com'], 115200, timeout=1)
+                    plam_det.log_display(widgets, 'RIGHT BOX COM OPENED!')
+                    global_status['right_box_connected'] = True
+                    plam_det.right_box_check(global_status, widgets)
+                except:
+                    plam_det.log_display(widgets, 'ERROR: RIGHT BOX COM OPENED ERROR!')
+                    print('ERROR: RIGHT BOX COM OPENED ERROR!')
 
             if comlist[i].device == setting_data['connect']['left_bttc_com']:
-                global left_bttc_com
-                left_bttc_com = serial.Serial(setting_data['connect']['left_bttc_com'], 115200, timeout=1)
-                plam_det.log_display(widgets, 'LEFT BTTC COM OPENED!')
-                global_status['left_bttc_connected'] = True
-                plam_det.left_bttc_check(global_status, widgets)
+                try:
+                    global left_bttc_com
+                    left_bttc_com = serial.Serial(setting_data['connect']['left_bttc_com'], 115200, timeout=1)
+                    plam_det.log_display(widgets, 'LEFT BTTC COM OPENED!')
+                    global_status['left_bttc_connected'] = True
+                    plam_det.left_bttc_check(global_status, widgets)
+                except:
+                    plam_det.log_display(widgets, 'ERROR: LEFT BTTC COM OPENED ERROR!')
+                    print('ERROR: LEFT BTTC COM OPENED ERROR!')
 
             if comlist[i].device == setting_data['connect']['right_bttc_com']:
-                global right_bttc_com
-                right_bttc_com = serial.Serial(setting_data['connect']['right_bttc_com'], 115200, timeout=1)
-                plam_det.log_display(widgets, 'RIGHT BTTC COM OPENED!')
-                global_status['right_bttc_connected'] = True
-                plam_det.right_bttc_check(global_status, widgets)
+                try:
+                    global right_bttc_com
+                    right_bttc_com = serial.Serial(setting_data['connect']['right_bttc_com'], 115200, timeout=1)
+                    plam_det.log_display(widgets, 'RIGHT BTTC COM OPENED!')
+                    global_status['right_bttc_connected'] = True
+                    plam_det.right_bttc_check(global_status, widgets)
+                except:
+                    plam_det.log_display(widgets, 'ERROR: RIGHT BTTC COM OPENED ERROR!')
+                    print('ERROR: RIGHT BTTC COM OPENED ERROR!')
 
             if comlist[i].device == setting_data['connect']['signal_ctrl_com']:
-                global signal_switch_com
-                signal_switch_com = serial.Serial(setting_data['connect']['signal_ctrl_com'], 115200, timeout=1)
-                plam_det.log_display(widgets, 'SIGNAL SWITCH COM OPENED!')
-                global_status['signal_switch_connected'] = True
-                plam_det.signal_ctrl_check(global_status, widgets)
+                try:
+                    global signal_switch_com
+                    signal_switch_com = serial.Serial(setting_data['connect']['signal_ctrl_com'], 115200, timeout=1)
+                    plam_det.log_display(widgets, 'SIGNAL SWITCH COM OPENED!')
+                    global_status['signal_switch_connected'] = True
+                    plam_det.signal_ctrl_check(global_status, widgets)
+                except:
+                    plam_det.log_display(widgets, 'ERROR: SIGNAL SWITCH COM OPENED ERROR!')
+                    print('ERROR: SIGNAL SWITCH COM OPENED ERROR!')
 
     def stop(self):
         self.working = False
@@ -510,83 +576,85 @@ class thread_com_moniter(QThread):
         while self.working:
             
             if global_status['left_box_connected'] == True:
-                if left_box_com.in_waiting:
-                    left_box_data = left_box_com.readline()
-                    if 'OPEN' in str(left_box_data):
-                        plam_det.log_display(widgets, 'LEFT BOX OPENED!')
-                        if widgets.left_sn_in.text() != '':
-                            plam_det.log_display(widgets, 'Left SN:' + widgets.left_sn_in.text())
-                            print('LEFT SN:' + widgets.left_sn_in.text())
+                try:
+                    if left_box_com.in_waiting:
+                        left_box_data = left_box_com.readline()
+                        if 'OPEN' in str(left_box_data):
+                            plam_det.log_display(widgets, 'LEFT BOX OPENED!')
+                            if widgets.left_sn_in.text() != '':
+                                plam_det.log_display(widgets, 'Left SN:' + widgets.left_sn_in.text())
+                                print('LEFT SN:' + widgets.left_sn_in.text())
 
-                            global_status['left_sn'] = widgets.left_sn_in.text()
-                            global_status['channel_left_ready'] = True
+                                global_status['left_sn'] = widgets.left_sn_in.text()
+                                global_status['channel_left_ready'] = True
 
-                            if global_status['channel_right_enable'] == True:
-                                widgets.right_sn_in.clear()
-                                widgets.right_sn_in.setFocus()
+                                if global_status['channel_right_enable'] == True:
+                                    widgets.right_sn_in.clear()
+                                    widgets.right_sn_in.setFocus()
+                                else:
+                                    widgets.left_sn_in.clear()
+                                    widgets.left_sn_in.setFocus()
+                                
                             else:
-                                widgets.left_sn_in.clear()
-                                widgets.left_sn_in.setFocus()
-                            
-                        else:
-                            plam_det.log_display(widgets, 'Left SN:NULL')
-                            print('LEFT SN:NULL')
-                            global_status['left_sn'] = 'NULL'
-                            widgets.left_test_result_bar.setFormat('未输入SN码')
-                            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
-                                                   font-weight: bold; color: rgb(0, 0, 0);}')
-                            
-                        
-                    # print(left_box_data)
+                                plam_det.log_display(widgets, 'Left SN:NULL')
+                                print('LEFT SN:NULL')
+                                global_status['left_sn'] = 'NULL'
+                                widgets.left_test_result_bar.setFormat('未输入SN码')
+                                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
+                                                    font-weight: bold; color: rgb(0, 0, 0);}')
+                except:
+                    plam_det.log_display(widgets, 'ERROR: LEFT BOX COM READ ERROR!')
+                    print('ERROR: LEFT BOX COM READ ERROR!')
             
             if global_status['right_box_connected'] == True:
-                if right_box_com.in_waiting:
-                    right_box_data = right_box_com.readline()
-                    if 'OPEN' in str(right_box_data):
-                        plam_det.log_display(widgets, 'RIGHT BOX OPENED!')
-                        if widgets.right_sn_in.text() != '':
-                            plam_det.log_display(widgets, 'Right SN:' + widgets.right_sn_in.text())
-                            print('RIGHT SN:' + widgets.right_sn_in.text())
+                try:
+                    if right_box_com.in_waiting:
+                        right_box_data = right_box_com.readline()
+                        if 'OPEN' in str(right_box_data):
+                            plam_det.log_display(widgets, 'RIGHT BOX OPENED!')
+                            if widgets.right_sn_in.text() != '':
+                                plam_det.log_display(widgets, 'Right SN:' + widgets.right_sn_in.text())
+                                print('RIGHT SN:' + widgets.right_sn_in.text())
 
-                            global_status['channel_right_ready'] = True
-                            global_status['right_sn'] = widgets.right_sn_in.text()
+                                global_status['channel_right_ready'] = True
+                                global_status['right_sn'] = widgets.right_sn_in.text()
 
-                            if global_status['channel_left_enable'] == True:
-                                widgets.left_sn_in.clear()
-                                widgets.left_sn_in.setFocus()
+                                if global_status['channel_left_enable'] == True:
+                                    widgets.left_sn_in.clear()
+                                    widgets.left_sn_in.setFocus()
+                                else:
+                                    widgets.right_sn_in.clear()
+                                    widgets.right_sn_in.setFocus()
+                                
                             else:
-                                widgets.right_sn_in.clear()
-                                widgets.right_sn_in.setFocus()
-                            
-                        else:
-                            plam_det.log_display(widgets, 'Right SN:NULL')
-                            print('RIGHT SN:NULL')
-                            global_status['right_sn'] = 'NULL'
-                            widgets.left_test_result_bar.setFormat('未输入SN码')
-                            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
-                                                   font-weight: bold; color: rgb(0, 0, 0);}')
+                                plam_det.log_display(widgets, 'Right SN:NULL')
+                                print('RIGHT SN:NULL')
+                                global_status['right_sn'] = 'NULL'
+                                widgets.left_test_result_bar.setFormat('未输入SN码')
+                                widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 255); \
+                                                    font-weight: bold; color: rgb(0, 0, 0);}')
+                except:
+                    plam_det.log_display(widgets, 'ERROR: RIGHT BOX COM READ ERROR!')
+                    print('ERROR: RIGHT BOX COM READ ERROR!')
 
             if global_status['left_bttc_connected'] == True:
                 if left_bttc_com.in_waiting:
                     left_bttc_data = left_bttc_com.readline()
-                    # print(left_bttc_data)
+
 
             if global_status['right_bttc_connected'] == True:
                 if right_bttc_com.in_waiting:
                     right_bttc_data = right_bttc_com.readline()
-                    # print(right_bttc_data)
+
 
             if global_status['signal_ctrl_connected'] == True:
                 if signal_switch_com.in_waiting:
                     signal_switch_data = signal_switch_com.readline()
-                    # print(signal_switch_data)
-
 
             time.sleep(0.1)
 
 
-
-if mt8852b_online == True:
+if MT8852B_ONLINE == True:
     def mt8852b_test_run():
 
         start_time = time.time()
@@ -667,6 +735,7 @@ if mt8852b_online == True:
 
         else:
             plam_det.log_display(widgets, 'MT8852B CONNECT FAIL')
+            accident.warnning(widgets,'MT8852B 连接失败',ACCIDENT_WARNNING)
 
     class thread_test_process_management(QThread):
         def __init__(self):
@@ -719,15 +788,15 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
-    
+    window.resize(1500, 980)
     
     th_com_moniter = thread_com_moniter()
-    if mt8852b_online == True:
+    if MT8852B_ONLINE == True:
         th_test_pm = thread_test_process_management()
 
 
     th_com_moniter.start()
-    if mt8852b_online == True:
+    if MT8852B_ONLINE == True:
         th_test_pm.start()
 
     

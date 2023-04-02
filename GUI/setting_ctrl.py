@@ -1,6 +1,7 @@
 import plam_det
 import json
 import tr_dis
+import accident
 
 ## Loading the setting.json file
 def setting_load(widgets, global_status):
@@ -52,6 +53,7 @@ def setting_load(widgets, global_status):
             widgets.setting_status.setStyleSheet("color: black; background-color: rgb(250, 128, 114);")
             widgets.setting_status.setText('配置文件加载失败')
             global_status['setting_loaded'] = False
+            accident.warnning(widgets,'配置文件加载失败',True)
             return {}
         else:
             widgets.setting_status.setStyleSheet("color: black; background-color: rgb(0, 255, 127);")

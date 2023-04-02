@@ -3,6 +3,7 @@ import datetime
 import plam_det
 import csv
 from datetime import date
+import accident
 
 RESULT_LOG_TEST = False
 
@@ -194,6 +195,7 @@ def result_txt_log(widgets, sn, start_time, end_time, during_time, leop, leicd, 
                 print('Error: write result txt log failed')
                 if widgets != None:
                         plam_det.log_display(widgets, 'Error: write result txt log failed')
+                        accident.warnning(widgets,'TXT 文件导出失败',True)
 
 
 def result_csv_log(widgets, sn, start_time, end_time, during_time, leop, leicd, less, test_result, channel):
@@ -337,6 +339,7 @@ def result_csv_log(widgets, sn, start_time, end_time, during_time, leop, leicd, 
                 print('Error: write result csv log failed')
                 if widgets != None:
                         plam_det.log_display(widgets, 'Error: write result csv log failed')
+                        accident.warnning(widgets,'CSV 文件导出失败',True)
 
 
 def output(widgets, sn, start_time, end_time, during_time, leop, leicd, less, test_result, channel):

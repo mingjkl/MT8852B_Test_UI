@@ -3,7 +3,7 @@
 import plam_det
 import json
 import tr_dis
-
+import accident
 
 
 def test_statisics_init(widgets):
@@ -27,6 +27,7 @@ def test_statisics_init(widgets):
     except:
         plam_det.log_display(widgets,'Test data load error!')
         print('Test data load error!')
+        accident.warnning(widgets, '统计文件加载失败', True)
         return False
     else:
         plam_det.log_display(widgets,'Test statistics complete!')
@@ -90,6 +91,7 @@ def test_statisics_save(widgets, channel, result):
     except:
         plam_det.log_display(widgets,'Test data save error!')
         print('Test data save error!')
+        accident.warnning(widgets, '统计文件保存失败', True)
         return False
     else:
         plam_det.log_display(widgets,'Test statistics save complete!')
