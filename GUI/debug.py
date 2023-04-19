@@ -2,7 +2,7 @@
 Author: emmovo
 Date: 2023-04-02 22:31:39
 LastEditors: emmovo
-LastEditTime: 2023-04-02 23:26:53
+LastEditTime: 2023-04-03 09:48:07
 FilePath: \BluetoothKB_Freq_test\GUI\debug.py
 Description: 
 
@@ -19,20 +19,20 @@ def debug_log_display(widgets, msg):
     widgets.debug_log.append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + ' DBG: ' + msg)
 
 
-
-def bttc_send(widgets, com, data):
+ 
+def bttc_send(widgets, com, msg):
     data = 0xAA
     data_bytes = data.to_bytes(1, byteorder='little')
     com.write(data_bytes)
-    str = data
+    str = msg
     str = str + '\r\n'
     RS232_str = str.encode('utf-8')
     com.write(RS232_str)
-    print('BTTC Send: ', data)
-    debug_log_display(widgets, 'BTTC Send: ' + str(data))
+    print('BTTC Send: ', msg)
+    debug_log_display(widgets, 'BTTC Send: ' + msg)
 
 
-def btn_handle(widget, btnName, global_status, setting_info):
+def btn_handle(widget, btnName, global_status, global_com_list):
     print("debug_gpib_list_get_btn")
     if btnName == "debug_gpib_list_get_btn":
         try:
@@ -57,13 +57,13 @@ def btn_handle(widget, btnName, global_status, setting_info):
     if btnName == "debug_left_bttc_connect_btn":
         print("debug_left_bttc_connect_btn")
         if global_status['left_bttc_connected'] == True:
-            try:
-                bttc_send(widget, setting_info['connect']['left_bttc_com'], 'CONN')
+            # try:
+                bttc_send(widget, global_com_list['left_bttc_com'], 'CONN')
                 print('left bttc signal connect success')
                 debug_log_display(widget, 'LEFT BTTC SIGNAL CONNECT!')
-            except:
-                print('left bttc signal connect failed')
-                debug_log_display(widget, 'LEFT BTTC SIGNAL CONNECT failed')
+            # except:
+            #     print('left bttc signal connect failed')
+            #     debug_log_display(widget, 'LEFT BTTC SIGNAL CONNECT failed')
         else:
             print('left bttc not connected')
             debug_log_display(widget, 'LEFT BTTC NOT CONNECTED!')
@@ -74,7 +74,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_left_bttc_disconnect_btn")
         if global_status['left_bttc_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['left_bttc_com'], 'DCONN')
+                bttc_send(widget, global_com_list['left_bttc_com'], 'DCONN')
                 print('left bttc signal disconnect success')
                 debug_log_display(widget, 'LEFT BTTC SIGNAL DISCONNECT!')
             except:
@@ -88,7 +88,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_right_bttc_connect_btn")
         if global_status['right_bttc_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['right_bttc_com'], 'CONN')
+                bttc_send(widget, global_com_list['right_bttc_com'], 'CONN')
                 print('right bttc signal connect success')
                 debug_log_display(widget, 'RIGHT BTTC SIGNAL CONNECT!')
             except:
@@ -102,7 +102,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_right_bttc_disconnect_btn")
         if global_status['right_bttc_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['right_bttc_com'], 'DCONN')
+                bttc_send(widget, global_com_list['right_bttc_com'], 'DCONN')
                 print('right bttc signal disconnect success')
                 debug_log_display(widget, 'RIGHT BTTC SIGNAL DISCONNECT!')
             except:
@@ -116,7 +116,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_set_ant1_btn")
         if global_status['signal_ctrl_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['signal_ctrl_com'], 'ANT1')
+                bttc_send(widget, global_com_list['signal_ctrl_com'], 'ANT1')
                 print('set ant1 success')
                 debug_log_display(widget, 'SET ANT1!')
             except:
@@ -130,7 +130,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_set_ant2_btn")
         if global_status['signal_ctrl_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['signal_ctrl_com'], 'ANT2')
+                bttc_send(widget, global_com_list['signal_ctrl_com'], 'ANT2')
                 print('set ant2 success')
                 debug_log_display(widget, 'SET ANT2!')
             except:
@@ -144,7 +144,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_set_ant3_btn")
         if global_status['signal_ctrl_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['signal_ctrl_com'], 'ANT3')
+                bttc_send(widget, global_com_list['signal_ctrl_com'], 'ANT3')
                 print('set ant2 success')
                 debug_log_display(widget, 'SET ANT2!')
             except:
@@ -158,7 +158,7 @@ def btn_handle(widget, btnName, global_status, setting_info):
         print("debug_set_ant4_btn")
         if global_status['signal_ctrl_connected'] == True:
             try:
-                bttc_send(widget, setting_info['connect']['signal_ctrl_com'], 'ANT4')
+                bttc_send(widget, global_com_list['signal_ctrl_com'], 'ANT4')
                 print('set ant2 success')
                 debug_log_display(widget, 'SET ANT2!')
             except:

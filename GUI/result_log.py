@@ -91,29 +91,55 @@ def result_txt_log(widgets, sn, start_time, end_time, during_time, leop, leicd, 
 
                 leicd_result = leicd['status']
 
-                leicd_l_avg = leicd['leicd_l']['avg_fn']
-                leicd_m_avg = leicd['leicd_m']['avg_fn']
-                leicd_h_avg = leicd['leicd_h']['avg_fn']
 
-                leicd_l_p_fn = leicd['leicd_l']['max_p_fn']
-                leicd_m_p_fn = leicd['leicd_m']['max_p_fn']
-                leicd_h_p_fn = leicd['leicd_h']['max_p_fn']
+                leicd_l_avg = str(int(float(leicd['leicd_l']['avg_fn'])) / 1000)
+                leicd_m_avg = str(int(float(leicd['leicd_m']['avg_fn'])) / 1000)
+                leicd_h_avg = str(int(float(leicd['leicd_h']['avg_fn'])) / 1000)
 
-                leicd_l_n_fn = leicd['leicd_l']['max_n_fn']
-                leicd_m_n_fn = leicd['leicd_m']['max_n_fn']
-                leicd_h_n_fn = leicd['leicd_h']['max_n_fn']
+                leicd_l_p_fn = str(int(float(leicd['leicd_l']['max_p_fn'])) / 1000)
+                leicd_m_p_fn = str(int(float(leicd['leicd_m']['max_p_fn'])) / 1000)
+                leicd_h_p_fn = str(int(float(leicd['leicd_h']['max_p_fn'])) / 1000)
 
-                leicd_l_avg_drift = leicd['leicd_l']['avg_drift']
-                leicd_m_avg_drift = leicd['leicd_m']['avg_drift']
-                leicd_h_avg_drift = leicd['leicd_h']['avg_drift']
+                leicd_l_n_fn = str(int(float(leicd['leicd_l']['max_n_fn'])) / 1000)
+                leicd_m_n_fn = str(int(float(leicd['leicd_m']['max_n_fn'])) / 1000)
+                leicd_h_n_fn = str(int(float(leicd['leicd_h']['max_n_fn'])) / 1000)
 
-                leicd_l_drift_rate = leicd['leicd_l']['max_dirft_rate']
-                leicd_m_drift_rate = leicd['leicd_m']['max_dirft_rate']
-                leicd_h_drift_rate = leicd['leicd_h']['max_dirft_rate']
+                leicd_l_avg_drift = str(int(float(leicd['leicd_l']['avg_drift'])) / 1000)
+                leicd_m_avg_drift = str(int(float(leicd['leicd_m']['avg_drift'])) / 1000)
+                leicd_h_avg_drift = str(int(float(leicd['leicd_h']['avg_drift'])) / 1000)
 
-                leicd_l_max_drift = leicd['leicd_l']['max_drift']
-                leicd_m_max_drift = leicd['leicd_m']['max_drift']
-                leicd_h_max_drift = leicd['leicd_h']['max_drift']
+                leicd_l_max_drift = str(int(float(leicd['leicd_l']['max_drift'])) / 1000)
+                leicd_m_max_drift = str(int(float(leicd['leicd_m']['max_drift'])) / 1000)
+                leicd_h_max_drift = str(int(float(leicd['leicd_h']['max_drift'])) / 1000)
+
+                leicd_l_drift_rate = str(int(float(leicd['leicd_l']['max_dirft_rate'])) / 1000)
+                leicd_m_drift_rate = str(int(float(leicd['leicd_m']['max_dirft_rate'])) / 1000)
+                leicd_h_drift_rate = str(int(float(leicd['leicd_h']['max_dirft_rate'])) / 1000)
+
+
+                # leicd_l_avg = leicd['leicd_l']['avg_fn']
+                # leicd_m_avg = leicd['leicd_m']['avg_fn']
+                # leicd_h_avg = leicd['leicd_h']['avg_fn']
+
+                # leicd_l_p_fn = leicd['leicd_l']['max_p_fn']
+                # leicd_m_p_fn = leicd['leicd_m']['max_p_fn']
+                # leicd_h_p_fn = leicd['leicd_h']['max_p_fn']
+
+                # leicd_l_n_fn = leicd['leicd_l']['max_n_fn']
+                # leicd_m_n_fn = leicd['leicd_m']['max_n_fn']
+                # leicd_h_n_fn = leicd['leicd_h']['max_n_fn']
+
+                # leicd_l_avg_drift = leicd['leicd_l']['avg_drift']
+                # leicd_m_avg_drift = leicd['leicd_m']['avg_drift']
+                # leicd_h_avg_drift = leicd['leicd_h']['avg_drift']
+
+                # leicd_l_drift_rate = leicd['leicd_l']['max_dirft_rate']
+                # leicd_m_drift_rate = leicd['leicd_m']['max_dirft_rate']
+                # leicd_h_drift_rate = leicd['leicd_h']['max_dirft_rate']
+
+                # leicd_l_max_drift = leicd['leicd_l']['max_drift']
+                # leicd_m_max_drift = leicd['leicd_m']['max_drift']
+                # leicd_h_max_drift = leicd['leicd_h']['max_drift']
 
                 leicd_l_result = leicd['leicd_l']['state']
                 leicd_m_result = leicd['leicd_m']['state']
@@ -172,20 +198,20 @@ def result_txt_log(widgets, sn, start_time, end_time, during_time, leop, leicd, 
                         f.write('平均频偏          ' + str(leicd_l_avg) + '      ' + str(leicd_m_avg) + '      ' + str(leicd_h_avg) + '      ' + '\r')
                         f.write('最大频偏+ve       ' + str(leicd_l_p_fn) + '      ' + str(leicd_m_p_fn) + '      ' + str(leicd_h_p_fn) + '      <=150kHz' + '\r')
                         f.write('最大频偏-ve       ' + str(leicd_l_n_fn) + '      ' + str(leicd_m_n_fn) + '      ' + str(leicd_h_n_fn) + '      <=150kHz' + '\r')
-                        f.write('频偏漂移率        ' + str(leicd_l_drift_rate) + '      ' + str(leicd_m_drift_rate) + '      ' + str(leicd_h_drift_rate) + '      <=0.5%' + '\r')
-                        f.write('最大频偏漂移      ' + str(leicd_l_max_drift) + '      ' + str(leicd_m_max_drift) + '      ' + str(leicd_h_max_drift) + '      <=0.5%' + '\r')
-                        f.write('平均频偏漂移      ' + str(leicd_l_avg_drift) + '      ' + str(leicd_m_avg_drift) + '      ' + str(leicd_h_avg_drift) + '      <=0.5%' + '\r')
+                        f.write('频偏漂移率        ' + str(leicd_l_drift_rate) + '      ' + str(leicd_m_drift_rate) + '      ' + str(leicd_h_drift_rate) + '      <=19kHz' + '\r')
+                        f.write('最大频偏漂移      ' + str(leicd_l_max_drift) + '      ' + str(leicd_m_max_drift) + '      ' + str(leicd_h_max_drift) + '      <=50kHz' + '\r')
+                        f.write('平均频偏漂移      ' + str(leicd_l_avg_drift) + '      ' + str(leicd_m_avg_drift) + '      ' + str(leicd_h_avg_drift) + '             ' + '\r')
                         f.write('测试结果          ' + leicd_l_result + '      ' + leicd_m_result + '      ' + leicd_h_result + '      ' + '\r')
                         f.write('误码率测试 >> ' + less_result + '\r')
                         f.write('跳频关            低通道     中通道     高通道    上下限' + '\r')
-                        f.write('误码率            ' + str(less_l_fer) + '      ' + str(less_m_fer) + '      ' + str(less_h_fer) + '      <=1.0%' + '\r')
+                        f.write('误码率            ' + str(less_l_fer) + '      ' + str(less_m_fer) + '      ' + str(less_h_fer) + '      <=30.8%' + '\r')
                         f.write('发送帧数          ' + str(less_l_tx) + '      ' + str(less_m_tx) + '      ' + str(less_h_tx) + '      ' + '\r')
                         f.write('接收帧数          ' + str(less_l_rx) + '      ' + str(less_m_rx) + '      ' + str(less_h_rx) + '      ' + '\r')
                         f.write('测试结果          ' + less_l_result + '      ' + less_m_result + '      ' + less_h_result + '      ' + '\r')
                         f.write('\r')
                         f.write('>>>>> 测试完成  ' + end_time)
                         f.write('\r')
-                        f.write('>>>>> 测试耗时  ' + str(datetime.timedelta(seconds=during_time)))
+                        f.write('>>>>> 测试耗时  ' + str(during_time))
 
                 print('Write result txt log success')
                 if widgets != None:
@@ -259,56 +285,56 @@ def result_csv_log(widgets, sn, start_time, end_time, during_time, leop, leicd, 
                         pos = 'P2'
                 
                 add_line = [start_time,                 # 开始测试时间
-                during_time,                        # 测试耗时
-                pos,                                # 测试位置
-                'TK-045',                           # 项目名称
-                test_result.upper(),                # 测试结果
-                sn,                                 # 蓝牙地址
-                leop['status'].upper(),                     # 输出功率-测试结果
-                leop['leop_l']['max'],              # 输出功率-低频-最大(dBm)
-                leop['leop_l']['min'],              # 输出功率-低频-最小(dBm)
-                leop['leop_l']['peak_to_avg'],      # 输出功率-低频-峰值(dBm)
-                leop['leop_l']['avg'],              # 输出功率-低频-平均(dBm)
-                leop['leop_l']['state'].upper(),            # 输出功率-低频-结果
-                leop['leop_m']['max'],              # 输出功率-中频-最大(dBm)
-                leop['leop_m']['min'],              # 输出功率-中频-最小(dBm)
-                leop['leop_m']['peak_to_avg'],      # 输出功率-中频-峰值(dBm)
-                leop['leop_m']['avg'],              # 输出功率-中频-平均(dBm)
-                leop['leop_m']['state'].upper(),           # 输出功率-中频-结果
-                leop['leop_h']['max'],              # 输出功率-高频-最大(dBm)
-                leop['leop_h']['min'],              # 输出功率-高频-最小(dBm)
-                leop['leop_h']['peak_to_avg'],      # 输出功率-高频-峰值(dBm)
-                leop['leop_h']['avg'],              # 输出功率-高频-平均(dBm)
-                leop['leop_h']['state'].upper(),            # 输出功率-高频-结果
-                leicd['status'].upper(),                    # 频偏漂移-测试结果
-                leicd['leicd_l']['avg_fn'],            # 平均频偏-低频(kHz)
-                leicd['leicd_l']['max_p_fn'],            # 最大+ve频偏-低频(kHz)
-                leicd['leicd_l']['max_n_fn'],            # 最大-ve频偏-低频(kHz)
-                leicd['leicd_l']['max_dirft_rate'],     # 漂移速率-低频(kHz)
-                leicd['leicd_l']['max_drift'],      # 最大漂移-低频(kHz)
-                leicd['leicd_l']['avg_drift'],      # 平均漂移-低频(kHz)
-                leicd['leicd_l']['state'].upper(),          # 频偏漂移-低频-结果
-                leicd['leicd_m']['avg_fn'],            # 平均频偏-中频(kHz)
-                leicd['leicd_m']['max_p_fn'],            # 最大+ve频偏-中频(kHz)
-                leicd['leicd_m']['max_n_fn'],            # 最大-ve频偏-中频(kHz)
-                leicd['leicd_m']['max_dirft_rate'],     # 漂移速率-中频(kHz)
-                leicd['leicd_m']['max_drift'],      # 最大漂移-中频(kHz)
-                leicd['leicd_m']['avg_drift'],      # 平均漂移-中频(kHz)
-                leicd['leicd_m']['state'].upper(),          # 频偏漂移-中频-结果
-                leicd['leicd_h']['avg_fn'],            # 平均频偏-高频(kHz)
-                leicd['leicd_h']['max_p_fn'],            # 最大+ve频偏-高频(kHz)
-                leicd['leicd_h']['max_n_fn'],            # 最大-ve频偏-高频(kHz)
-                leicd['leicd_h']['max_dirft_rate'],     # 漂移速率-高频(kHz)
-                leicd['leicd_h']['max_drift'],      # 最大漂移-高频(kHz)
-                leicd['leicd_h']['avg_drift'],      # 平均漂移-高频(kHz)
-                leicd['leicd_h']['state'].upper(),          # 频偏漂移-高频-结果
-                less['status'].upper(),                     # 信号灵敏度-测试结果
-                less['less_l']['over_fer_%'],       # 误码率-低频(%)
-                less['less_l']['state'].upper(),            # 误码率-低频-结果
-                less['less_m']['over_fer_%'],       # 误帧率-中频(%)
-                less['less_m']['state'].upper(),            # 误帧率-中频-结果
-                less['less_h']['over_fer_%'],       # 误帧率-高频(%)
-                less['less_h']['state'].upper()            # 误帧率-高频-结果
+                        during_time,                        # 测试耗时
+                        pos,                                # 测试位置
+                        'TK-045',                           # 项目名称
+                        test_result.upper(),                # 测试结果
+                        str(sn),                                 # 蓝牙地址
+                        leop['status'].upper(),                     # 输出功率-测试结果
+                        leop['leop_l']['max'],              # 输出功率-低频-最大(dBm)
+                        leop['leop_l']['min'],              # 输出功率-低频-最小(dBm)
+                        leop['leop_l']['peak_to_avg'],      # 输出功率-低频-峰值(dBm)
+                        leop['leop_l']['avg'],              # 输出功率-低频-平均(dBm)
+                        leop['leop_l']['state'].upper(),            # 输出功率-低频-结果
+                        leop['leop_m']['max'],              # 输出功率-中频-最大(dBm)
+                        leop['leop_m']['min'],              # 输出功率-中频-最小(dBm)
+                        leop['leop_m']['peak_to_avg'],      # 输出功率-中频-峰值(dBm)
+                        leop['leop_m']['avg'],              # 输出功率-中频-平均(dBm)
+                        leop['leop_m']['state'].upper(),           # 输出功率-中频-结果
+                        leop['leop_h']['max'],              # 输出功率-高频-最大(dBm)
+                        leop['leop_h']['min'],              # 输出功率-高频-最小(dBm)
+                        leop['leop_h']['peak_to_avg'],      # 输出功率-高频-峰值(dBm)
+                        leop['leop_h']['avg'],              # 输出功率-高频-平均(dBm)
+                        leop['leop_h']['state'].upper(),            # 输出功率-高频-结果
+                        leicd['status'].upper(),                    # 频偏漂移-测试结果
+                        str(int(float(leicd['leicd_l']['avg_fn'])) / 1000),       # 平均频偏-低频(kHz)
+                        str(int(float(leicd['leicd_l']['max_p_fn'])) / 1000),   # 最大+ve频偏-低频(kHz)
+                        str(int(float(leicd['leicd_l']['max_n_fn'])) / 1000),   # 最大-ve频偏-低频(kHz)
+                        str(int(float(leicd['leicd_l']['max_dirft_rate'])) / 1000),     # 漂移速率-低频(kHz)
+                        str(int(float(leicd['leicd_l']['max_drift'])) / 1000),    # 最大漂移-低频(kHz)
+                        str(int(float(leicd['leicd_l']['avg_drift'])) / 1000),  # 平均漂移-低频(kHz)
+                        leicd['leicd_l']['state'].upper(),          # 频偏漂移-低频-结果
+                        str(int(float(leicd['leicd_m']['avg_fn'])) / 1000),       # 平均频偏-中频(kHz)
+                        str(int(float(leicd['leicd_m']['max_p_fn'])) / 1000),   # 最大+ve频偏-中频(kHz)
+                        str(int(float(leicd['leicd_m']['max_n_fn'])) / 1000),   # 最大-ve频偏-中频(kHz)
+                        str(int(float(leicd['leicd_m']['max_dirft_rate'])) / 1000),     # 漂移速率-中频(kHz)
+                        str(int(float(leicd['leicd_m']['max_drift'])) / 1000),    # 最大漂移-中频(kHz)
+                        str(int(float(leicd['leicd_m']['avg_drift'])) / 1000),  # 平均漂移-中频(kHz)
+                        leicd['leicd_m']['state'].upper(),          # 频偏漂移-中频-结果
+                        str(int(float(leicd['leicd_h']['avg_fn'])) / 1000),       # 平均频偏-高频(kHz)
+                        str(int(float(leicd['leicd_h']['max_p_fn'])) / 1000),   # 最大+ve频偏-高频(kHz)
+                        str(int(float(leicd['leicd_h']['max_n_fn'])) / 1000),   # 最大-ve频偏-高频(kHz)
+                        str(int(float(leicd['leicd_h']['max_dirft_rate'])) / 1000),     # 漂移速率-高频(kHz)
+                        str(int(float(leicd['leicd_h']['max_drift'])) / 1000),    # 最大漂移-高频(kHz)
+                        str(int(float(leicd['leicd_h']['avg_drift'])) / 1000),  # 平均漂移-高频(kHz)
+                        leicd['leicd_h']['state'].upper(),          # 频偏漂移-高频-结果
+                        less['status'].upper(),                     # 信号灵敏度-测试结果
+                        less['less_l']['over_fer_%'],       # 误码率-低频(%)
+                        less['less_l']['state'].upper(),            # 误码率-低频-结果
+                        less['less_m']['over_fer_%'],       # 误帧率-中频(%)
+                        less['less_m']['state'].upper(),            # 误帧率-中频-结果
+                        less['less_h']['over_fer_%'],       # 误帧率-高频(%)
+                        less['less_h']['state'].upper()            # 误帧率-高频-结果
                 ]
 
                 today = date.today().strftime("%Y-%m-%d")

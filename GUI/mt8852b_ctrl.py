@@ -77,7 +77,7 @@ def connect(widgets, global_status):
 
         for i in rm_list:
             print_log(widgets,'device: '+i)
-            if 'GPIB1::27::INSTR' in i:             ## for test
+            if 'GPIB0::27::INSTR' in i:             ## for test
                 device = rm.open_resource(i)
                 connect_check(widgets, device, global_status)
                 print_log(widgets,'GPIB init success')
@@ -91,6 +91,86 @@ def connect(widgets, global_status):
         print_log(widgets,'mt8852b connect failed')
         accident.warnning(widgets,'MT8852B 连接失败',True)
         return None
+    
+
+def params_init(widgets, device):
+    
+    # MT8852B_Write('SYSCFG AUTH,STATE,OFF')    # 关闭认证
+    # # MT8852B_Write('OPMD SCRIPT')         # 打开脚本
+    # # MT8852B_Write('SCRIPT 10')        # 选择脚本10
+    # MT8852B_Write('TXPWR 10,-60')    # 设置功率
+    # # MT8852B_Write('SCPTTSTGP 10,STDTSTS,OFF')   # 关闭标准测试
+    # # MT8852B_Write('SCPTTSTGP 10,EDRTSTS,OFF')   # 关闭EDR测试
+    # # MT8852B_Write('SCPTTSTGP 10,BLETSTS,OFF')    # 关闭BLE测试
+    # MT8852B_Write('PATHOFF 10,FIXED')    # 设置路径为固定
+    # MT8852B_Write('FIXEDOFF 10,-23')   # 设置固定偏移
+    # MT8852B_Write('SYSCFG CONFIG,LKTIMO,10')   # 设置锁定超时时间
+    # MT8852B_Write('SYSCFG EUTSRCE,BLE2WIRE')  # 设置EUT源为BLE2WIRE
+    # MT8852B_Write('SYSCFG EUTR232,115200')   # 设置EUT串口波特率
+    # MT8852B_Write('SYSCFG CONFIG,RANGE,AUTO')    # 设置功率范围为自动
+
+    ## =============== debug ===============
+
+    ## leop test setting
+    # MT8852B_Write("OPMD SCRIPT")     # 打开脚本
+    MT8852B_Write(widgets,device,"LEOPCFG 10,LFREQSEL,ON")  # 开启低频测试
+    MT8852B_Write(widgets,device,"LEOPCFG 10,MFREQSEL,ON")  # 开启中频测试
+    MT8852B_Write(widgets,device,"LEOPCFG 10,HFREQSEL,ON")  # 开启高频测试
+
+    MT8852B_Write(widgets,device,"LEOPCFG 10,LTXFREQ,FREQ,2402MHZ")  # 设置低频发送频率
+    MT8852B_Write(widgets,device,"LEOPCFG 10,MTXFREQ,FREQ,2440MHZ")  # 设置中频发送频率
+    MT8852B_Write(widgets,device,"LEOPCFG 10,HTXFREQ,FREQ,2480MHZ")  # 设置高频发送频率
+
+    MT8852B_Write(widgets,device,"LEOPCFG 10,NUMPKTS,10")
+
+    # MT8852B_Query("OPTSTATUS?") # 查询测试状态
+    # MT8852B_Query("SCPTSEL?")   # 查询脚本选择
+
+    MT8852B_Write(widgets,device,"LEOPCFG 10, AVGMXLIM,5DBM") # 设置最大平均功率
+    MT8852B_Write(widgets,device,"LEOPCFG 10, AVGMNLIM,-5DBM") # 设置最小平均功率
+    MT8852B_Write(widgets,device,"LEOPCFG 10, PEAKLIM,10DBM") # 设置最大功率
+
+    MT8852B_Write(widgets,device,"SCPTCFG 10,LEOP,ON")   # 开启LEOP测试
+
+
+    ## leicd test setting
+    MT8852B_Write(widgets,device,"LEICDCFG 10,LFREQSEL,ON")  # 开启低频测试
+    MT8852B_Write(widgets,device,"LEICDCFG 10,MFREQSEL,ON")  # 开启中频测试
+    MT8852B_Write(widgets,device,"LEICDCFG 10,HFREQSEL,ON")  # 开启高频测试
+
+    MT8852B_Write(widgets,device,"LEICDCFG 10,LTXFREQ,FREQ,2402MHZ")  # 设置低频发送频率
+    MT8852B_Write(widgets,device,"LEICDCFG 10,MTXFREQ,FREQ,2440MHZ")  # 设置中频发送频率
+    MT8852B_Write(widgets,device,"LEICDCFG 10,HTXFREQ,FREQ,2480MHZ")  # 设置高频发送频率
+
+    MT8852B_Write(widgets,device,"LEICDCFG 10,NUMPKTS,10")
+
+    MT8852B_Write(widgets,device,"LEICDCFG 10,MXPOSLIM,150KHZ")   # 设置最大频偏
+    MT8852B_Write(widgets,device,"LEICDCFG 10,MXNEGLIM,150KHZ")   # 设置最小频偏
+    MT8852B_Write(widgets,device,"LEICDCFG 10,DFTBLERATE,19KHZ")   # 设置DFT测试速率
+    MT8852B_Write(widgets,device,"LEICDCFG 10,DFTBLELIM,50KHZ")   # 设置DFT测试速率
+    MT8852B_Write(widgets,device,"SCPTCFG 10,LEICD,ON")   # 开启LEICD测试
+
+    ## less test setting
+
+    MT8852B_Write(widgets,device,"LESSCFG 10,LFREQSEL,ON")  # 开启低频测试
+    MT8852B_Write(widgets,device,"LESSCFG 10,MFREQSEL,ON")  # 开启中频测试
+    MT8852B_Write(widgets,device,"LESSCFG 10,HFREQSEL,ON")  # 开启高频测试
+
+    MT8852B_Write(widgets,device,"LESSCFG 10,DIRTYTX,ON")   # OFF脏发射测试
+    MT8852B_Write(widgets,device,"OPMD SCRIPT")     # 打开脚本
+    MT8852B_Write(widgets,device,"LESSCFG 10,TXPWR,-85")   # 开启脏发射测试
+
+    MT8852B_Write(widgets,device,"LESSCFG 10,FERLIM,30.8") 
+    MT8852B_Write(widgets,device,"LESSCFG 10,NUMPKTS,500") 
+
+    MT8852B_Write(widgets,device,"SCPTCFG 10,LEICD,ON")
+
+    
+
+    # print('for test')
+    ## less test setting
+    ## =============== debug ===============
+
 
 def init(widgets,device, global_status):
 
@@ -123,10 +203,26 @@ def init(widgets,device, global_status):
         else:
             print_log(widgets,'LOG: Select Script 10 Fail')
 
+        MT8852B_Write(widgets,device,'TXPWR 10,-60')   # 设置功率        ## for debug
+        MT8852B_Write(widgets,device,'PATHOFF 10,FIXED')    # 设置路径为固定     ## for debug
+
+        if global_status['finished_channel'] == 'left':
+            fix_offset = 'FIXEDOFF 10,' + global_status['left_fixed_offset'] + 'DB'
+        else:
+            fix_offset = 'FIXEDOFF 10,' + global_status['right_fixed_offset'] + 'DB'
+
+        # MT8852B_Write(widgets,device,'FIXEDOFF 10,-23DB')   # 设置固定偏移     ## for debug
+        MT8852B_Write(widgets,device,fix_offset)   # 设置固定偏移     ## for debug
+
+        print(fix_offset)
+
+        params_init(widgets,device)
+
         MT8852B_Write(widgets,device,"SCPTTSTGR 10,STDTSTS,OFF")   # 关闭标准测试
         MT8852B_Write(widgets,device,"SCPTTSTGR 10,EDRTSTS,OFF")   # 关闭EDR测试
         MT8852B_Write(widgets,device,"SCPTTSTGR 10,BLETSTS,ON")   # 开启BLE测试
 
+        
         MT8852B_Write(widgets,device,"RUN")    # 运行脚本
         # device.set_visa_attribute(VI_ATTR_TMO_VALUE, 12000)  # 设置超时时间
         opc = MT8852B_Query(widgets,device,'*OPC?')   # 查询操作完成
@@ -146,48 +242,70 @@ def init(widgets,device, global_status):
         print_log(widgets,'LOG: Wait for Script 10 Result')
 
 
-        if global_status['finished_channel'] == 'left':
-            bar_text = global_status['left_sn'] + '  测试中...'
-        else:
-            bar_text = global_status['right_sn'] + '  测试中...'
+        # if global_status['finished_channel'] == 'left':
+        #     bar_text = global_status['left_sn'] + '  测试中...'
+        # else:
+        #     bar_text = global_status['right_sn'] + '  测试中...'
 
-        widgets.left_test_result_bar.setValue(10)
-        widgets.left_test_result_bar.setFormat(bar_text)
-        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
-                                            font-weight: bold; color: rgb(0, 0, 0);}')
+        # widgets.left_test_result_bar.setValue(100)
+        # widgets.left_test_result_bar.setFormat(bar_text)
+        # widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 255, 0); \
+        #                                     font-weight: bold; color: rgb(0, 0, 0);}')
         
-        for i in range(1,10):
-            time.sleep(0.5)
-            widgets.left_test_result_bar.setValue(i * 10)
+        # for i in range(1,10):
+        #     time.sleep(0.5)
+        #     widgets.left_test_result_bar.setValue(i * 10)
 
         timeout = False
         while_time = 0
-        while int(ins) != 46:
-            ins = device.query('*INS?')   # 查询仪器状态
-            time.sleep(1)
-            while_time = while_time + 1
-            if global_status['finished_channel'] == 'left':
-                widgets.left_test_result_bar.setValue(10 + while_time * 6)
-            else:
-                widgets.right_test_result_bar.setValue(10 + while_time * 6)
 
-            if while_time > 14:
-                if global_status['finished_channel'] == 'left':
-                    widgets.left_test_result_bar.setValue(95)
-                else:
-                    widgets.right_test_result_bar.setValue(95)
 
-                print_log(widgets,'LOG: Script 10 Run Timeout')
-                accident.warnning(widgets,'MT8852B 测试超时',True)
-                timeout = True
-                break
+        # while int(ins) != 46:
+        #     ins = device.query('*INS?')   # 查询仪器状态
+        #     time.sleep(1)
+        #     while_time = while_time + 1
+        #     # if global_status['finished_channel'] == 'left':
+        #     #     widgets.left_test_result_bar.setValue(10 + while_time * 6)
+        #     # else:
+        #     #     widgets.right_test_result_bar.setValue(10 + while_time * 6)
 
-            if global_status['finished_channel'] == 'left':
-                widgets.left_test_result_bar.setValue(100)
-            else:
-                widgets.right_test_result_bar.setValue(100)
+        #     if while_time > 14:
+        #         # if global_status['finished_channel'] == 'left':
+        #         #     widgets.left_test_result_bar.setValue(95)
+        #         # else:
+        #         #     widgets.right_test_result_bar.setValue(95)
+
+        #         print_log(widgets,'LOG: Script 10 Run Timeout')
+        #         accident.warnning(widgets,'MT8852B 测试超时',True)
+        #         timeout = True
+        #         break
+
+        #     if global_status['finished_channel'] == 'left':
+        #         widgets.left_test_result_bar.setValue(100)
+        #     else:
+        #         widgets.right_test_result_bar.setValue(100)
             
-            time.sleep(1)
+        #     time.sleep(1)
+
+        ## ==================== for test =========================
+
+        for wait_time_cnt in range(1, 20):
+            ins = device.query('*INS?')   # 查询仪器状态
+            if int(ins) == 46:
+                if global_status['finished_channel'] == 'left':
+                    widgets.left_test_result_bar.setValue(100)
+                else:
+                    widgets.right_test_result_bar.setValue(100)
+                timeout = False
+                break
+            else:
+                if wait_time_cnt >= 19:
+                    timeout = True
+                time.sleep(1)
+            
+
+        ## ===================== for test ========================
+
 
         if timeout == False:
             print_log(widgets,'LOG: Script 10 Run Success')
@@ -219,9 +337,15 @@ def init(widgets,device, global_status):
                 print_log(widgets,'LOG: BLE AoA/AoD support')
             if '70' in opt:
                 print_log(widgets,'LOG: Platform Enhanced option')
+            
+            return True
+        else:
+            return False
 
     else:
         print_log(widgets,'MT8852B init failed')
+
+        return False
 
 
 def pass_to_pass(state):
@@ -323,6 +447,10 @@ def leop_result_read(widgets,device):
     print('最小功率：         ', leop_l['min'], '      ',leop_m['min'],'      ',leop_h['min'])
     print('峰值功率：         ', leop_l['peak_to_avg'], '      ',leop_m['peak_to_avg'],'      ',leop_h['peak_to_avg'])
     print('测试结果：         ', leop_l['state'], '      ',leop_m['state'],'      ',leop_h['state'])
+
+    # MT8852B_Query(widgets,device,'XRESULT LESS,HOPOFFL')   # 清除测试结果  
+    # MT8852B_Query(widgets,device,'XRESULT LESS,HOPOFFM')   # 清除测试结果
+    # MT8852B_Query(widgets,device,'XRESULT LESS,HOPOFFH')   # 清除测试结果
 
 
     return leop_result

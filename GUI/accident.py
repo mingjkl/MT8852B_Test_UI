@@ -2,7 +2,7 @@
 Author: emmovo
 Date: 2023-04-02 18:51:23
 LastEditors: emmovo
-LastEditTime: 2023-04-02 18:52:38
+LastEditTime: 2023-04-03 12:53:42
 FilePath: \BluetoothKB_Freq_test\GUI\accident.py
 Description: 
 
@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QMessageBox
 
 import plam_det
 
-
+warnning_triggered = False
 
 def warnning(widgets, str, enable):
     if enable == True:
@@ -21,11 +21,15 @@ def warnning(widgets, str, enable):
         print('ACCIDENT! WARNNING!')
         print(str)
 
-        widgets.stackedWidget.setCurrentWidget(widgets.home)
+        # if warnning_triggered == False:
 
-        warningbox = QMessageBox()
-        warningbox.setIcon(QMessageBox.Warning)
-        warningbox.setText(str)
-        warningbox.setWindowTitle("WARNNING")
-        warningbox.setStandardButtons(QMessageBox.Ok)
-        warningbox.exec()
+        #     widgets.stackedWidget.setCurrentWidget(widgets.home)
+
+        #     warningbox = QMessageBox()
+        #     warningbox.setIcon(QMessageBox.Warning)
+        #     warningbox.setText(str)
+        #     warningbox.setWindowTitle("WARNNING")
+        #     warningbox.setStandardButtons(QMessageBox.Ok)
+        #     warningbox.exec()
+
+            # warnning_triggered = True

@@ -2,6 +2,20 @@ import plam_det
 import json
 import tr_dis
 import accident
+import serial
+
+from PySide6.QtWidgets import QMessageBox
+
+def com_display(widgets, list):
+
+    list_len = len(list)
+    for i in list:
+        widgets.left_box_com.addItem(i.name)
+        widgets.right_box_com.addItem(i.name)
+        widgets.left_bbtc_com.addItem(i.name)
+        widgets.right_bbtc_com.addItem(i.name)
+        widgets.signal_ctrl_com.addItem(i.name)
+
 
 ## Loading the setting.json file
 def setting_load(widgets, global_status):
@@ -9,7 +23,7 @@ def setting_load(widgets, global_status):
         plam_det.log_display(widgets,'Setting loading...')
         print('Setting loading...')
         try:
-            with open('./test/setting.json', 'r') as f:
+            with open('./Config/setting.json', 'r') as f:
                 setting_data = json.load(f)
 
             widgets.left_box_com.addItem(setting_data['connect']['left_box_com'])
@@ -17,6 +31,8 @@ def setting_load(widgets, global_status):
             widgets.left_bbtc_com.addItem(setting_data['connect']['left_bttc_com'])
             widgets.right_bbtc_com.addItem(setting_data['connect']['right_bttc_com'])
             widgets.signal_ctrl_com.addItem(setting_data['connect']['signal_ctrl_com'])
+
+
             widgets.connect_time_le.setText(setting_data['connect']['connect_time'])
 
             widgets.leop_packet_cnt_le.setText(setting_data['leop_config']['packet_cnt'])
@@ -45,6 +61,8 @@ def setting_load(widgets, global_status):
             widgets.less_op_le.setText(setting_data['less_config']['op'])
             widgets.less_fer_le.setText(setting_data['less_config']['fer'])
 
+            global_status['left_fixed_offset'] = setting_data['left_fixed_offset']
+            global_status['right_fixed_offset'] = setting_data['right_fixed_offset']
 
 
         except:
@@ -105,8 +123,29 @@ def setting_save(widgets):
             'fer': widgets.less_fer_le.text()
         }
     }
-    with open('D:/WorkingData/BluetoothKB_Freq_test/test/setting.json', 'w') as f:
-        json.dump(setting_data, f, indent=1)
+
+    try:
+        with open('./Config/setting.json', 'w') as f:
+            json.dump(setting_data, f, indent=1)
+        print("Setting success")
+
+        warningbox = QMessageBox()
+        warningbox.setIcon(QMessageBox.Information)
+        warningbox.setText('Save successful!')
+        warningbox.setWindowTitle("Success")
+        warningbox.setStandardButtons(QMessageBox.Ok)
+        warningbox.exec()
+
+
+    except:
+        print("Setting fail")
+
+        warningbox = QMessageBox()
+        warningbox.setIcon(QMessageBox.Warning)
+        warningbox.setText('Save Failed')
+        warningbox.setWindowTitle("WARNNING")
+        warningbox.setStandardButtons(QMessageBox.Ok)
+        warningbox.exec()
 
 
 ## Test setting disable

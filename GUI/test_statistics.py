@@ -11,7 +11,7 @@ def test_statisics_init(widgets):
     plam_det.log_display(widgets,'Test statistics init...')
     print('Test statistics init...')
     try:
-        with open('./test/test_statistics.json', 'r') as f:
+        with open('./Config/test_statistics.json', 'r') as f:
             test_data = json.load(f)
 
         widgets.left_test_count.setText(test_data['test_data']['left_box']['total_count'])
@@ -40,7 +40,7 @@ def test_statisics_save(widgets, channel, result):
     print('Test statistics save...')
 
     try:
-        with open('./test/test_statistics.json', 'r') as f:
+        with open('./Config/test_statistics.json', 'r') as f:
             test_data = json.load(f)
         
         if result == 'pass':
@@ -85,7 +85,7 @@ def test_statisics_save(widgets, channel, result):
                 widgets.right_pass_count.setText(test_data['test_data']['right_box']['pass_count'])
                 widgets.right_fail_count.setText(test_data['test_data']['right_box']['fail_count'])
                 
-        with open('./test/test_statistics.json', 'w') as f:
+        with open('./Config/test_statistics.json', 'w') as f:
             json.dump(test_data, f, indent=4)
 
     except:
@@ -100,5 +100,37 @@ def test_statisics_save(widgets, channel, result):
 
 
 
+def test_statisics_clear(widgets, channel):
+    plam_det.log_display(widgets,'Test statistics clear...')
+    print('Test statistics clear...')
 
+    try:
+        with open('./Config/test_statistics.json', 'r') as f:
+            test_data = json.load(f)
+        
+        if channel == 'left':
+            test_data['test_data']['left_box']['pass_count'] = '0'
+            test_data['test_data']['left_box']['fail_count'] = '0'
+            test_data['test_data']['left_box']['total_count'] = '0'
+            test_data['test_data']['left_box']['fail_rate'] = '0'
+        else:
+            test_data['test_data']['right_box']['pass_count'] = '0'
+            test_data['test_data']['right_box']['fail_count'] = '0'
+            test_data['test_data']['right_box']['total_count'] = '0'
+            test_data['test_data']['right_box']['fail_rate'] = '0'
+
+        with open('./Config/test_statistics.json', 'w') as f:
+            json.dump(test_data, f, indent=4)
+
+        test_statisics_init(widgets)
+
+    except:
+        plam_det.log_display(widgets,'Test data clear error!')
+        print('Test data clear error!')
+        accident.warnning(widgets, '统计文件清除失败', True)
+        return False
+    else:
+        plam_det.log_display(widgets,'Test statistics clear complete!')
+        print('Test statistics clear complete!')
+        return True
 

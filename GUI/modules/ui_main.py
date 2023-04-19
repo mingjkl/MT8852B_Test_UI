@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main.ui'
+## Form generated from reading UI file 'main_single.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -1285,7 +1285,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1160, 560))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 98, 28))
         self.verticalLayoutWidget = QWidget(self.scrollAreaWidgetContents)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(19, 10, 1121, 131))
@@ -1651,6 +1651,22 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_20.addWidget(self.label)
 
+        self.horizontalLayout_36 = QHBoxLayout()
+        self.horizontalLayout_36.setObjectName(u"horizontalLayout_36")
+        self.label_28 = QLabel(self.test_data_page)
+        self.label_28.setObjectName(u"label_28")
+        self.label_28.setFont(font)
+
+        self.horizontalLayout_36.addWidget(self.label_28)
+
+        self.sn_lineedit = QLineEdit(self.test_data_page)
+        self.sn_lineedit.setObjectName(u"sn_lineedit")
+
+        self.horizontalLayout_36.addWidget(self.sn_lineedit)
+
+
+        self.verticalLayout_20.addLayout(self.horizontalLayout_36)
+
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.verticalLayout_21 = QVBoxLayout()
@@ -1659,16 +1675,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.horizontalLayout_15 = QHBoxLayout()
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.label_4 = QLabel(self.test_data_page)
-        self.label_4.setObjectName(u"label_4")
-
-        self.horizontalLayout_15.addWidget(self.label_4)
-
-        self.left_sn_in = QLineEdit(self.test_data_page)
-        self.left_sn_in.setObjectName(u"left_sn_in")
-
-        self.horizontalLayout_15.addWidget(self.left_sn_in)
-
 
         self.horizontalLayout_14.addLayout(self.horizontalLayout_15)
 
@@ -2384,6 +2390,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_54.addWidget(self.label_141)
 
+        self.left_data_clean = QPushButton(self.test_data_page)
+        self.left_data_clean.setObjectName(u"left_data_clean")
+
+        self.horizontalLayout_54.addWidget(self.left_data_clean)
+
 
         self.verticalLayout_21.addLayout(self.horizontalLayout_54)
 
@@ -2409,6 +2420,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_47.addWidget(self.left_fail_rate)
 
+        self.label_26 = QLabel(self.test_data_page)
+        self.label_26.setObjectName(u"label_26")
+
+        self.horizontalLayout_47.addWidget(self.label_26)
+
 
         self.verticalLayout_21.addLayout(self.horizontalLayout_47)
 
@@ -2423,16 +2439,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.horizontalLayout_55 = QHBoxLayout()
         self.horizontalLayout_55.setObjectName(u"horizontalLayout_55")
-        self.label_3 = QLabel(self.test_data_page)
-        self.label_3.setObjectName(u"label_3")
-
-        self.horizontalLayout_55.addWidget(self.label_3)
-
-        self.right_sn_in = QLineEdit(self.test_data_page)
-        self.right_sn_in.setObjectName(u"right_sn_in")
-
-        self.horizontalLayout_55.addWidget(self.right_sn_in)
-
 
         self.verticalLayout_26.addLayout(self.horizontalLayout_55)
 
@@ -3145,6 +3151,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_80.addWidget(self.label_260)
 
+        self.right_data_clean = QPushButton(self.test_data_page)
+        self.right_data_clean.setObjectName(u"right_data_clean")
+
+        self.horizontalLayout_80.addWidget(self.right_data_clean)
+
 
         self.verticalLayout_26.addLayout(self.horizontalLayout_80)
 
@@ -3169,6 +3180,11 @@ class Ui_MainWindow(object):
         self.right_fail_rate.setObjectName(u"right_fail_rate")
 
         self.horizontalLayout_57.addWidget(self.right_fail_rate)
+
+        self.label_27 = QLabel(self.test_data_page)
+        self.label_27.setObjectName(u"label_27")
+
+        self.horizontalLayout_57.addWidget(self.label_27)
 
 
         self.verticalLayout_26.addLayout(self.horizontalLayout_57)
@@ -3524,7 +3540,7 @@ class Ui_MainWindow(object):
         self.cfg_save_btn.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58", None))
         self.default_btn.setText(QCoreApplication.translate("MainWindow", u"\u6062\u590d\u9ed8\u8ba4\u503c", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"SN\u7801\u8f93\u5165\uff1a", None))
+        self.label_28.setText(QCoreApplication.translate("MainWindow", u"SN\u7801\u8f93\u5165\uff1a", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u8f93\u51fa\u529f\u7387\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
         self.left_leop_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
         self.label_21.setText(QCoreApplication.translate("MainWindow", u"+", None))
@@ -3634,11 +3650,12 @@ class Ui_MainWindow(object):
         self.label_143.setText(QCoreApplication.translate("MainWindow", u"\u901a\u8fc7\u4e2a\u6570", None))
         self.label_142.setText(QCoreApplication.translate("MainWindow", u"\u5931\u8d25\u4e2a\u6570", None))
         self.label_141.setText(QCoreApplication.translate("MainWindow", u"\u574f\u7387", None))
+        self.left_data_clean.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u9664", None))
         self.left_test_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.left_pass_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.left_fail_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.left_fail_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"SN\u7801\u8f93\u5165\uff1a", None))
+        self.label_26.setText("")
         self.label_149.setText(QCoreApplication.translate("MainWindow", u"\u8f93\u51fa\u529f\u7387\u6d4b\u8bd5\u7ed3\u679c\uff1a", None))
         self.right_leop_result.setText(QCoreApplication.translate("MainWindow", u"NULL", None))
         self.label_153.setText(QCoreApplication.translate("MainWindow", u"+", None))
@@ -3748,10 +3765,12 @@ class Ui_MainWindow(object):
         self.label_263.setText(QCoreApplication.translate("MainWindow", u"\u901a\u8fc7\u4e2a\u6570", None))
         self.label_261.setText(QCoreApplication.translate("MainWindow", u"\u5931\u8d25\u4e2a\u6570", None))
         self.label_260.setText(QCoreApplication.translate("MainWindow", u"\u574f\u7387", None))
+        self.right_data_clean.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u9664", None))
         self.right_test_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.right_pass_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.right_fail_count.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.right_fail_rate.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_27.setText("")
         self.debug_gpib_list_get_btn.setText(QCoreApplication.translate("MainWindow", u"GPIB List Get", None))
         self.debug_mt8852b_get_id_btn.setText(QCoreApplication.translate("MainWindow", u"MT8852B Get ID", None))
         self.debug_left_bttc_connect_btn.setText(QCoreApplication.translate("MainWindow", u"LEFT BTTC Signal Connect", None))

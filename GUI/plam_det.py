@@ -1,11 +1,19 @@
 import time
+import mt8852b_ctrl
 
 ## The log display function on the UI interface
 def log_display(widgets,msg):
-    widgets.textEdit_4.append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + ' LOG: ' + msg) 
+    # widgets.textEdit_4.append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + ' LOG: ' + msg) 
+    pass
 
 def mt8852b_check(global_status, widgets):
     log_display(widgets,'mt8852b checking...')
+
+    if mt8852b_ctrl.connect(widgets, global_status) != None:
+        global_status['mt8852b_connected'] = True
+    else:
+        global_status['mt8852b_connected'] = False
+
     if global_status['mt8852b_connected'] == True:
         global_status['mt8852b_connected'] = True
         print('mt8852b connected')

@@ -1,0 +1,16 @@
+{
+    "test_data": {
+        "left_box": {
+            "total_count": "1",
+            "pass_count": "1",
+            "fail_count": "0",
+            "fail_rate": "0.0"
+        },
+        "right_box": {
+            "total_count": "1",
+            "pass_count": "1",
+            "fail_count": "0",
+            "fail_rate": "0.0"
+        }
+    }
+}
