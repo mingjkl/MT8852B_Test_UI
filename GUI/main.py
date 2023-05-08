@@ -15,7 +15,7 @@
 # ///////////////////////////////////////////////////////////////
 
 MT8852B_ONLINE = True
-VERSION = "v1.7.0"
+VERSION = "v1.8.0"
 ACCIDENT_WARNNING = False
 SETTING_ENABLE = False
 
@@ -44,6 +44,7 @@ import test_statistics
 import result_log
 import accident
 import debug
+import mes_update
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -94,7 +95,12 @@ global_com_list = {'left_box_com': None,
                    'signal_switch_com': None}
 
 
+mes_id = 'test'
+mes_password = '1234.com'
+mes_ip = '172.16.24.3'
+mes_port = '8080'
 
+mes_user_info = None
 
 ## Read and detect COM port
 def com_list_cherk(widgets, setting_info, global_status):   
@@ -191,6 +197,15 @@ class MainWindow(QMainWindow):
 
 
         plam_det.mt8852b_check(global_status, widgets) # check mt8852b
+
+        mes_user_info = mes_update.login(mes_ip, mes_port, mes_id, mes_password)
+
+        if mes_user_info == None:
+            global_status['mes_service_connected'] = False
+            print('MES Login fail')
+        else:
+            global_status['mes_service_connected'] = True
+            print('MES Login Success')
 
         com_list_cherk(widgets,setting_data, global_status)    # check com list
         plam_det.left_box_check(global_status, widgets)    # check left box
@@ -320,6 +335,16 @@ class MainWindow(QMainWindow):
         widgets.sn_lineedit.textChanged.connect(self.on_textChanged)
         widgets.sn_lineedit.setMaxLength(SN_LENGTH)
 
+
+        self.th_com_moniter = thread_com_moniter()
+        if MT8852B_ONLINE == True:
+            self.th_test_pm = thread_test_process_management()
+
+
+        self.th_com_moniter.start()
+        if MT8852B_ONLINE == True:
+            self.th_test_pm.start()
+
     
     def on_textChanged(self, text):
         # print('sn_lineedit text changed: ' + text)
@@ -333,9 +358,9 @@ class MainWindow(QMainWindow):
         
 
     def closeEvent(self, event):
-        th_com_moniter.stop()
+        self.th_com_moniter.stop()
         if MT8852B_ONLINE == True:
-            th_test_pm.stop()
+            self.th_test_pm.stop()
         time.sleep(0.1)
         event.accept()
 
@@ -366,9 +391,9 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
 
         if btnName == "btn_exit":
-            th_com_moniter.stop()
+            self.th_com_moniter.stop()
             if MT8852B_ONLINE == True:
-                th_test_pm.stop()
+                self.th_test_pm.stop()
             time.sleep(0.1)
             sys.exit()
 
@@ -475,15 +500,15 @@ class MainWindow(QMainWindow):
 
     # MOUSE CLICK EVENTS
     # ///////////////////////////////////////////////////////////////
-    def mousePressEvent(self, event):
-        # SET DRAG POS WINDOW
-        self.dragPos = event.globalPos()
+    # def mousePressEvent(self, event):
+    #     # SET DRAG POS WINDOW
+    #     self.dragPos = event.globalPos()
 
-        # PRINT MOUSE EVENTS
-        if event.buttons() == Qt.LeftButton:
-            print('Mouse click: LEFT CLICK')
-        if event.buttons() == Qt.RightButton:
-            print('Mouse click: RIGHT CLICK')
+    #     # PRINT MOUSE EVENTS
+    #     if event.buttons() == Qt.LeftButton:
+    #         print('Mouse click: LEFT CLICK')
+    #     if event.buttons() == Qt.RightButton:
+    #         print('Mouse click: RIGHT CLICK')
 
 
 def bttc_rf_signal_switch(channel):
@@ -656,7 +681,8 @@ class thread_com_moniter(QThread):
         #     plam_det.log_display(widgets, 'ERROR: COM LIST CHECKING ERROR!')
         #     print('ERROR: COM LIST CHECKING ERROR!')
         #     return
-        
+
+        print('BTTC Identify mode: ', setting_data['connect']['bttc_identify'])
 
         for i in range(0, comlist_len):
             print(comlist[i])
@@ -686,41 +712,95 @@ class thread_com_moniter(QThread):
                     plam_det.log_display(widgets, 'ERROR: RIGHT BOX COM OPENED ERROR!')
                     print('ERROR: RIGHT BOX COM OPENED ERROR!')
 
-            if comlist[i].device == setting_data['connect']['left_bttc_com']:
-                try:
-                    global left_bttc_com
-                    left_bttc_com = serial.Serial(setting_data['connect']['left_bttc_com'], 115200, timeout=1)
-                    plam_det.log_display(widgets, 'LEFT BTTC COM OPENED!')
-                    global_status['left_bttc_connected'] = True
-                    plam_det.left_bttc_check(global_status, widgets)
-                    global_com_list['left_bttc_com'] = left_bttc_com
-                except:
-                    plam_det.log_display(widgets, 'ERROR: LEFT BTTC COM OPENED ERROR!')
-                    print('ERROR: LEFT BTTC COM OPENED ERROR!')
 
-            if comlist[i].device == setting_data['connect']['right_bttc_com']:
-                try:
-                    global right_bttc_com
-                    right_bttc_com = serial.Serial(setting_data['connect']['right_bttc_com'], 115200, timeout=1)
-                    plam_det.log_display(widgets, 'RIGHT BTTC COM OPENED!')
-                    global_status['right_bttc_connected'] = True
-                    plam_det.right_bttc_check(global_status, widgets)
-                    global_com_list['right_bttc_com'] = right_bttc_com
-                except:
-                    plam_det.log_display(widgets, 'ERROR: RIGHT BTTC COM OPENED ERROR!')
-                    print('ERROR: RIGHT BTTC COM OPENED ERROR!')
+            if setting_data['connect']['bttc_identify'] == 'com':
 
-            if comlist[i].device == setting_data['connect']['signal_ctrl_com']:
-                try:
-                    global signal_switch_com
-                    signal_switch_com = serial.Serial(setting_data['connect']['signal_ctrl_com'], 115200, timeout=1)
-                    plam_det.log_display(widgets, 'SIGNAL SWITCH COM OPENED!')
-                    global_status['signal_switch_connected'] = True
-                    plam_det.signal_ctrl_check(global_status, widgets)
-                    global_com_list['signal_switch_com'] = signal_switch_com
-                except:
-                    plam_det.log_display(widgets, 'ERROR: SIGNAL SWITCH COM OPENED ERROR!')
-                    print('ERROR: SIGNAL SWITCH COM OPENED ERROR!')
+                global left_bttc_com
+                global right_bttc_com
+                global signal_switch_com
+
+                if comlist[i].device == setting_data['connect']['left_bttc_com']:
+                    try:
+                        
+                        left_bttc_com = serial.Serial(setting_data['connect']['left_bttc_com'], 115200, timeout=1)
+                        print('left bttc sn:', setting_data['connect']['left_bttc_com_sn'])
+                        plam_det.log_display(widgets, 'LEFT BTTC COM OPENED!')
+                        global_status['left_bttc_connected'] = True
+                        plam_det.left_bttc_check(global_status, widgets)
+                        global_com_list['left_bttc_com'] = left_bttc_com
+                    except:
+                        plam_det.log_display(widgets, 'ERROR: LEFT BTTC COM OPENED ERROR!')
+                        print('ERROR: LEFT BTTC COM OPENED ERROR!')
+
+                if comlist[i].device == setting_data['connect']['right_bttc_com']:
+                    try:
+            
+                        right_bttc_com = serial.Serial(setting_data['connect']['right_bttc_com'], 115200, timeout=1)
+                        print('right bttc sn:', setting_data['connect']['right_bttc_com_sn'])
+                        plam_det.log_display(widgets, 'RIGHT BTTC COM OPENED!')
+                        global_status['right_bttc_connected'] = True
+                        plam_det.right_bttc_check(global_status, widgets)
+                        global_com_list['right_bttc_com'] = right_bttc_com
+                    except:
+                        plam_det.log_display(widgets, 'ERROR: RIGHT BTTC COM OPENED ERROR!')
+                        print('ERROR: RIGHT BTTC COM OPENED ERROR!')
+
+                if comlist[i].device == setting_data['connect']['signal_ctrl_com']:
+                    try:
+
+                        signal_switch_com = serial.Serial(setting_data['connect']['signal_ctrl_com'], 115200, timeout=1)
+                        print('signal bttc sn:', setting_data['connect']['signal_ctrl_com_cn'])
+                        plam_det.log_display(widgets, 'SIGNAL SWITCH COM OPENED!')
+                        global_status['signal_switch_connected'] = True
+                        plam_det.signal_ctrl_check(global_status, widgets)
+                        global_com_list['signal_switch_com'] = signal_switch_com
+                    except:
+                        plam_det.log_display(widgets, 'ERROR: SIGNAL SWITCH COM OPENED ERROR!')
+                        print('ERROR: SIGNAL SWITCH COM OPENED ERROR!')
+
+            elif setting_data['connect']['bttc_identify'] == 'serial_number':
+
+            
+                print('test ====================')
+                
+                if comlist[i].serial_number == setting_data['connect']['left_bttc_com_sn']:
+                    try:
+        
+                        left_bttc_com = serial.Serial(comlist[i].device, 115200, timeout=1)
+                        print('left bttc sn:', setting_data['connect']['left_bttc_com_sn'])
+                        plam_det.log_display(widgets, 'LEFT BTTC COM OPENED!')
+                        global_status['left_bttc_connected'] = True
+                        plam_det.left_bttc_check(global_status, widgets)
+                        global_com_list['left_bttc_com'] = left_bttc_com
+                    except:
+                        plam_det.log_display(widgets, 'ERROR: LEFT BTTC COM OPENED ERROR!')
+                        print('ERROR: LEFT BTTC COM OPENED ERROR!')
+
+                if comlist[i].serial_number == setting_data['connect']['right_bttc_com_sn']:
+                    try:
+            
+                        right_bttc_com = serial.Serial(comlist[i].device, 115200, timeout=1)
+                        print('right bttc sn:', setting_data['connect']['right_bttc_com_sn'])
+                        plam_det.log_display(widgets, 'RIGHT BTTC COM OPENED!')
+                        global_status['right_bttc_connected'] = True
+                        plam_det.right_bttc_check(global_status, widgets)
+                        global_com_list['right_bttc_com'] = right_bttc_com
+                    except:
+                        plam_det.log_display(widgets, 'ERROR: RIGHT BTTC COM OPENED ERROR!')
+                        print('ERROR: RIGHT BTTC COM OPENED ERROR!')
+
+                if comlist[i].serial_number == setting_data['connect']['signal_ctrl_com_sn']:
+                    try:
+        
+                        signal_switch_com = serial.Serial(comlist[i].device, 115200, timeout=1)
+                        print('signal bttc sn:', setting_data['connect']['signal_ctrl_com_sn'])
+                        plam_det.log_display(widgets, 'SIGNAL SWITCH COM OPENED!')
+                        global_status['signal_switch_connected'] = True
+                        plam_det.signal_ctrl_check(global_status, widgets)
+                        global_com_list['signal_switch_com'] = signal_switch_com
+                    except:
+                        plam_det.log_display(widgets, 'ERROR: SIGNAL SWITCH COM OPENED ERROR!')
+                        print('ERROR: SIGNAL SWITCH COM OPENED ERROR!')
 
     def stop(self):
         self.working = False
@@ -834,6 +914,8 @@ class thread_com_moniter(QThread):
 if MT8852B_ONLINE == True:
     def mt8852b_test_run():
 
+        
+
         start_time = time.time()
 
         device_id = mt8852b_ctrl.connect(widgets, global_status) # connect mt8852b
@@ -881,15 +963,34 @@ if MT8852B_ONLINE == True:
                 tr_dis.less_result_display(global_status,widgets,less_result['less_l'], less_result['less_m'], less_result['less_h'], less_result['status'])
                 tr_dis.result_time_display(global_status,widgets,current_time, str(round(end_time - start_time, 1)) + 's')
 
+
+                global mes_ip
+                global mes_port
+                global mes_id
+                global mes_password
+                global mes_user_info
+
                 if global_status['finished_channel'] == 'left':
 
-                    
+                    mes_response = mes_update.mes_status_put('172.16.24.3', '8080', global_status['left_sn'], mes_user_info)
                 
-                    if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
-                        test_result = 'fail'
-                        widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'  FAIL')
-                        widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
-                                                            font-weight: bold; color: rgb(0, 0, 0);}')
+                    if mes_response == None or mes_response['resultCode'] != '200':
+                        mes_result = 'fail'
+                    else:
+                        mes_result = 'pass'
+
+                    if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL' or mes_result == 'fail':
+                        
+                        if mes_result == 'pass':
+                            test_result = 'fail'
+                            widgets.left_test_result_bar.setFormat(global_status['left_sn'] +'  FAIL')
+                            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                                font-weight: bold; color: rgb(0, 0, 0);}')
+                        else:
+                            test_result = 'fail'
+                            widgets.left_test_result_bar.setFormat(mes_response['resultMsg'])
+                            widgets.left_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                                font-weight: bold; color: rgb(0, 0, 0);}')
                         
                     else:
                         test_result= 'pass'
@@ -902,13 +1003,31 @@ if MT8852B_ONLINE == True:
                                     time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)), str(round(end_time - start_time, 1)), 
                                     leop_result, leicd_result, less_result, test_result, global_status['finished_channel'])
 
+                    # mes_update.mes_status_put(mes_ip, mes_port, global_status['left_sn'], mes_user_info)
+
                 elif global_status['finished_channel'] == 'right':
 
-                    if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL':
-                        test_result = 'fail'
-                        widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'  FAIL')
-                        widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
-                                                            font-weight: bold; color: rgb(0, 0, 0);}')
+                    mes_response = mes_update.mes_status_put('172.16.24.3', '8080', global_status['right_sn'], mes_user_info)
+                
+                    if mes_response == None or mes_response['resultCode'] != '200':
+                        mes_result = 'fail'
+                    else:
+                        mes_result = 'pass'
+
+                    if leop_result['status'] == 'FAIL' or leicd_result['status'] == 'FAIL' or less_result['status'] == 'FAIL' or mes_result == 'fail':
+                        
+                        
+                        if mes_result == 'pass':
+                            test_result = 'fail'
+                            widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'  FAIL')
+                            widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                                font-weight: bold; color: rgb(0, 0, 0);}')
+                        else:
+                            test_result = 'fail'
+                            widgets.right_test_result_bar.setFormat(mes_response['resultMsg'])
+                            widgets.right_test_result_bar.setStyleSheet('QProgressBar { font-size: 30px; color: rgb(0, 0, 0); } QProgressBar::chunk { font-size: 20px; background-color: rgb(255, 0, 0); \
+                                                                font-weight: bold; color: rgb(0, 0, 0);}')
+
                     else:
                         test_result= 'pass'
                         widgets.right_test_result_bar.setFormat(global_status['right_sn'] +'  PASS')
@@ -920,6 +1039,8 @@ if MT8852B_ONLINE == True:
                     result_log.output(widgets, global_status['right_sn'], time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time)), 
                                     time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time)), str(round(end_time - start_time, 1)), 
                                     leop_result, leicd_result, less_result, test_result, global_status['finished_channel'])
+
+
 
             else:
                 widgets.right_test_result_bar.setFormat('测试超时')
@@ -1011,17 +1132,10 @@ if __name__ == "__main__":
     window = MainWindow()
     window.resize(1500, 980)
   
-    th_com_moniter = thread_com_moniter()
-    if MT8852B_ONLINE == True:
-        th_test_pm = thread_test_process_management()
 
 
-    th_com_moniter.start()
-    if MT8852B_ONLINE == True:
-        th_test_pm.start()
-
-    th_test = test_thread()
-    th_test.start()
+    # th_test = test_thread()
+    # th_test.start()
 
     
 

@@ -7,10 +7,10 @@
             "fail_rate": "0"
         },
         "right_box": {
-            "total_count": "0",
+            "total_count": "4",
             "pass_count": "0",
-            "fail_count": "0",
-            "fail_rate": "0"
+            "fail_count": "4",
+            "fail_rate": "1.0"
         }
     }
 }
