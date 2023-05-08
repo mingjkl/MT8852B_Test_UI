@@ -1,16 +1,16 @@
 {
     "test_data": {
         "left_box": {
-            "total_count": "0",
-            "pass_count": "0",
-            "fail_count": "0",
-            "fail_rate": "0"
+            "total_count": "342",
+            "pass_count": "327",
+            "fail_count": "15",
+            "fail_rate": "0.04"
         },
         "right_box": {
-            "total_count": "4",
-            "pass_count": "0",
-            "fail_count": "4",
-            "fail_rate": "1.0"
+            "total_count": "352",
+            "pass_count": "331",
+            "fail_count": "21",
+            "fail_rate": "0.06"
         }
     }
 }

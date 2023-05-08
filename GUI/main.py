@@ -15,7 +15,7 @@
 # ///////////////////////////////////////////////////////////////
 
 MT8852B_ONLINE = True
-VERSION = "v1.8.0"
+VERSION = "v1.9.0"
 ACCIDENT_WARNNING = False
 SETTING_ENABLE = False
 
@@ -31,7 +31,7 @@ import time
 import serial
 import serial.tools.list_ports
 from PySide6.QtCore import QThread
-
+from PySide6.QtCore import QTimer
 
 
 
@@ -336,6 +336,8 @@ class MainWindow(QMainWindow):
         widgets.sn_lineedit.setMaxLength(SN_LENGTH)
 
 
+
+
         self.th_com_moniter = thread_com_moniter()
         if MT8852B_ONLINE == True:
             self.th_test_pm = thread_test_process_management()
@@ -345,6 +347,10 @@ class MainWindow(QMainWindow):
         if MT8852B_ONLINE == True:
             self.th_test_pm.start()
 
+        
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.refresh_ui)  # 连接超时信号和槽函数
+        self.timer.start(100)  # 设置定时器时间间隔为1000毫秒
     
     def on_textChanged(self, text):
         # print('sn_lineedit text changed: ' + text)
@@ -354,7 +360,9 @@ class MainWindow(QMainWindow):
         else:
             widgets.sn_lineedit.setStyleSheet("background-color: rgb(44, 49, 58);")
         
-
+    def refresh_ui(self):
+        # 在此处更新 UI
+        self.update() 
         
 
     def closeEvent(self, event):
